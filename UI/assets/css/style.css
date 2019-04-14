@@ -362,7 +362,7 @@ i.fas.fa-sign-in-alt:hover::after {
   box-sizing: border-box;
 }
 
-.service-box .fas {
+*/ .service-box .fas {
   float: left;
   font-size: 40px;
   margin-right: 30px;
@@ -427,7 +427,7 @@ footer {
   background: #ffc20e;
 }
 
-/* LOGIN FORM */
+/* LOGIN FORM && SIGNUP FORM */
 input,
 button {
   outline: none;
@@ -475,7 +475,8 @@ button {
 
 .tab-content input[type="text"],
 input[type="password"],
-.tab-content input[type="email"] {
+.tab-content input[type="email"],
+input[type="number"] {
   height: 40px;
   padding: 5px;
   margin-bottom: 2%;
@@ -489,10 +490,17 @@ input[type="password"],
   color: #fff;
 }
 
+.tab-content input[type="password"] {
+  border-right: none;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
 .tab-content label[for="firstname"],
 label[for="lastname"],
 label[for="password"],
-.tab-content label[for="email"] {
+label[for="email"],
+label[for="address"],
+label[for="phonenumber"] {
   font-size: 20px;
   display: block;
   padding-bottom: 7px;
@@ -506,7 +514,7 @@ label[for="password"],
   border-radius: 5px;
   margin: 0 auto;
   width: 60%;
-  border: 2px solid white;
+  /* border: 2px solid grey; */
   box-shadow: 0px 0px 9px 3px rgba(0, 0, 0, 0.37);
 }
 
@@ -542,6 +550,29 @@ button.btn1 {
 .login-footer {
   width: 100%;
   flex-shrink: 0;
+}
+
+.secret {
+  display: flex;
+  position: relative;
+}
+.eye-mask {
+  width: 50px;
+  background: rgb(217, 217, 241);
+  margin-top: 37px;
+  height: 40px;
+  /* position: absolute; */
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.eye-pos {
+  position: absolute;
+  margin-top: 3%;
+  margin-left: 3%;
+}
+.pass {
+  flex-grow: 1;
 }
 
 @media (max-width: 768px) {
@@ -618,10 +649,16 @@ button.btn1 {
   .tab-data {
     width: 100%;
   }
+
   .tab-content {
     width: 90%;
   }
   .login-footer {
     position: relative;
+  }
+  .eye-pos {
+    position: absolute;
+    margin-top: 5%;
+    margin-left: 6%;
   }
 }
