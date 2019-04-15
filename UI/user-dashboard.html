@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Profile | Quick-Credit </title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/user-dashboard.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+  <div class="container">
+        <header>
+        <h1 class='logo'>QUICK-CREDIT</h1>
+      <div class="search-container">
+        <form action="">
+          <input class='search-input' type="text" placeholder="Search..." name="search">
+          <span><i class="fa fa-search"></i></span>
+        </form>
+      </div>
+      <div class="notification">
+        <div class="icon">
+          <i "javascript:void(0);" onclick="openNotification()" class="fas fa-bell"></i>
+          <div class="dropdown-notification">
+            <h3>2 New Notifications</h3>
+            <ul>
+              <li>your loan with id #23455 has been approved</li>
+              <li>your loan with id #23455 has been rejected</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="profile">
+        <div class="profile-img">
+          <img src="assets/img/img4.jpg" alt="image placeholder">
+          <div class="dropdown-content">
+            <a href="createorder.html">Apply for loan</a>
+            <a href="user-dashboard.html">Profile</a>
+            <a href="order.html">Transactions</a>
+            <a href="login.html">Logout</a>
+          </div>
+        </div>
+
+      </div>
+    </header>
+    <!-- <div class="mobile-nav">
+        <div class="mobile-search">
+            <form action="/action_page.php">
+              <input class='search-input' type="text" placeholder="Search..." name="search">
+              <button type="submit"><i class="fa fa-search"></i>
+            </form>
+          </div>
+          <div class="mobile-link">
+              <a href="createorder.html">Apply for loan</a>
+              <a href="profile.html">Profile</a>
+              <a href="order.html">Orders</a>
+              <a href="login.html">Logout</a>
+          </div>
+    </div> -->
+    <section class="account-container">
+      <div class="account">
+        <div class="account-img">
+          <a href="profile.html"><img src="assets/img/img4.jpg" alt="image placeholder"></a>
+          <h1>Welcome EMEKA</h1>
+        </div>
+        <div class="account-info">
+          <div class="collected-loans">
+            <p>TOTAL COLLECTED LOANS<br><span>#200,000</span></p>
+          </div>
+          <div class="loans">
+            <p>PENDING LOANS<span>1</span></p>
+          </div>
+
+        </div>
+        <div class="account-details">
+          <h3>Personal Details</h3>
+          <div class="account-data">
+            <p><span class="account-data-type">Name</span> <span class="account-data-value">Emeka Ofe <i class="far fa-edit"></i></span></p>
+            <p><span class="account-data-type">Email</span> <span class="account-data-value">emekaofe@gmail.com <i
+                  class="far fa-edit"></i></span></p>
+            <p><span class="account-data-type">Address</span> <span class="account-data-value">10 Adekoya, Lawanson, Surulere <i class="far fa-edit"></i></span></p>
+            <p><span class="account-data-type">Phone</span> <span class="account-data-value">08132246778 <i class="far fa-edit"></i></span></p>
+          </div>
+        </div>
+
+      </div>
+      <hr>
+      <div class="transactions">
+        <h3>Transaction Details</h3>
+        <div>
+            <table class="transaction-details">
+                <tr>
+                  <th>Transaction ID</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+                <tr>
+                  <td>#22338</td>
+                  <td>03-01-2019</td>
+                  <td>N200,000</td>
+                  <td>PENDING</td>
+                <tr>
+                  <td>#22338</td>
+                  <td>20-12-2018</td>
+                  <td>1,000,000</td>
+                  <td class='reject'>DECLINED</td>
+                </tr>
+                <tr>
+                    <td>#22338</td>
+                    <td>20-12-2018</td>
+                    <td>1,000,000</td>
+                    <td class='approve'>PAID</td>
+                </tr>
+              </table>
+              <div class="pagination">
+                  <a href="#"><i class="fas fa-angle-double-right"></i></a>
+                  <a href="#"><i class="fas fa-angle-double-left"></i></a>
+                </div>
+        </div>
+        
+       
+      </div>
+    </section>
+    </section>
+    <footer class='profile-footer'>
+      <p>copyright &copy; 2019 Andela boot-camp project</p>
+    </footer>
+  </div>
+
+
+  </div>
+
+  <div>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

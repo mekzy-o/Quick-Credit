@@ -252,21 +252,13 @@ header li a:active {
 }
 
 .section-2 .fas {
-  font-size: 60px;
+  font-size: 70px;
   color: #003468;
   padding: 10px;
   position: relative;
 }
-
-.section-2 .far {
-  font-size: 60px;
-  color: #003468;
-  padding: 10px;
-  position: relative;
-}
-
-i.fas.fa-clock,
-i.far.fa-list-alt,
+i.fas.fa-box-open,
+i.fas.fa-shopping-bag,
 i.fas.fa-sign-in-alt {
   position: relative;
   width: 120px;
@@ -274,9 +266,8 @@ i.fas.fa-sign-in-alt {
   font-size: 70px;
   line-height: 120px;
 }
-
-.fas.fa-clock::after,
-i.far.fa-list-alt::after,
+i.fas.fa-box-open::after,
+i.fas.fa-shopping-bag::after,
 i.fas.fa-sign-in-alt::after {
   position: absolute;
   width: 100%;
@@ -284,25 +275,24 @@ i.fas.fa-sign-in-alt::after {
   height: 100%;
   left: 0;
   top: 0;
-  border: 1px solid lightblue;
+  border: 1px solid #dbdbdb;
   transition: 400ms;
   transform: rotate(45deg);
 }
-
-i.fas.fa-clock:hover::after,
-i.far.fa-list-alt:hover::after,
+i.fas.fa-box-open:hover::after,
+i.fas.fa-shopping-bag:hover::after,
 i.fas.fa-sign-in-alt:hover::after {
   transform: rotate(0deg);
 }
-.fa-clock,
-.fa-list-alt,
+.fa-box-open,
+.fa-shopping-bag,
 .fa-in-alt {
   position: relative;
 }
 
 .section-2 p {
   font-size: 19px;
-  color: black;
+  color: #000000c9;
   margin-top: 40px;
   margin-bottom: 40px;
 }
@@ -312,11 +302,11 @@ i.fas.fa-sign-in-alt:hover::after {
   margin-top: 70px;
   margin-bottom: 70px;
   border-top: 1px solid #00000014;
-  width: 85%;
+  width: 84%;
 }
-
+/* box-three service */
 .box-three {
-  background: #fff;
+  background: #ffffffb8;
 }
 .box-three hr {
   margin: 0 auto;
@@ -362,7 +352,7 @@ i.fas.fa-sign-in-alt:hover::after {
   box-sizing: border-box;
 }
 
-*/ .service-box .fas {
+.service-box .fas {
   float: left;
   font-size: 40px;
   margin-right: 30px;
@@ -370,7 +360,7 @@ i.fas.fa-sign-in-alt:hover::after {
   color: #003468;
 }
 
-/* footer*/
+/* footer */
 footer {
   height: 70px;
   background: #003468;
@@ -438,7 +428,7 @@ button {
 }
 
 .form-box {
-  background: rgba(0, 0, 0, 0.514);
+  background: rgba(59, 59, 59, 0.514);
   width: 100%;
   min-height: 85vh;
   display: flex;
