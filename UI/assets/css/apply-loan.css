@@ -1,0 +1,376 @@
+@import url("https://fonts.googleapis.com/css?family=News+Cycle|Scada");
+
+* {
+  padding: 0%;
+  margin: 0%;
+}
+.container {
+  width: 100%;
+  position: relative;
+}
+
+body {
+  background: #f8f8f9;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+.logo {
+  font-family: "Scada", sans-serif;
+}
+a,
+input,
+th,
+td,
+label,
+p,
+button,
+li {
+  font-family: "News Cycle", sans-serif;
+  font-size: 17px;
+}
+
+/* css for header */
+header {
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background: #003468;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: #fff;
+}
+/*LOAN APPLICATION*/
+.user-info h3 {
+  text-align: center;
+}
+textarea {
+  width: 100%;
+  height: 20em;
+}
+
+header {
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background: #003468;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: white;
+}
+
+.logo {
+  width: 30%;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  color: #ffc20e;
+}
+
+.logo a {
+  text-decoration: none;
+  font-size: 2.7rem;
+  color: #ffc20e;
+  cursor: pointer;
+}
+
+.logo::before {
+  display: inline-block;
+  font-family: "Font Awesome 5 Free";
+  content: "\f09d";
+  font-weight: 900;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.logo span {
+  display: inline-block;
+  transform: skew(-20deg);
+}
+.profile {
+  width: 20%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  padding-left: 20px;
+}
+
+.profile h4 {
+  padding-left: 2%;
+}
+.profile-img img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.profile .fas {
+  padding-left: 40px;
+  font-size: 25px;
+}
+.profile a {
+  text-decoration: none;
+  border: none;
+  color: white;
+}
+
+.icon::before {
+  display: block;
+  font-family: "Font Awesome 5 Free";
+  content: "2";
+  font-weight: 900;
+  padding-left: 3px;
+  padding-right: 3px;
+  position: absolute;
+  right: 20px;
+  border: 1px solid red;
+  border-radius: 50%;
+  background: red;
+  color: white;
+}
+.dropdown-content {
+  position: absolute;
+  min-width: 100px;
+  z-index: 1;
+  background: #003468;
+  border-radius: 4px;
+  display: none;
+  border: 1px solid #003468;
+}
+.dropdown-content a {
+  display: block;
+  text-decoration: none;
+  padding: 9px 16px;
+  color: #fff;
+  min-width: 100px;
+}
+.dropdown-content-arrow {
+  position: absolute;
+}
+.profile-img:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content a:hover {
+  color: #ffc20e;
+  font-weight: bold;
+}
+.notification {
+  position: relative;
+}
+.dropdown-notification {
+  position: absolute;
+  min-width: 210px;
+  background: #003468;
+  border-radius: 4px;
+  border: 1px solid #003468;
+  display: block;
+  right: 0;
+  margin-top: 20px;
+  z-index: 1;
+  padding: 5px;
+  cursor: pointer;
+  display: none;
+}
+i.fas.fa-bell {
+  font-size: 18px;
+}
+.dropdown-notification ul {
+  list-style: none;
+}
+.dropdown-notification h3 {
+  padding: 5px;
+  text-align: center;
+}
+.dropdown-notification li {
+  border-bottom: 1px solid #ffffff17;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.dropdown-notification li:hover {
+  color: #ffc20e;
+  font-weight: bold;
+}
+.search-container {
+  margin-right: 20px;
+  width: 50%;
+  position: relative;
+}
+.search-container span {
+  position: absolute;
+  margin-left: -40px;
+  width: 40px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  color: #003468;
+  background: transparent;
+  top: 12px;
+  cursor: pointer;
+}
+.search-container .search-input {
+  height: 35px;
+  border-radius: 20px;
+  outline: none;
+  width: 60%;
+  border: 3px solid #003468;
+  padding-left: 10px;
+}
+/* Content */
+.content {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  background: #f8f8f9;
+}
+.icon {
+  cursor: pointer;
+}
+
+/* create order box */
+.content form {
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+.new-order {
+  width: 100%;
+  box-sizing: border-box;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.new-order h1 {
+  font-size: 34px;
+}
+.new-order h3 {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 30px;
+  box-sizing: border-box;
+  position: relative;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.new-order h3::before {
+  content: "\f09d";
+  display: inline-block;
+  font-family: "Font Awesome 5 Free";
+}
+
+.new-order label {
+  display: block;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 4px;
+}
+.new-order input {
+  width: 100%;
+  height: 40px;
+  padding-left: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  outline: none;
+  box-sizing: border-box;
+}
+.new-order button {
+  width: 100%;
+  padding: 9px 10px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 18px;
+  border: 1px solid rgb(0, 52, 104);
+  color: white;
+  background: rgb(0, 52, 104);
+  transition-property: background;
+  transition-duration: 200ms;
+  transition-timing-function: ease-in;
+}
+/* footer */
+.account-footer {
+  height: 60px;
+  padding-top: 10px;
+  bottom: 0;
+  width: 100%;
+  background: #003468;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+}
+.profile-footer {
+  height: 60px;
+  padding-top: 10px;
+  bottom: 0;
+  width: 100%;
+  background: #003468;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  bottom: 0;
+  margin-top: 20px;
+}
+.new-order-footer {
+  height: 70px;
+  background: #003468;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+@media (max-width: 760px) {
+  h1.logo {
+    font-size: 20px;
+  }
+  .search-container {
+    display: none;
+  }
+  .content form {
+    width: 90%;
+  }
+  .content {
+    display: block;
+    width: 95%;
+  }
+  .dropdown-notification {
+    right: -50px;
+  }
+  .notification {
+    padding-left: 20%;
+  }
+  .profile-img:hover .dropdown-content {
+    display: none;
+  }
+}
+
+@media (max-width: 320px) {
+  .icon::before {
+    display: block;
+    font-family: "Font Awesome 5 Free";
+    content: "2";
+    font-weight: 900;
+    padding-left: 3px;
+    padding-right: 3px;
+    position: absolute;
+    right: 20px;
+    border: 1px solid red;
+    border-radius: 50%;
+    background: red;
+    color: white;
+  }
+}

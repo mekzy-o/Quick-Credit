@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Profile | Quick-Credit </title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
+    crossorigin="anonymous">
+  <!-- <link rel="stylesheet" href="assets/css/user-dashboard.css">
+  <link rel="stylesheet" href="assets/css/style.css">  -->
+  <link rel="stylesheet" href="assets/css/apply-loan.css">
+</head>
+
+<body>
+  <div class="container">
+        <header>
+        <h1 class='logo'>QUICK-CREDIT</h1>
+      <div class="search-container">
+        <form action="">
+          <input class='search-input' type="text" placeholder="Search..." name="search">
+          <span><i class="fa fa-search"></i></span>
+        </form>
+      </div>
+      <div class="notification">
+        <div class="icon">
+          <i "javascript:void(0);" onclick="openNotification()" class="fas fa-bell"></i>
+          <div class="dropdown-notification">
+            <h3>2 New Notifications</h3>
+            <ul>
+              <li>your loan with id #23455 has been approved</li>
+              <li>your loan with id #23455 has been rejected</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="profile">
+        <div class="profile-img">
+          <img src="assets/img/img4.jpg" alt="image placeholder">
+          <div class="dropdown-content">
+            <a href="apply-loan.html">Apply for loan</a>
+            <a href="user-dashboard.html">Profile</a>
+            <a href="order.html">Transactions</a>
+            <a href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="content">
+        <form action="#">
+          <div class="new-order">
+            <div class="user-info">
+              <h3>QUICK-CREDIT LOAN APPLICATION</h3>
+              <hr>
+              <label for="name">Full Name</label>
+              <input type="text" placeholder="Enter Full Name">
+
+              <label for="number">Account Number</label>
+              <input type="number" placeholder="Enter Account Number">
+  
+              <label for="user-address">Address</label>
+              <input type="text" placeholder="Enter Address">
+  
+              <label for="amount">Amount</label>
+              <input type="number" placeholder="Enter loan Amount">
+  
+              <label for="description">Description</label>
+              <textarea placeholder="Brief reason why you need loan....."></textarea>
+  
+              <label for="number">Phone Number</label>
+              <input type="number" placeholder="Phone number">
+            </div>
+            <button type="submit">Submit</button>
+          </div>
+        </form>
+      </section>
+      <footer class="new-order-footer">
+        <p>copyright &copy; 2019 Andela boot-camp project</p>
+      </footer>
+      <script src="js/script.js"></script>
+ </body>
+</html>
