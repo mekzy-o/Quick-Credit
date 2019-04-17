@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>LOAN REPAYMENT | Quick-Credit</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+    crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/loan-repayment.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+    <h1 class='logo'>QUICK-CREDIT</h1>
+  <div class="search-container">
+    <form action="">
+      <input class='search-input' type="text" placeholder="Search..." name="search">
+      <span><i class="fa fa-search"></i></span>
+    </form>
+  </div>
+  <div class="notification">
+    <div class="icon">
+      <i "javascript:void(0);" onclick="openNotification()" class="fas fa-bell"></i>
+      <div class="dropdown-notification">
+        <h3>2 New Notifications</h3>
+        <ul>
+          <li>your loan with id #23455 has been approved</li>
+          <li>your loan with id #23455 has been rejected</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="profile">
+    <div class="profile-img">
+      <img src="assets/img/img4.jpg" alt="image placeholder">
+      <div class="dropdown-content">
+        <a href="createorder.html">Apply for loan</a>
+        <a href="user-dashboard.html">Profile</a>
+        <a href="order.html">Transactions</a>
+        <a href="login.html">Logout</a>
+      </div>
+    </div>
+
+  </div>
+</header>
+
+<!--MAIN SECTION BEGINS HERE-->
+    
+    <section class="content">
+            <div class='table-heading'>
+                <h2>QUICK-CREDIT LOAN REPAYMENT SCHEDULE (N200,000 loan, 7% Interest, 1 year return term)</h2>
+            </div>
+
+      <div class="my-transactions">
+        <div>
+          <table>
+            <tr>
+              <th>Transaction ID</th>
+              <th>Month</th>
+              <th>Monthly Payments</th>
+              <th>Due Date</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+            <tr>
+              <td><a href="#">#22338</a></td>
+              <td>January</td>
+              <td>N2000</td>
+              <td>20-12-2018</td>
+              <td class="approve">PAID</td>
+              <td><button onclick="document.getElementById('payment-modal').style.display='block'">Make Payment</button>
+            </tr>
+            <tr>
+              <td><a href="#">#22338</a></td>
+              <td>February</td>
+              <td>N2000</td>
+              <td>20-12-2018</td>
+              <td>PENDING</td>
+              <td><button>Make Payment</button>
+            </tr>
+            <tr>
+              <td><a href="#">#22338</a></td>
+              <td>March</td>
+              <td>N2000</td>
+              <td>20-12-2018</td>
+              <td class="reject">NOT PAID</td>
+              <td><button>Make Payment</button>
+            </tr>
+          </table>
+          <div class="pagination">
+            <a href="#"><i class="fas fa-angle-double-right"></i></a>
+            <a href="#"><i class="fas fa-angle-double-left"></i></a>
+          </div>
+        </div>
+        <div class="balance">
+          <a href="#" class="balance-button"> Remaining Balance: N123,000 </a>
+        </div>
+      </div>
+      
+    </section>
+
+    <!--MAKE PAYMENT MODAL BOX-->
+    <div id="payment-modal" class="modal"> 
+      <span onclick="document.getElementById('payment-modal').style.display='none'" class="close" title="Close Modal">×</span> 
+      <form class="modal-content"> 
+        <div class='headers'>
+          <div class='card'><h3>Payment Information</h3></div>
+
+        </div>
+        <hr>
+        <div class="modal-container"> 
+        <div class='input-container'>
+          <label><i class="fas fa-user"></i></label> 
+          <input type="text" class='modal-input' placeholder="Full name" name="name" required>
+        </div>       
+
+        <div class='input-container'>
+            <label><i class="fas fa-credit-card"></i></label> 
+            <input type="text" class='modal-input' placeholder="Card number" name="card" required>
+        </div>
+
+        <div class='input-container'>
+            <label><i class="far fa-calendar-minus"></i></label> 
+            <input placeholder="Expiry date" class="modal-input" type="text" onfocus="(this.type='date')" onblur="(this.type='text')" id="date">
+        </div>
+
+        <div class='input-container'>
+            <label><i class="fas fa-lock"></i></label> 
+            <input type="password" class='modal-input' placeholder="CVV" name="password" required>
+        </div>
+        <div class='input-container'>
+            <label><i class="fas fa-envelope"></i></label> 
+            <input type="email" class='modal-input' placeholder="Email" name="email" required>
+        </div>
+        <div><h4>Accepted cards </h4><img src="https://img.icons8.com/color/48/000000/mastercard.png"> <img src="https://img.icons8.com/color/48/000000/visa.png"> <img src="https://img.icons8.com/color/48/000000/paypal.png"></span></div>
+        <div class='clearfix'>
+            <button class="submit" class="signupbtn">Submit</button> 
+            <button class='cancelbtn' onclick="document.getElementById('payment-modal').style.display='none'" class="cancelbtn">Cancel</button> 
+        </div> 
+        </div> 
+      </form> 
+    </div> 
+    <!--MAIN SECTION ENDS HERE-->
+    <footer class='account-footer'>
+      <p>copyright &copy; 2019 Andela boot-camp project</p>
+    </footer>
+  </div>
+</div>
+
+  <div>
+  <script src="assets/js/script.js"></script>
+</body>
+
+</html>
