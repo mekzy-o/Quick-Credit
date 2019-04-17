@@ -1,3 +1,10 @@
+/*LOAN REPAYMENT TABLE*/
+.order-container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
 .container {
   width: 100%;
   position: relative;
@@ -289,12 +296,27 @@ i.fas.fa-bell {
   color: green;
   font-weight: bold;
 }
+
 table {
   border-spacing: 0px;
 }
 tbody {
   text-align: left;
   width: 100%;
+}
+td button {
+  background: rgb(2, 73, 97);
+  width: 150px;
+  height: 50px;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+button a {
+  font-family: "News Cycle", sans-serif;
+  font-size: 12px;
+  text-decoration: none;
+  color: white;
 }
 
 hr {
@@ -336,7 +358,7 @@ td {
 th {
   text-transform: capitalize;
 }
-td span {
+/* td span {
   position: absolute;
   display: block;
   background: #003468;
@@ -345,6 +367,7 @@ td span {
   border-radius: 5px;
   display: none;
   cursor: pointer;
+  text-align: center;
 }
 td.nav:hover span.details {
   display: block;
@@ -364,18 +387,21 @@ td span.details p a:hover {
 td span p:hover {
   color: #ffc20e;
   font-weight: bold;
-}
+} */
 tr:nth-child(even) {
   background-color: rgb(230, 227, 227);
 }
-td a {
+tr {
+  text-align: center;
+}
+/* td a {
   color: currentColor;
   text-decoration-color: #003468;
   opacity: 0.8;
 }
 td a:hover {
   color: #ffc20e;
-}
+} */
 .pagination {
   width: 95%;
   box-sizing: border-box;
@@ -404,14 +430,6 @@ td a:hover {
   cursor: pointer;
 }
 
-/* USER APPLY LOAN */
-.user-info h3 {
-  text-align: center;
-}
-textarea {
-  width: 100%;
-  height: 20em;
-}
 .new-order button {
   width: 100%;
   padding: 9px 10px;
@@ -529,6 +547,10 @@ textarea {
   .transactions {
     width: 100%;
   }
+  .transactions h3 {
+    width: 100%;
+    margin-left: 5px;
+  }
   .account-details {
     width: 100%;
   }
@@ -546,18 +568,19 @@ textarea {
     padding-left: 20px;
     font-size: 25px;
   }
-  td {
-    font-size: 16px;
+  .transaction-details table tr td {
+    text-align: center;
   }
-  td span {
+
+  /* td span {
     position: relative;
   }
   td span.details {
     position: absolute;
     display: block;
-  }
+  } */
   th {
-    font-size: 17px;
+    font-size: 13px;
   }
   .content form {
     width: 90%;

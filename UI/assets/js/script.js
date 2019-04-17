@@ -45,3 +45,12 @@ document
 const changeDestination = document.querySelector(".destination-info-change");
 
 changeDestination.addEventListener("click", openChangeDestination);
+
+// POP UP MODAL SCRIPT
+const modal = document.getElementById("id01");
+
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+};

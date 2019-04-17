@@ -87,10 +87,6 @@ header {
   padding-right: 3px;
 }
 
-.logo span {
-  display: inline-block;
-  transform: skew(-20deg);
-}
 .profile {
   width: 20%;
   display: flex;
@@ -372,5 +368,10 @@ i.fas.fa-bell {
     border-radius: 50%;
     background: red;
     color: white;
+  }
+
+  .cancelbtn,
+  .submit {
+    width: 100%;
   }
 }

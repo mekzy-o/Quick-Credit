@@ -1,0 +1,574 @@
+/* scada for heading, news cycle for p, li, button etc */
+@import url("https://fonts.googleapis.com/css?family=News+Cycle|Scada");
+
+* {
+  padding: 0%;
+  margin: 0%;
+}
+input,
+button {
+  outline: none;
+}
+.container {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+body {
+  background: #f8f8f9;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+.logo {
+  font-family: "Scada", sans-serif;
+}
+a,
+input,
+th,
+td,
+button,
+li {
+  font-family: "News Cycle", sans-serif;
+  font-size: 17px;
+}
+input::-moz-placeholder {
+  font-family: "News Cycle", sans-serif;
+  color: #fff;
+}
+input::placeholder {
+  font-family: "News Cycle", sans-serif;
+}
+/* css for header */
+header {
+  width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background: #003468;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  color: #fff;
+}
+
+.logo {
+  width: 30%;
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  color: #ffc20e;
+}
+
+.logo a {
+  text-decoration: none;
+  font-size: 2.7rem;
+  color: #ffc20e;
+  cursor: pointer;
+}
+
+.logo::before {
+  display: inline-block;
+  font-family: "Font Awesome 5 Free";
+  content: "\f09d";
+  font-weight: 900;
+  padding-left: 3px;
+  padding-right: 3px;
+}
+
+.profile {
+  width: 20%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  padding-left: 20px;
+}
+
+.profile h4 {
+  padding-left: 2%;
+}
+.profile-img img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.profile .fas {
+  padding-left: 40px;
+  font-size: 25px;
+}
+.profile a {
+  text-decoration: none;
+  border: none;
+  color: white;
+}
+.dropdown-content {
+  position: absolute;
+  min-width: 100px;
+  z-index: 1;
+  background: #003468;
+  border-radius: 4px;
+  display: none;
+  border: 1px solid #003468;
+}
+.dropdown-content a {
+  display: block;
+  text-decoration: none;
+  padding: 9px 16px;
+  color: #fff;
+  min-width: 100px;
+}
+.dropdown-content-arrow {
+  position: absolute;
+}
+.profile-img:hover .dropdown-content {
+  display: block;
+}
+.dropdown-content a:hover {
+  color: #ffc20e;
+  font-weight: bold;
+}
+.notification {
+  position: relative;
+}
+.dropdown-notification {
+  position: absolute;
+  min-width: 210px;
+  background: #003468;
+  border-radius: 4px;
+  border: 1px solid #003468;
+  display: block;
+  right: 0;
+  margin-top: 20px;
+  z-index: 1;
+  padding: 5px;
+  cursor: pointer;
+  display: none;
+}
+i.fas.fa-bell {
+  font-size: 18px;
+}
+.icon::before {
+  display: block;
+  font-family: "Font Awesome 5 Free";
+  content: "2";
+  font-weight: 900;
+  padding-left: 3px;
+  padding-right: 3px;
+  position: absolute;
+  right: 20px;
+  border: 1px solid red;
+  border-radius: 50%;
+  background: red;
+  color: white;
+}
+.dropdown-notification ul {
+  list-style: none;
+}
+.dropdown-notification h3 {
+  padding: 5px;
+  text-align: center;
+}
+.dropdown-notification li {
+  border-bottom: 1px solid #ffffff17;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.dropdown-notification li:hover {
+  color: #ffc20e;
+  font-weight: bold;
+}
+
+/* Section loan box-one */
+button {
+  background: #003468;
+  width: 150px;
+  height: 50px;
+  font-size: 15px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.table-heading {
+  width: 100%;
+  font-size: 0.8em;
+  margin-bottom: 20px;
+  margin-left: 25%;
+}
+
+.table-heading h2::before {
+  content: "\f09d";
+  font-family: "Font Awesome 5 Free";
+  display: inline-block;
+  font-weight: normal;
+}
+
+.reject {
+  color: red;
+  font-weight: bold;
+}
+
+.approve {
+  color: green;
+  font-weight: bold;
+}
+
+.balance {
+  margin-top: 5px;
+  width: 50%;
+  display: flex;
+  justify-content: flex-start;
+}
+.balance-button {
+  width: 40%;
+  border-radius: 8px;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0px 10px 14px -7px grey;
+  text-decoration: none;
+  color: black;
+  padding: 13px 20px;
+  margin-left: 50px;
+  text-align: center;
+  font-weight: bold;
+}
+.balance-button:active {
+  position: relative;
+  top: 1px;
+}
+.balance-button:hover {
+  background: #003468;
+  color: #fff;
+}
+.search-container {
+  margin-right: 20px;
+  width: 50%;
+  position: relative;
+}
+.search-container span {
+  position: absolute;
+  margin-left: -40px;
+  width: 40px;
+  border: none;
+  outline: none;
+  border-radius: 4px;
+  color: #003468;
+  background: transparent;
+  top: 12px;
+  cursor: pointer;
+}
+.search-container .search-input {
+  height: 35px;
+  border-radius: 20px;
+  outline: none;
+  width: 60%;
+  border: 3px solid #003468;
+  padding-left: 10px;
+}
+
+/* Content */
+.content {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+  background: #f8f8f9;
+  /* justify-content: center; */
+  align-items: center;
+}
+.my-transactions {
+  width: 100%;
+  background: #ffffffb8;
+  text-align: center;
+  box-shadow: 0px 0px 0px 1px #3a3f4421, 0px 0px 0px 1px #3a3f441f,
+    1px 2px 1px 1px #ffffff08;
+  /* overflow-y: auto; */
+}
+
+.my-transactions h3 {
+  border-bottom: 1px solid grey;
+}
+
+.my-transactions table {
+  width: 100%;
+  border-bottom: 1px solid grey;
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+.my-transactions h4 {
+  text-align: center;
+}
+
+th,
+td {
+  padding: 5px;
+}
+th {
+  text-transform: capitalize;
+}
+
+tr:nth-child(even) {
+  background-color: rgb(230, 227, 227);
+}
+td a {
+  color: currentColor;
+  text-decoration-color: #003468;
+  opacity: 0.8;
+}
+td a:hover {
+  color: #ffc20e;
+}
+.pagination {
+  width: 95%;
+  box-sizing: border-box;
+}
+.pagination a {
+  float: right;
+  margin-top: 10px;
+  padding: 4px 10px;
+  text-decoration: none;
+  color: #003468;
+  transition: background-color 300ms;
+  border: 1px solid;
+  margin-right: 5px;
+  background: #fff;
+  margin-bottom: 20px;
+}
+.pagination a:hover {
+  color: #003468;
+  border: none;
+}
+.pagination a.active {
+  background: #003468;
+  color: white;
+}
+.icon {
+  cursor: pointer;
+}
+
+/* footer */
+.account-footer {
+  height: 60px;
+  padding-top: 10px;
+  bottom: 0;
+  width: 100%;
+  background: #003468;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  font-family: "News Cycle";
+}
+
+/* PAYMENT POPUP MODAL*/
+.modal-input {
+  width: 80%;
+  padding: 5px;
+  margin: 2px;
+  display: inline-block;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  outline: none;
+}
+.headers {
+  display: flex;
+  flex-direction: column;
+}
+.input-container {
+  /* border: 1px solid grey; */
+  border-radius: 5px;
+  box-shadow: 2px 5px 5px 3px grey;
+  padding: 5px;
+  margin-bottom: 10px;
+  width: 350px;
+}
+
+input[type="date"]::before {
+  content: attr(data-placeholder);
+  width: 100%;
+}
+
+input[type="date"]:focus::before,
+input[type="date"]:valid::before {
+  display: none;
+}
+.card {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+  float: left;
+}
+.cancelbtn,
+.submit {
+  float: left;
+  width: 50%;
+}
+
+.modal-container {
+  padding: 16px;
+  width: 50%;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 80%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 60px;
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto;
+  border: 1px solid #888;
+  width: 30%;
+  height: 100%;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* MOBILE CSS*/
+@media (max-width: 760px) {
+  h1.logo {
+    font-size: 20px;
+  }
+  .box-one {
+    display: block;
+  }
+  .balance {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin-bottom: 2px;
+  }
+  a.balance-button {
+    display: block;
+    /* position: absolute; */
+    left: 5px;
+    margin: 0px;
+    top: 5px;
+  }
+  .search-container {
+    display: none;
+  }
+  .transactions {
+    width: 100%;
+  }
+  .account-details {
+    width: 100%;
+  }
+  .table-heading {
+    width: 100%;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    font-size: 14px;
+  }
+  .account-order-details {
+    padding: 0px;
+  }
+  tbody {
+    overflow-x: scroll;
+  }
+  .pagination a {
+    font-size: 15px;
+  }
+  .profile .fas {
+    padding-left: 20px;
+    font-size: 25px;
+  }
+  td {
+    font-size: 16px;
+  }
+  th {
+    font-size: 17px;
+  }
+  .content {
+    display: block;
+    width: 95%;
+  }
+  .my-transactions {
+    width: 100%;
+  }
+  .dropdown-notification {
+    right: -50px;
+  }
+  .notification {
+    padding-left: 20%;
+  }
+  .profile-img:hover .dropdown-content {
+    display: none;
+  }
+
+  /*Payment mobile modal*/
+  .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto 15% auto;
+    border: 1px solid #888;
+    width: 60%;
+    height: 100%;
+    border-radius: 10px;
+    padding: 5px;
+  }
+  .input-container {
+    /* border: 1px solid grey; */
+    border-radius: 5px;
+    box-shadow: 2px 5px 5px 3px grey;
+    padding: 3px;
+    margin-bottom: 10px;
+    width: 280px;
+  }
+}
+
+@media (max-width: 320px) {
+  .icon::before {
+    display: block;
+    font-family: "Font Awesome 5 Free";
+    content: "2";
+    font-weight: 900;
+    padding-left: 3px;
+    padding-right: 3px;
+    position: absolute;
+    right: 20px;
+    border: 1px solid red;
+    border-radius: 50%;
+    background: red;
+    color: white;
+  }
+}
