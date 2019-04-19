@@ -103,7 +103,9 @@ i.fas.fa-envelope {
   padding-left: 3px;
   padding-right: 3px;
   position: absolute;
-  right: 21%;
+  right: 18%;
+  top: -2%;
+  z-index: 1;
   border: 1px solid red;
   border-radius: 50%;
   background: red;
@@ -247,7 +249,153 @@ i.far.fa-edit {
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
 
-/* style for the footer */
+/* USER TABLE STYLE */
+.user-container {
+  width: 100%;
+  margin: 0 auto;
+  background: transparent;
+  padding-bottom: 50px;
+}
+
+.user-container h2 {
+  padding-top: 35px;
+  text-transform: uppercase;
+  margin-left: 5%;
+  text-align: center;
+}
+
+.user-details {
+  width: 90%;
+  margin: 0 auto;
+  background: white;
+  text-align: left;
+  overflow-x: auto;
+}
+
+.user-table {
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #09574b;
+  margin-top: 12px;
+}
+
+.user-table {
+  border-collapse: separate !important;
+  border-spacing: 0;
+  border-radius: 5px;
+  box-shadow: 0px 2px 0px 2px #1a615545;
+}
+
+.user-table td,
+.user-table th {
+  padding: 8px;
+  border-bottom: 1px solid #09574b;
+  text-transform: capitalize;
+}
+
+.election-office td a {
+  color: #09574b;
+}
+
+.election-office td a:hover {
+  color: #eee764;
+}
+
+/* pagination for user table style*/
+.pagination {
+  width: 95%;
+  box-sizing: border-box;
+}
+
+.pagination a {
+  float: right;
+  margin-top: 10px;
+  text-decoration: none;
+  color: #09574b;
+  transition: background-color 300ms;
+  margin-right: 5px;
+  outline: none;
+  border: 1px solid #09574b;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-right: 5px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  width: 40px;
+  height: 35px;
+  margin-bottom: 30px;
+  background: white;
+}
+
+.pagination a .fas {
+  border: none;
+  font-size: 20px;
+}
+
+/* CHECKBOX STYLE */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: green;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+/* FOOTER STYLE */
 footer {
   height: 70px;
   display: flex;
@@ -369,62 +517,12 @@ a.active {
   background: #f4eeee;
 }
 
-@media (max-width: 450px) {
-  .desktop-view {
-    display: none;
-  }
-
-  .mobile-view {
-    display: block;
-  }
-}
-@media (max-width: 760px) {
-  .search {
-    display: none;
-  }
-  .nav-profile .icon {
-    display: block;
-  }
-
+/* MOBILE RESPONSIVE VIEWS */
+@media (max-width: 1024px) {
   .icon::before {
-    right: 28%;
-  }
-  nav .nav-profile img {
-    display: none;
-  }
-  nav .nav-profile h4 {
-    display: none;
-  }
-
-  .sidebar {
-    display: none;
-  }
-
-  .mobile-nav {
-    display: block;
-    color: #fff;
-    width: 30%;
-  }
-
-  .logo {
-    font-size: 27px;
-    width: 70%;
-    padding: 0;
-  }
-
-  .logo h1 a {
-    font-size: 25px;
-  }
-
-  nav {
-    justify-content: space-around;
-    width: 100%;
-  }
-}
-
-@media (width: 1024px) {
-  .icon::before {
-    right: 23%;
+    right: 19%;
+    top: -2%;
+    z-index: 1;
   }
 
   footer {
@@ -442,7 +540,7 @@ a.active {
   }
 }
 
-@media (width: 768px) {
+@media (max-width: 768px) {
   footer {
     position: absolute;
     bottom: 0;
@@ -488,12 +586,96 @@ a.active {
     color: #fff;
     width: 30%;
   }
+
+  .election-details {
+    width: 85%;
+  }
 }
+
+@media (max-width: 768px) {
+  .icon::before {
+    right: 18%;
+    top: 5%;
+    z-index: 1;
+  }
+}
+
+@media (max-width: 760px) {
+  .search {
+    display: none;
+  }
+  .nav-profile .icon {
+    display: block;
+  }
+
+  .icon::before {
+    right: 28%;
+  }
+  nav .nav-profile img {
+    display: none;
+  }
+  nav .nav-profile h4 {
+    display: none;
+  }
+
+  .sidebar {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: block;
+    color: #fff;
+    width: 30%;
+  }
+
+  .logo {
+    font-size: 27px;
+    width: 70%;
+    padding: 0;
+  }
+
+  .logo h1 a {
+    font-size: 25px;
+  }
+
+  nav {
+    justify-content: space-around;
+    width: 100%;
+  }
+  .icon::before {
+    right: 25%;
+    top: 10%;
+    z-index: 1;
+  }
+}
+
 @media (max-width: 700px) {
   .info-box {
     width: 80%;
     margin: 0 auto;
     margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 450px) {
+  .desktop-view {
+    display: none;
+  }
+
+  .mobile-view {
+    display: block;
+  }
+  .icon::before {
+    right: 20%;
+    top: 5%;
+    z-index: 1;
+  }
+  .logo h1 a {
+    font-size: 20px;
+  }
+  nav {
+    justify-content: space-around;
+    width: 100%;
   }
 }
 
@@ -542,7 +724,9 @@ a.active {
 
 @media (max-width: 320px) {
   .icon::before {
-    right: 33%;
+    right: 23%;
+    top: 5%;
+    z-index: 1;
   }
   .logo h1 a {
     font-size: 20px;
