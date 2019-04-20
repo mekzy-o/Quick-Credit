@@ -11,7 +11,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="assets/css/admin.css" />
-    <title>USERS-VERIFICATION | Quick-Credit</title>
+    <title>REPAYMENT-TRANSACTIONS | Quick-Credit</title>
   </head>
 
   <body>
@@ -31,12 +31,12 @@
         <h4>Admin</h4>
       </div>
       <a href="admin-dashboard.html">Dashboard</a>
-      <a class="active" href="user-verification.html">Users</a>
-      <a href="user-loans.html">Loans</a>
+      <a href="user-verification.html">Users</a>
+      <a href="user-loans">Loans</a>
       <a href="admin-current-loans.html">Current Loans</a>
       <a href="admin-repaid-loans.html">Repaid Loans</a>
-      <a href="admin-repayment-transactions.html">Repayment Transactions</a>
-      <a href="login.html">Logout</a>
+      <a class="active" href="#">Repayment Transactions</a>
+      <a href="#">Logout</a>
     </div>
     <nav>
       <div class="logo">
@@ -64,71 +64,70 @@
       <aside class="sidebar">
         <ul>
           <li><a href="admin-dashboard.html">Dashboard</a></li>
-          <li><a class="active" href="user-verification.html">Users</a></li>
+          <li><a href="user-verification.html">Users</a></li>
           <li><a href="user-loans.html">Loans</a></li>
-          <li><a href="admin-current-loans.html">Current Loans</a></li>
-          <li><a href="admin-repaid-loans.html">Repaid Loans</a></li>
-          <li><a href="admin-repayment-transactions.html">Transactions</a></li>
+          <li>
+            <a href="admin-current-loans.html">Current Loans</a>
+          </li>
+          <li>
+            <a href="admin-repaid-loans.html">Repaid Loans</a>
+          </li>
+          <li>
+            <a class="active" href="admin-repayment-transactions.html"
+              >Transactions</a
+            >
+          </li>
           <li><a href="login.html">Logout</a></li>
         </ul>
       </aside>
       <section class="user-container">
-        <h2>USERS</h2>
+        <h2>REPAYMENT TRANSACTIONS</h2>
         <div class="user-details">
-          <table class="user-table" id="user-table" onclick="verifyUser()">
+          <table class="user-table" id="loan-table" onclick="">
             <tbody>
               <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Loan ID</th>
                 <th>Email Address</th>
-                <th>Address</th>
-                <th>Registered on</th>
-                <th>Status</th>
+                <th>Created On</th>
+                <th>Loan Amount</th>
+                <th>Monthly Installment</th>
+                <th>Month</th>
+                <th>Paid Amount</th>
+                <th>Balance</th>
+                <th>Action</th>
               </tr>
               <tr>
-                <td>Emeka</td>
-                <td>Ofe</td>
+                <td>10113</td>
                 <td>emekaofe@gmail.com</td>
-                <td>10 Adekoya Street, Aba</td>
                 <td>12-13-2019</td>
-                <td>
-                  <label class="switch"
-                    ><input type="checkbox" class="myCheck" id="1"/><span
-                      class="slider round"
-                    ></span
-                  ></label>
-                  <span id="1" class="user-status">UNVERIFIED</span>
-                </td>
+                <td>₦200,000</td>
+                <td>₦20,000</td>
+                <td>January</td>
+                <td>₦20,000</td>
+                <td>₦190,000</td>
+                <td><button>CONFIRM PAYMENT</button></td>
               </tr>
               <tr>
-                <td>Emeka</td>
-                <td>Ofe</td>
+                <td>10113</td>
                 <td>emekaofe@gmail.com</td>
-                <td>10 Adekoya Street, Aba</td>
                 <td>12-13-2019</td>
-                <td>
-                  <label class="switch"
-                    ><input type="checkbox" class="myCheck" id="2" /><span
-                      class="slider round"
-                    ></span>
-                  </label>
-                  <span id="2" class="user-status">UNVERIFIED</span>
-                </td>
+                <td>₦200,000</td>
+                <td>₦20,000</td>
+                <td>January</td>
+                <td>₦20,000</td>
+                <td>₦190,000</td>
+                <td><button>CONFIRM PAYMENT</button></td>
               </tr>
               <tr>
-                <td>Emeka</td>
-                <td>Ofe</td>
+                <td>10113</td>
                 <td>emekaofe@gmail.com</td>
-                <td>10 Adekoya Street, Aba</td>
                 <td>12-13-2019</td>
-                <td>
-                  <label class="switch"
-                    ><input type="checkbox" class="myCheck" id="3"/><span
-                      class="slider round"
-                    ></span
-                  ></label>
-                  <span id="3" class="user-status">UNVERIFIED</span>
-                </td>
+                <td>₦200,000</td>
+                <td>₦20,000</td>
+                <td>January</td>
+                <td>₦20,000</td>
+                <td>₦190,000</td>
+                <td><button>CONFIRM PAYMENT</button></td>
               </tr>
             </tbody>
           </table>
@@ -140,6 +139,7 @@
       </section>
     </div>
     <footer>copyright &copy; 2019. Andela bootcamp project</footer>
+
     <script src="assets/js/script.js"></script>
   </body>
 </html>
