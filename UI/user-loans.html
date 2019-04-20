@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
+      integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="assets/css/admin.css" />
+    <title>USERS-VERIFICATION | Quick-Credit</title>
+  </head>
+
+  <body>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+        >&times;</a
+      >
+      <div class="mobile-profile">
+        <div class="profile-img-nav">
+          <img
+            onclick="profile.html"
+            id="profile-img"
+            src="assets/img/avatar2.png"
+            alt=""
+          />
+        </div>
+        <h4>Admin</h4>
+      </div>
+      <a href="admin-dashboard.html">Dashboard</a>
+      <a href="user-verification.html">Users</a>
+      <a class="active" href="user-loans">Loans</a>
+      <a href="#">Current Loans</a>
+      <a href="#">Repaid Loans</a>
+      <a href="#">Repayment Transactions</a>
+      <a href="#">Logout</a>
+    </div>
+    <nav>
+      <div class="logo">
+        <h1 class="logo-header"><a href="../index.html">QUICK-CREDIT</a></h1>
+      </div>
+      <div class="search">
+        <input type="text" class="search-input" placeholder="search..." /><i
+          class="fas fa-search"
+        ></i>
+      </div>
+
+      <div class="nav-profile">
+        <div class="icon"><i class="fas fa-envelope email"></i></div>
+        <div>
+          <img javascript:void(0);" onclick="openNotification()"
+          id="profile-img" src="assets/img/avatar2.png" alt="avatar">
+        </div>
+        <h4>Admin</h4>
+      </div>
+      <div>
+        <span class="mobile-nav" onclick="openNav()">&#9776;</span>
+      </div>
+    </nav>
+    <div class="container">
+      <aside class="sidebar">
+        <ul>
+          <li><a href="dashboard.html">Dashboard</a></li>
+          <li><a href="#">Users</a></li>
+          <li><a class="active" href="#">Loans</a></li>
+          <li><a href="#">Current Loans</a></li>
+          <li><a href="#">Repaid Loans</a></li>
+          <li><a href="#">Repayment Transactions</a></li>
+          <li><a href="login.html">Logout</a></li>
+        </ul>
+      </aside>
+      <section class="user-container">
+        <h2>LOANS</h2>
+        <div class="user-details">
+          <table class="user-table" id="loan-table" onclick="">
+            <tbody>
+              <tr>
+                <th>LOAN ID</th>
+                <th>Email Address</th>
+                <th>Created On</th>
+                <th>Status</th>
+                <th>Repaid</th>
+                <th>Tenor</th>
+                <th>Loan Amount</th>
+                <th>Installment</th>
+                <th>Balance</th>
+                <th>Interest</th>
+              </tr>
+              <tr>
+                <td>
+                  <a
+                    href="#"
+                    onclick="document.getElementById('loan-modal').style.display='block'"
+                    >10113</a
+                  >
+                </td>
+                <td>emekaofe@gmail.com</td>
+                <td>12-13-2019</td>
+                <td class="loan-status">PENDING</td>
+                <td>NULL</td>
+                <td>10 months</td>
+                <td>₦200, 000</td>
+                <td>₦20, 000</td>
+                <td>₦200, 000</td>
+                <td>₦1000</td>
+              </tr>
+              <tr>
+                <td>
+                  <a
+                    href="#"
+                    onclick="document.getElementById('loan-modal').style.display='block'"
+                    >10113</a
+                  >
+                </td>
+                <td>emekaofe@gmail.com</td>
+                <td>12-13-2019</td>
+                <td class="approve loan-status" id="">APPROVED</td>
+                <td>TRUE</td>
+                <td>10 months</td>
+                <td>₦200, 000</td>
+                <td>₦20, 000</td>
+                <td>0.00</td>
+                <td>₦1000</td>
+              </tr>
+              <tr>
+                <td>
+                  <a
+                    href="#"
+                    onclick="document.getElementById('loan-modal').style.display='block'"
+                    >10113</a
+                  >
+                </td>
+                <td>emekaofe@gmail.com</td>
+                <td>12-13-2019</td>
+                <td class="declined loan-status">REJECTED</td>
+                <td>NULL</td>
+                <td>10 months</td>
+                <td>₦200, 000</td>
+                <td>₦20, 000</td>
+                <td>₦200, 000</td>
+                <td>₦1000</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!--------------------VIEW LOAN DETAILS MODAL BOX------------------------------>
+          <div id="loan-modal" class="modal">
+            <span
+              onclick="document.getElementById('loan-modal').style.display='none'"
+              class="close"
+              >×</span
+            >
+            <form class="modal-content">
+              <div class="headers">
+                <div class="card"><h3>LOAN DETAILS</h3></div>
+              </div>
+              <hr />
+              <div class="modal-container">
+                <label for="loan-id">LOAN ID</label>
+                <input
+                  type="number"
+                  class="modal-input"
+                  value="11332"
+                  required
+                />
+
+                <label for="loan-id">EMAIL</label>
+                <input
+                  type="email"
+                  class="modal-input"
+                  value="emekaofe@gmail.com"
+                  required
+                />
+
+                <label for="address">HOME ADDRESS</label>
+                <input
+                  type="text"
+                  class="modal-input"
+                  value="10 Adekoya Street, Aba"
+                  required
+                />
+
+                <label for="user-status">LOAN STATUS</label>
+                <input
+                  id="loans"
+                  type="text"
+                  class="modal-input"
+                  placeholder="Email"
+                  value="PENDING"
+                  required
+                />
+
+                <button type="submit" id="loan-btn" class="signupbtn">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+          <!-------------------------------END OF LOAN-DETAILS MODAL BOX-------------------------------->
+
+          <div class="pagination">
+            <a href="#"><i class="fas fa-angle-double-right"></i></a>
+            <a href="#"><i class="fas fa-angle-double-left"></i></a>
+          </div>
+        </div>
+      </section>
+    </div>
+    <footer>copyright &copy; 2019. Andela bootcamp project</footer>
+
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
