@@ -32,8 +32,8 @@
       </div>
       <a href="admin-dashboard.html">Dashboard</a>
       <a href="user-verification.html">Users</a>
-      <a class="active" href="user-loans">Loans</a>
-      <a href="#">Current Loans</a>
+      <a href="user-loans">Loans</a>
+      <a class="active" href="admin-current-loans.html">Current Loans</a>
       <a href="#">Repaid Loans</a>
       <a href="#">Repayment Transactions</a>
       <a href="#">Logout</a>
@@ -64,16 +64,18 @@
       <aside class="sidebar">
         <ul>
           <li><a href="dashboard.html">Dashboard</a></li>
-          <li><a href="#">Users</a></li>
-          <li><a class="active" href="#">Loans</a></li>
-          <li><a href="#">Current Loans</a></li>
+          <li><a href="user-verification.html">Users</a></li>
+          <li><a href="user-loans.html">Loans</a></li>
+          <li>
+            <a class="active" href="admin-current-loans.html">Current Loans</a>
+          </li>
           <li><a href="#">Repaid Loans</a></li>
           <li><a href="#">Repayment Transactions</a></li>
           <li><a href="login.html">Logout</a></li>
         </ul>
       </aside>
       <section class="user-container">
-        <h2>LOAN APPLICATIONS</h2>
+        <h2>CURRENT LOANS (NOT FULLY REPAID)</h2>
         <div class="user-details">
           <table class="user-table" id="loan-table" onclick="">
             <tbody>
@@ -90,117 +92,43 @@
                 <th>Interest</th>
               </tr>
               <tr>
-                <td>
-                  <a
-                    href="#"
-                    onclick="document.getElementById('loan-modal').style.display='block'"
-                    >10113</a
-                  >
-                </td>
+                <td>10113</td>
                 <td>emekaofe@gmail.com</td>
                 <td>12-13-2019</td>
-                <td class="loan-status">PENDING</td>
-                <td>NULL</td>
+                <td class=" approve loan-status">APPROVED</td>
+                <td>₦140,000</td>
                 <td>10 months</td>
-                <td>₦200, 000</td>
-                <td>₦20, 000</td>
-                <td>₦200, 000</td>
+                <td>₦200,000</td>
+                <td>₦20,000</td>
+                <td>₦80,000</td>
                 <td>₦1000</td>
               </tr>
               <tr>
-                <td>
-                  <a
-                    href="#"
-                    onclick="document.getElementById('loan-modal').style.display='block'"
-                    >10113</a
-                  >
-                </td>
+                <td>10113</td>
                 <td>emekaofe@gmail.com</td>
                 <td>12-13-2019</td>
                 <td class="approve loan-status" id="">APPROVED</td>
-                <td>TRUE</td>
+                <td>₦140,000</td>
                 <td>10 months</td>
-                <td>₦200, 000</td>
-                <td>₦20, 000</td>
-                <td>0.00</td>
+                <td>₦200,000</td>
+                <td>₦20,000</td>
+                <td>₦80,000</td>
                 <td>₦1000</td>
               </tr>
               <tr>
-                <td>
-                  <a
-                    href="#"
-                    onclick="document.getElementById('loan-modal').style.display='block'"
-                    >10113</a
-                  >
-                </td>
+                <td>10113</td>
                 <td>emekaofe@gmail.com</td>
                 <td>12-13-2019</td>
-                <td class="declined loan-status">REJECTED</td>
-                <td>NULL</td>
+                <td class="approve loan-status">APPROVED</td>
+                <td>₦140,000</td>
                 <td>10 months</td>
-                <td>₦200, 000</td>
-                <td>₦20, 000</td>
-                <td>₦200, 000</td>
+                <td>₦200,000</td>
+                <td>₦20,000</td>
+                <td>₦80,000</td>
                 <td>₦1000</td>
               </tr>
             </tbody>
           </table>
-
-          <!--------------------VIEW LOAN DETAILS MODAL BOX------------------------------>
-          <div id="loan-modal" class="modal">
-            <span
-              onclick="document.getElementById('loan-modal').style.display='none'"
-              class="close"
-              >×</span
-            >
-            <form class="modal-content">
-              <div class="headers">
-                <div class="card"><h3>LOAN DETAILS</h3></div>
-              </div>
-              <hr />
-              <div class="modal-container">
-                <label for="loan-id">LOAN ID</label>
-                <input
-                  type="number"
-                  class="modal-input"
-                  value="11332"
-                  required
-                />
-
-                <label for="loan-id">EMAIL</label>
-                <input
-                  type="email"
-                  class="modal-input"
-                  value="emekaofe@gmail.com"
-                  required
-                />
-
-                <label for="address">HOME ADDRESS</label>
-                <input
-                  type="text"
-                  class="modal-input"
-                  value="10 Adekoya Street, Aba"
-                  required
-                />
-
-                <label for="user-status">LOAN STATUS</label>
-                <input
-                  id="loans"
-                  type="text"
-                  class="modal-input"
-                  placeholder="Email"
-                  value="PENDING"
-                  required
-                />
-
-                <button type="submit" id="loan-btn" class="signupbtn">
-                  Submit
-                </button>
-              </div>
-            </form>
-          </div>
-          <!-------------------------------END OF LOAN-DETAILS MODAL BOX-------------------------------->
-
           <div class="pagination">
             <a href="#"><i class="fas fa-angle-double-right"></i></a>
             <a href="#"><i class="fas fa-angle-double-left"></i></a>
