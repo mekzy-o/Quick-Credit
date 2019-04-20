@@ -606,7 +606,7 @@ a.active {
   right: 350px;
   top: 140px;
   color: white;
-  font-size: 40px;
+  font-size: 25px;
   font-weight: bold;
   z-index: 1;
 }
@@ -637,6 +637,16 @@ a.active {
 
   .box-one h2 {
     font-size: 20px;
+  }
+  .modal-content {
+    width: 50vh;
+    height: 55vh;
+    background: grey;
+  }
+  .close {
+    right: 320px;
+    top: 120px;
+    font-size: 18px;
   }
 }
 
@@ -853,6 +863,9 @@ a.active {
     top: 100px;
     font-size: 17px;
   }
+  .user-container h2 {
+    font-size: 18px;
+  }
 }
 
 @media (max-width: 320px) {
@@ -885,5 +898,8 @@ a.active {
     border-radius: 5px;
     font-size: 1em;
     color: white;
+  }
+  .user-container h2 {
+    font-size: 18px;
   }
 }
