@@ -48,11 +48,11 @@ function verifyUser() {
     }
   });
 }
-const closeButton = document.querySelector(".close");
-const img = document.getElementById("profile-img");
+// const closeButton = document.querySelector(".close");
+// const img = document.getElementById("profile-img");
 
-closeButton.addEventListener("click", toggleModal);
-window.addEventListener("click", windowOnClick);
+// closeButton.addEventListener("click", toggleModal);
+// window.addEventListener("click", windowOnClick);
 
 function openNotification() {
   const displayNotification = document.querySelector(".dropdown-content");
@@ -68,20 +68,33 @@ function openNav() {
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
-document.querySelector(".profile-img").addEventListener("click", openMobileNav);
+// document.querySelector(".profile-img").addEventListener("click", openMobileNav);
 
 document
   .querySelector(".close")
   .addEventListener("click", closeChangeDestinationBox);
-const changeDestination = document.querySelector(".destination-info-change");
-
-changeDestination.addEventListener("click", openChangeDestination);
 
 // POP UP MODAL SCRIPT FOR PAYMENT
-const modal = document.getElementById("id01");
+const modal = document.getElementById("payment-modal");
 
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
+};
+
+//POP UP MODAL FOR VIEW SPECIFIC LOAN
+
+const loanModal = document.getElementById("loan-modal");
+
+window.onclick = function(event) {
+  const submitRequest = document.getElementById("loan-btn");
+  submitRequest.onclick = function(event) {
+    event.preventDefault();
+    const loans = document.getElementById("loans");
+
+    document.getElementsByClassName("loan-status")[0].innerHTML = loans.value;
+
+    document.getElementById("loan-modal").style = "none";
+  };
 };

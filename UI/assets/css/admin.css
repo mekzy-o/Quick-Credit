@@ -290,14 +290,24 @@ i.far.fa-edit {
 .user-table th {
   padding: 8px;
   border-bottom: 1px solid #09574b;
-  text-transform: capitalize;
+  /* text-transform: capitalize; */
 }
 
-.election-office td a {
+.approve {
+  color: green;
+  font-weight: 900;
+}
+
+.declined {
+  color: red;
+  font-weight: 900;
+}
+
+.user-details td a {
   color: #09574b;
 }
 
-.election-office td a:hover {
+.user-details td a:hover {
   color: #eee764;
 }
 
@@ -517,6 +527,96 @@ a.active {
   background: #f4eeee;
 }
 
+/* LOAN MODAL */
+/* PAYMENT POPUP MODAL*/
+.modal-input {
+  width: 100%;
+  padding: 5px;
+  margin: 2px;
+  margin-bottom: 10px;
+  display: inline-block;
+  border: 1px solid white;
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline: none;
+  font-size: 20px;
+}
+.headers {
+  display: flex;
+  flex-direction: column;
+}
+.input-container {
+  /* border: 1px solid grey; */
+  border-radius: 5px;
+  box-shadow: 2px 5px 5px 3px grey;
+  padding: 5px;
+  margin-bottom: 10px;
+  width: 350px;
+}
+
+.card {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.signupbtn {
+  width: 50%;
+  float: center;
+  height: 50px;
+  background: #003468;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  font-size: 1.5em;
+  color: white;
+}
+
+.modal-container {
+  padding: 16px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  /* background-color: rgb(0, 0, 0); */
+  background-color: rgba(0, 0, 0, 0.4);
+  padding-top: 60px;
+}
+
+.modal-content {
+  background-color: grey;
+  margin: 5% auto 15% auto;
+  border: 1px solid #888;
+  width: 50%;
+  height: 60%;
+  border-radius: 10px;
+  padding: 10px;
+  color: white;
+}
+
+.close {
+  position: absolute;
+  right: 350px;
+  top: 140px;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
 /* MOBILE RESPONSIVE VIEWS */
 @media (max-width: 1024px) {
   .icon::before {
@@ -587,8 +687,17 @@ a.active {
     width: 30%;
   }
 
-  .election-details {
+  .user-details {
     width: 85%;
+  }
+  .modal-content {
+    width: 50%;
+    height: 70%;
+  }
+  .close {
+    right: 200px;
+    top: 110px;
+    font-size: 18px;
   }
 }
 
@@ -677,11 +786,24 @@ a.active {
     justify-content: space-around;
     width: 100%;
   }
+  .modal-content {
+    width: 60vh;
+    height: 65vh;
+    background: grey;
+    margin-top: 30px;
+  }
+  .close {
+    right: 40px;
+    top: 100px;
+    font-size: 18px;
+  }
 }
 
 @media (max-width: 375px) {
   .icon::before {
-    right: 30%;
+    right: 21%;
+    top: 5%;
+    z-index: 1;
   }
   .info-box {
     width: 80%;
@@ -720,6 +842,17 @@ a.active {
   .info-box span i.far {
     height: 82px;
   }
+  .modal-content {
+    width: 50vh;
+    height: 65vh;
+    background: grey;
+    margin-top: 30px;
+  }
+  .close {
+    right: 40px;
+    top: 100px;
+    font-size: 17px;
+  }
 }
 
 @media (max-width: 320px) {
@@ -734,5 +867,23 @@ a.active {
   nav {
     justify-content: space-around;
     width: 100%;
+  }
+  .modal-content {
+    width: 50vh;
+    height: 65vh;
+    background: grey;
+  }
+  .close {
+    right: 20px;
+    top: 100px;
+    font-size: 18px;
+  }
+  .signupbtn {
+    width: 40%;
+    height: 40px;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    font-size: 1em;
+    color: white;
   }
 }
