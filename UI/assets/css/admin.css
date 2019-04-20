@@ -302,6 +302,9 @@ i.far.fa-edit {
   color: red;
   font-weight: 900;
 }
+.small-font {
+  font-size: 13px;
+}
 
 .user-details td a {
   color: #09574b;
