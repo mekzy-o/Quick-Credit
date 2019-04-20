@@ -33,8 +33,8 @@
       <a href="admin-dashboard.html">Dashboard</a>
       <a href="user-verification.html">Users</a>
       <a href="user-loans">Loans</a>
-      <a class="active" href="admin-current-loans.html">Current Loans</a>
-      <a href="#">Repaid Loans</a>
+      <a href="admin-current-loans.html">Current Loans</a>
+      <a class="active" href="admin-repaid-loans.html">Repaid Loans</a>
       <a href="#">Repayment Transactions</a>
       <a href="#">Logout</a>
     </div>
@@ -67,15 +67,17 @@
           <li><a href="user-verification.html">Users</a></li>
           <li><a href="user-loans.html">Loans</a></li>
           <li>
-            <a class="active" href="admin-current-loans.html">Current Loans</a>
+            <a href="admin-current-loans.html">Current Loans</a>
           </li>
-          <li><a href="#">Repaid Loans</a></li>
-          <li><a href="#">Repayment Transactions</a></li>
+          <li>
+            <a class="active" href="admin-repaid-loans.html">Repaid Loans</a>
+          </li>
+          <li><a href="#" class="small-font">Repayments Transactions</a></li>
           <li><a href="login.html">Logout</a></li>
         </ul>
       </aside>
       <section class="user-container">
-        <h2>CURRENT LOANS (NOT FULLY REPAID)</h2>
+        <h2>REPAID LOANS</h2>
         <div class="user-details">
           <table class="user-table" id="loan-table" onclick="">
             <tbody>
@@ -96,11 +98,11 @@
                 <td>emekaofe@gmail.com</td>
                 <td>12-13-2019</td>
                 <td class=" approve loan-status">APPROVED</td>
-                <td>₦140,000</td>
+                <td>TRUE</td>
                 <td>10 months</td>
                 <td>₦200,000</td>
                 <td>₦20,000</td>
-                <td>₦80,000</td>
+                <td>₦0.00</td>
                 <td>₦1000</td>
               </tr>
               <tr>
@@ -108,11 +110,11 @@
                 <td>emekaofe@gmail.com</td>
                 <td>12-13-2019</td>
                 <td class="approve loan-status" id="">APPROVED</td>
-                <td>₦140,000</td>
+                <td>TRUE</td>
                 <td>10 months</td>
                 <td>₦200,000</td>
                 <td>₦20,000</td>
-                <td>₦80,000</td>
+                <td>₦0.00</td>
                 <td>₦1000</td>
               </tr>
               <tr>
@@ -120,11 +122,11 @@
                 <td>emekaofe@gmail.com</td>
                 <td>12-13-2019</td>
                 <td class="approve loan-status">APPROVED</td>
-                <td>₦140,000</td>
+                <td>TRUE</td>
                 <td>10 months</td>
                 <td>₦200,000</td>
                 <td>₦20,000</td>
-                <td>₦80,000</td>
+                <td>₦0.00</td>
                 <td>₦1000</td>
               </tr>
             </tbody>
