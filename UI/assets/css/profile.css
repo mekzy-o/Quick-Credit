@@ -1,0 +1,146 @@
+i.far.fa-edit {
+  background: #003468;
+}
+.account-img {
+  text-align: center;
+  /* background-image: linear-gradient(to bottom, #37393b, #5b6264, #838e8d, #b1bcb5, #e7ebde); */
+  padding: 2%;
+  width: 75%;
+  margin: 0 auto;
+  height: 250px;
+  margin-top: 20px;
+  box-shadow: 0px 2px 1px 1px #afbab3, 0px -4px 1px #d7ddd2;
+  border-radius: 5px;
+}
+
+.personal-details {
+  width: 76%;
+  margin: 0 auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  line-height: 2;
+  background: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0px 2px 1px 1px #afbab3, 0px -4px 1px #d7ddd2;
+}
+
+.account-data-value {
+  float: right;
+}
+.account-img img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  padding: 5px;
+  border: 1px solid #37393b;
+}
+
+.loans-container {
+  width: 78%;
+  margin: 0% auto;
+  background: white;
+}
+
+.transaction-table th,
+td {
+  text-align: center;
+}
+.loans-container h2 {
+  background: transparent;
+}
+.transaction-table {
+  width: 100%;
+}
+.user-loans {
+  width: 100%;
+  margin: 0 auto;
+  background: transparent;
+  text-align: left;
+  overflow-x: auto;
+}
+
+.transaction-table {
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #09574b;
+  margin-top: 12px;
+  border-collapse: separate !important;
+  border-spacing: 0;
+  border-radius: 5px;
+  box-shadow: 0px 2px 0px 2px #1a615545;
+}
+
+.transaction-table td,
+th {
+  padding: 8px;
+  border-bottom: 1px solid #09574b;
+  text-transform: capitalize;
+}
+
+.transaction-table td button a {
+  color: white;
+  text-decoration: none;
+}
+
+.transaction-table td a:hover {
+  color: #eee764;
+}
+.transaction-table td button {
+  background: #003468;
+  border: 1px solid transparent;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.account-container {
+  width: 100%;
+  background-color: transparent;
+}
+.account-img {
+  text-align: center;
+  padding: 2%;
+  width: 75%;
+  margin: 0 auto;
+  height: 250px;
+  margin-top: 20px;
+  box-shadow: 0px 2px 1px 1px #afbab3, 0px -4px 1px #d7ddd2;
+  border-radius: 5px;
+}
+@media (max-width: 600px) {
+  .account-img {
+    width: 93%;
+  }
+  .personal-details {
+    width: 93%;
+  }
+  .loans-container {
+    width: 100%;
+  }
+  .account-container {
+    width: 85%;
+    margin: 0 auto;
+  }
+  .container {
+    background: #f4eeee;
+  }
+}
+
+@media (width: 1024px) {
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+  .container {
+    min-height: 92vh;
+  }
+}
+@media (max-width: 768px) {
+  footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+}

@@ -293,6 +293,18 @@ i.far.fa-edit {
   /* text-transform: capitalize; */
 }
 
+.user-table td button {
+  background: #003468;
+  border: 1px solid transparent;
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+.user-table th,
+td {
+  text-align: center;
+}
+
 .approve {
   color: green;
   font-weight: 900;
@@ -901,5 +913,18 @@ a.active {
   }
   .user-container h2 {
     font-size: 18px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mobile-profile {
+    display: none;
+  }
+
+  #mySidenav a {
+    display: none;
+  }
+  .sidenav {
+    display: none;
   }
 }

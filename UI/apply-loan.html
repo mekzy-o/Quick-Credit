@@ -11,42 +11,73 @@
   <!-- <link rel="stylesheet" href="assets/css/user-dashboard.css">
   <link rel="stylesheet" href="assets/css/style.css">  -->
   <link rel="stylesheet" href="assets/css/apply-loan.css">
+  <link rel="stylesheet" href="assets/css/admin.css"/>
 </head>
 
 <body>
-  <div class="container">
-        <header>
-        <h1 class='logo'>QUICK-CREDIT</h1>
-      <div class="search-container">
-        <form action="">
-          <input class='search-input' type="text" placeholder="Search..." name="search">
-          <span><i class="fa fa-search"></i></span>
-        </form>
-      </div>
-      <div class="notification">
-        <div class="icon">
-          <i "javascript:void(0);" onclick="openNotification()" class="fas fa-bell"></i>
-          <div class="dropdown-notification">
-            <h3>2 New Notifications</h3>
-            <ul>
-              <li>your loan with id #23455 has been approved</li>
-              <li>your loan with id #23455 has been rejected</li>
-            </ul>
-          </div>
+ <!-------------------------------------------MAIN SECTION STARTS HERE---------------------------------------------->
+ <main>
+    <!-----------------------------------MOBILE NAVBAR STARTS HERE------------------------------------------------------>
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+        >&times;</a
+      >
+      <div class="mobile-profile">
+        <div class="profile-img-nav">
+          <img
+            onclick="profile.html"
+            id="profile-img"
+            src="assets/img/avatar2.png"
+            alt=""
+          />
         </div>
+        <h4>Emeka</h4>
       </div>
-      <div class="profile">
-        <div class="profile-img">
-          <img src="assets/img/img4.jpg" alt="image placeholder">
-          <div class="dropdown-content">
-            <a href="apply-loan.html">Apply for loan</a>
-            <a href="user-dashboard.html">Profile</a>
-            <a href="order.html">Transactions</a>
-            <a href="login.html">Logout</a>
-          </div>
+      <a href="user-dashboard.html">Dashboard</a>
+      <a href="index.html">Home</a>
+      <a href="apply-loan.html">Apply for loans</a>
+      <a href="user-dashboard.html">Profile</a>
+      <a class="active" href="loan-repayment.html">Transactions</a>
+      <a href="login.html">Logout</a>
+    </div>
+    <!-----------------------------------MOBILE NAVBAR ENDS HERE------------------------------------------------------>
+
+    <!-----------------------------------MAIN NAVBAR STARTS HERE------------------------------------------------------>
+    <nav>
+      <div class="logo">
+        <h1 class="logo-header"><a href="../index.html">QUICK-CREDIT</a></h1>
+      </div>
+      <div class="search">
+        <input type="text" class="search-input" placeholder="search..." /><i
+          class="fas fa-search"
+        ></i>
+      </div>
+
+      <div class="nav-profile">
+        <div class="icon"><i class="fas fa-envelope email"></i></div>
+        <div>
+          <img src="assets/img/avatar2.png" alt="avatar">
         </div>
+        <h4>Emeka</h4>
       </div>
-    </header>
+      <div>
+        <span class="mobile-nav" onclick="openNav()">&#9776;</span>
+      </div>
+    </nav>
+     <!-----------------------------------MAIN NAVBAR ENDS HERE------------------------------------------------------>
+
+    <div class="container">
+      <aside class="sidebar">
+        <ul>
+          <li><a href="user-dashboard.html">Dashboard</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="apply-loan.html">Apply for loans</a></li>
+          <li><a href="user-dashboard.html">Profile</a></li>
+          <li><a class="active" href="loan-repayment.html">Transactions</a></li>
+          <li><a href="login.html">Logout</a></li>
+        </ul>
+      </aside>
+
     <section class="content">
         <form action="#">
           <div class="new-order">
@@ -75,7 +106,7 @@
           </div>
         </form>
       </section>
-      <footer class="new-order-footer">
+      <footer class='apply-footer'>
         <p>copyright &copy; 2019 Andela boot-camp project</p>
       </footer>
       <script src="js/script.js"></script>

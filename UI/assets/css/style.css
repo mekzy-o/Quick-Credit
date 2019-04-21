@@ -1,4 +1,4 @@
-/* scada for heading, news cycle for p, li, button etc */
+/* Scada for heading, News cycle for p, li, button etc */
 @import url("https://fonts.googleapis.com/css?family=News+Cycle|Scada");
 
 * {
@@ -49,7 +49,7 @@ a {
   outline: none;
 }
 
-/*header*/
+/* STYLES FOR HEADER */
 header {
   width: 100%;
   padding-top: 15px;
@@ -90,11 +90,16 @@ header {
   transform: skew(-20deg);
 }
 
+header li a:active {
+  outline: none;
+  border: none;
+}
+
 .current {
   border-bottom: 2px solid yellow;
 }
 
-/*UNORDERED LIST CLASS*/
+/* STYLES FOR DESKTOP NAVBAR */
 .desktop-nav {
   display: flex;
   list-style: none;
@@ -108,12 +113,30 @@ header {
   outline: none;
 }
 
-header li a:active {
+/* MOBILE NAVBAR */
+.mobile-nav {
+  color: black;
+  display: none;
+  width: 100%;
+  overflow: hidden;
+}
+.mobile-nav a {
+  color: white;
+  background: #003468;
+  display: block;
   outline: none;
-  border: none;
+  text-decoration: none;
+  text-align: center;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ffffff2b;
+  margin-top: 0px;
 }
 
-/* background  */
+.mobile-nav a:hover {
+  background: #ffc20e;
+}
+
+/* STYLE FOR BOX ONE */
 .background {
   background: url("../img/img1.jpg");
   width: 100%;
@@ -162,18 +185,6 @@ header li a:active {
   color: #ffffffc7;
 }
 
-/* button {
-  padding: 15px;
-  width: 300px;
-  margin: 50px 35px 0px 35px;
-  border-radius: 3px;
-  vertical-align: middle;
-  text-transform: uppercase;
-  color: #fff;
-  cursor: pointer;
-  white-space: normal;
-} */
-
 .intro-button {
   margin: 0 auto;
   text-align: center;
@@ -218,7 +229,7 @@ header li a:active {
   transform: scale(1.05);
 }
 
-/* section two: how-it-works */
+/* STYLE FOR BOX TWO: HOW IT WORKS */
 .box-two {
   padding-top: 3%;
   margin-top: 10px;
@@ -257,8 +268,8 @@ header li a:active {
   padding: 10px;
   position: relative;
 }
-i.fas.fa-box-open,
-i.fas.fa-shopping-bag,
+i.fas.fa-money-bill-alt,
+i.fas.fa-user,
 i.fas.fa-sign-in-alt {
   position: relative;
   width: 120px;
@@ -266,8 +277,8 @@ i.fas.fa-sign-in-alt {
   font-size: 70px;
   line-height: 120px;
 }
-i.fas.fa-box-open::after,
-i.fas.fa-shopping-bag::after,
+i.fas.fa-money-bill-alt::after,
+i.fas.fa-user::after,
 i.fas.fa-sign-in-alt::after {
   position: absolute;
   width: 100%;
@@ -279,13 +290,13 @@ i.fas.fa-sign-in-alt::after {
   transition: 400ms;
   transform: rotate(45deg);
 }
-i.fas.fa-box-open:hover::after,
-i.fas.fa-shopping-bag:hover::after,
+i.fas.fa-money-bill-alt:hover::after,
+i.fas.fa-user:hover::after,
 i.fas.fa-sign-in-alt:hover::after {
   transform: rotate(0deg);
 }
-.fa-box-open,
-.fa-shopping-bag,
+.fa-money-bill-alt,
+.fa-user-bag,
 .fa-in-alt {
   position: relative;
 }
@@ -304,7 +315,8 @@ i.fas.fa-sign-in-alt:hover::after {
   border-top: 1px solid #00000014;
   width: 84%;
 }
-/* box-three service */
+
+/* STYLES FOR BOX THREE */
 .box-three {
   background: #ffffffb8;
 }
@@ -360,7 +372,7 @@ i.fas.fa-sign-in-alt:hover::after {
   color: #003468;
 }
 
-/* footer */
+/* STYLE FOR FOOTER */
 footer {
   height: 70px;
   background: #003468;
@@ -396,27 +408,6 @@ footer {
   background: none;
 }
 
-.mobile-nav {
-  color: black;
-  display: none;
-  width: 100%;
-  overflow: hidden;
-}
-.mobile-nav a {
-  color: white;
-  background: #003468;
-  display: block;
-  outline: none;
-  text-decoration: none;
-  text-align: center;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #ffffff2b;
-}
-
-.mobile-nav a:hover {
-  background: #ffc20e;
-}
-
 /* LOGIN FORM && SIGNUP FORM */
 input,
 button {
@@ -428,7 +419,7 @@ button {
 }
 
 .form-box {
-  background: rgba(59, 59, 59, 0.514);
+  background: rgba(104, 131, 153, 0.849);
   width: 100%;
   min-height: 85vh;
   display: flex;
@@ -523,6 +514,7 @@ button {
   transition-duration: 200ms;
   transition-timing-function: ease-in; */
 }
+
 button.btn1 {
   color: #ffc20e;
 }
@@ -565,7 +557,88 @@ button.btn1 {
   flex-grow: 1;
 }
 
+/* MEDIA QUERIES FOR SCREEN OF MAX-WIDTH 768PX */
 @media (max-width: 768px) {
+  h1.logo {
+    font-size: 30px;
+    width: 50%;
+  }
+  .box-two hr {
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    border-top: 1px solid #00000014;
+    width: 84%;
+  }
+  i.fas.fa-money-bill-alt,
+  i.fas.fa-user,
+  i.fas.fa-sign-in-alt {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+    line-height: 120px;
+  }
+  i.fas.fa-money-bill-alt::after,
+  i.fas.fa-user::after,
+  i.fas.fa-sign-in-alt::after {
+    content: none;
+  }
+  i.fas.fa-money-bill-alt:hover::after,
+  i.fas.fa-user:hover::after,
+  i.fas.fa-sign-in-alt:hover::after {
+    transform: none;
+  }
+  .fa-money-bill-alt,
+  .fa-user-bag,
+  .fa-in-alt {
+    position: relative;
+  }
+  .section-2 p {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .section-2 p:last-child {
+    margin-bottom: 30px;
+  }
+
+  .section-2 {
+    margin-top: 0px;
+  }
+  .box-two h2 {
+    font-size: 35px;
+  }
+  .box-three h2 {
+    margin-top: 30px;
+    font-size: 35px;
+  }
+  .service-box .fas {
+    font-size: 20px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    color: #003468;
+  }
+  .service-box p {
+    font-size: 15px;
+    text-align: left;
+  }
+
+  .service-box h4 {
+    padding-bottom: 5px;
+    font-size: 17px;
+  }
+  .service-box p {
+    font-size: 20px;
+    overflow: hidden;
+    text-align: justify;
+  }
+  .service-box {
+    float: left;
+  }
+  .box-four {
+    display: none;
+  }
   .toggle {
     display: block;
     color: white;
@@ -613,12 +686,6 @@ button.btn1 {
     padding-bottom: 5px;
     text-align: center;
   }
-
-  /* button {
-    margin: 20px 35px 10px 35px;
-    width: 220px;
-  } */
-
   .how-it-works {
     display: block;
   }
@@ -650,5 +717,94 @@ button.btn1 {
     position: absolute;
     margin-top: 5%;
     margin-left: 6%;
+  }
+}
+
+/* MEDIA QUERIES FOR SCREEN OF MAX-WIDTH 425PX */
+@media (max-width: 425px) {
+  h1.logo {
+    font-size: 20px;
+    width: 70%;
+  }
+  .box-two h2 {
+    font-size: 25px;
+  }
+  .box-three h2 {
+    margin-top: 30px;
+    font-size: 25px;
+  }
+}
+
+/* MEDIA QUERIES FOR SCREEN OF MAX-WIDTH 320PX */
+@media (max-width: 320px) {
+  h1.logo {
+    font-size: 15px;
+    width: 50%;
+  }
+  .intro h1,
+  h2 {
+    font-size: 15px;
+  }
+  .intro h1 {
+    margin-top: 30px;
+  }
+  .how-it-works {
+    flex-direction: column;
+    text-align: center;
+    padding-top: 0px;
+  }
+  .box-two h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  .box-three h2 {
+    font-size: 25px;
+    margin-top: 30px;
+  }
+
+  .box-two hr {
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    border-top: 1px solid #00000014;
+    width: 84%;
+  }
+
+  .section-2 {
+    width: 100%;
+  }
+
+  i.fas.fa-money-bill-alt,
+  i.fas.fa-user,
+  i.fas.fa-sign-in-alt {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+    line-height: 120px;
+  }
+  i.fas.fa-money-bill-alt::after,
+  i.fas.fa-user::after,
+  i.fas.fa-sign-in-alt::after {
+    content: none;
+  }
+  i.fas.fa-money-bill-alt:hover::after,
+  i.fas.fa-user:hover::after,
+  i.fas.fa-sign-in-alt:hover::after {
+    transform: none;
+  }
+  .fa-money-bill-alt,
+  .fa-user-bag,
+  .fa-in-alt {
+    position: relative;
+  }
+  .section-2 p {
+    font-size: 20px;
+    color: #000000c9;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  .section-2 {
+    margin-top: 0px;
   }
 }

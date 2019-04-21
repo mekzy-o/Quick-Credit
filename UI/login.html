@@ -5,14 +5,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Login | Quick-Credit </title>
+  <title>LOGIN | Quick-Credit </title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz"
     crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-  <div class="form-container container">
+  <!---------------------------------MAIN SECTION STARTS HERE------------------------------------------------------->
+  <main>
+     <div class="form-container container">
+    <!---------------------------------HEADER STARTS HERE------------------------------------------------------->
         <header>
              <h1 class='logo'onclick="window.location.href='index.html'">QUICK-CREDIT</h1> 
              <ul class="desktop-nav">
@@ -22,22 +25,30 @@
                 <li class='current'><a href="login.html">Login</a></li>
             </ul>
             <div>
-            <a "javascript:void(0);" class="toggle" onclick="openNav()">☰</a>
+            <a "javascript:void(0);" class="toggle" onclick="openMobileNav()">☰</a>
           </div>
         </header>
+        <!---------------------------------HEADER ENDS HERE------------------------------------------------------->
+
+        <!---------------------------------NAV BAR FOR MOBILE VIEW STARTS HERE------------------------------------------------------->
+      <aside>
         <div class="mobile-nav" id="mobileNav">
           <a href="index.html">Home</a></li>
           <a href="contact.html">Contact Us</a>
           <a href="signup.html">Sign Up</a>
           <a href="login.html">Login</a>
         </div>
+      </aside>
+        <!---------------------------------NAV BAR FOR MOBILE VIEW ENDS HERE------------------------------------------------------->
+    
+    <!---------------------------------LOGIN FORM CONTAINER STARTS HERE------------------------------------------------------->
     <div class="form-box">
      <div class="login-form">
       <div class="tab-content">
 
         <div id="login" class="tab-data">
           <h1>Sign In</h1>
-          <form action="/" method="post">
+          <form action="user-dashboard.html" method="post">
 
             <label for="email"></i> Email</label>
             <input type="email" autocomplete="off"/>
@@ -49,9 +60,12 @@
           </form>
         </div>
       </div>
-    </div>
-
+   </div> 
+   <!---------------------------------LOGIN FORM CONTAINER ENDS HERE------------------------------------------------------->
+  
   </div>
+  <!---------------------------------MAIN SECTION ENDS HERE------------------------------------------------------->
+  
   <footer class='login-footer'>
       <p>copyright &copy; 2019 Andela boot-camp project</p>
     </footer>
