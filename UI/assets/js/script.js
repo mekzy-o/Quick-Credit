@@ -6,22 +6,6 @@ function openNav() {
   else nav.style.display = "block";
 }
 
-function openNotification() {
-  const displayNotification = document.querySelector(".dropdown-notification");
-  if (displayNotification.style.display === "block")
-    displayNotification.style.display = "none";
-  else displayNotification.style.display = "block";
-}
-
-function openChangeDestination() {
-  if (displayChangeDestination.style.display === "block")
-    displayChangeDestination.style.display = "none";
-  else displayChangeDestination.style.display = "block";
-}
-
-function closeChangeDestinationBox() {
-  displayChangeDestination.style.display = "none";
-}
 function openMobileNav() {
   const mobileNav = document.querySelector(".mobile-nav");
   if (mobileNav.style.display === "block") mobileNav.style.display = "none";
@@ -49,7 +33,9 @@ function verifyUser() {
   });
 }
 // const closeButton = document.querySelector(".close");
+
 // const img = document.getElementById("profile-img");
+// img.addEventListener("click", openMobileNav);
 
 // closeButton.addEventListener("click", toggleModal);
 // window.addEventListener("click", windowOnClick);
@@ -68,7 +54,8 @@ function openNav() {
 function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
-// document.querySelector(".profile-img").addEventListener("click", openMobileNav);
+
+document.querySelector(".profile-img").addEventListener("click", openMobileNav);
 
 document
   .querySelector(".close")
@@ -87,14 +74,14 @@ window.onclick = function(event) {
 
 const loanModal = document.getElementById("loan-modal");
 
-window.onclick = function(event) {
-  const submitRequest = document.getElementById("loan-btn");
-  submitRequest.onclick = function(event) {
-    event.preventDefault();
-    const loans = document.getElementById("loans");
+// window.onclick = function(event) {
+//   const submitRequest = document.getElementById("loan-btn");
+//   submitRequest.onclick = function(event) {
+//     event.preventDefault();
+//     const loans = document.getElementById("loans");
 
-    document.getElementsByClassName("loan-status")[0].innerHTML = loans.value;
+//     document.getElementsByClassName("loan-status")[0].innerHTML = loans.value;
 
-    document.getElementById("loan-modal").style = "none";
-  };
-};
+//     document.getElementById("loan-modal").style = "none";
+//   };
+// };
