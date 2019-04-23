@@ -4,9 +4,11 @@ import app from '../app';
 
 chai.should();
 const url = '/api/v1/auth/signup';
+const loginUrl = '/api/v1/auth/signin';
 
 chai.use(chaiHttp);
 
+// TEST FOR SIGNUP ROUTE
 describe('User Sign Up Tests', () => {
   describe(`POST ${url}`, () => {
     it('Should create a new user account', (done) => {
@@ -328,5 +330,96 @@ describe(`POST ${url}`, () => {
         res.body.error.should.be.eql('Email already exists!');
         done();
       });
+  });
+});
+
+// TEST FOR LOGIN ROUTE
+describe('User Login Tests', () => {
+  describe(`POST ${loginUrl}`, () => {
+    it('Should successfully login a user account', (done) => {
+      const user = {
+        email: 'emekaofe16@gmail.com',
+        password: 'maths102',
+      };
+      chai
+        .request(app)
+        .post(loginUrl)
+        .send(user)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.should.have.property('data');
+          res.body.data.should.have.property('token');
+          res.body.data.should.have.property('status');
+          res.body.data.should.have.property('isAdmin');
+          done();
+        });
+    });
+    it('Should return 400 and deny access if Invalid Email Address is inputed', (done) => {
+      const user = {
+        email: 'emekaofe1@gmail.com',
+        password: 'maths102',
+      };
+      chai
+        .request(app)
+        .post(loginUrl)
+        .send(user)
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.should.be.a('object');
+          res.body.should.have.property('error');
+          res.body.error.should.be.eql('Invalid Email or Password Inputed!');
+          done();
+        });
+    });
+    it('Should return 400 and deny access if Invalid Password is inputed', (done) => {
+      const user = {
+        email: 'emekaofe16@gmail.com',
+        password: 'maths104',
+      };
+      chai
+        .request(app)
+        .post(loginUrl)
+        .send(user)
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.should.be.a('object');
+          res.body.should.have.property('error');
+          res.body.error.should.be.eql('Invalid Email or Password Inputed!');
+          done();
+        });
+    });
+    it('Should return 400  if Email field is omitted', (done) => {
+      const user = {
+        password: 'maths102',
+      };
+      chai
+        .request(app)
+        .post(loginUrl)
+        .send(user)
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.should.be.a('object');
+          res.body.should.have.property('error');
+          res.body.error.should.be.eql('Email field is required');
+          done();
+        });
+    });
+    it('Should return 400  if Email field is omitted', (done) => {
+      const user = {
+        email: 'emekaofe16@gmail.com',
+      };
+      chai
+        .request(app)
+        .post(loginUrl)
+        .send(user)
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.should.be.a('object');
+          res.body.should.have.property('error');
+          res.body.error.should.be.eql('Password field is required');
+          done();
+        });
+    });
   });
 });
