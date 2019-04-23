@@ -1,5 +1,5 @@
-import users from "../models/userdb";
-import Authenticator from "../auth/authentication";
+import users from '../models/userdb';
+import Authenticator from '../auth/authentication';
 
 /**
  * @class UserController
@@ -16,9 +16,11 @@ class UserController {
    * @returns {object} JSON API Response
    */
   static userSignup(req, res) {
-    const { email, firstName, lastName, password, address } = req.body;
-    const status = "unverified";
-    const isAdmin = "false";
+    const {
+ email, firstName, lastName, password, address 
+} = req.body;
+    const status = 'unverified';
+    const isAdmin = 'false';
 
     const token = Authenticator.createToken(req.body);
 
@@ -31,14 +33,27 @@ class UserController {
       password: Authenticator.hashPassword(password),
       address,
       status,
-      isAdmin
+      isAdmin,
     };
 
     users.push(data);
     return res.status(201).send({
       status: 201,
-      data
+      data,
     });
+  }
+
+  static userLogin(req, res) {
+    const { email } = req.body;
+    const findEmail = users.find(user => user.email === email);
+    const index = users.findIndex(user => user.email === email);
+    if (findEmail && index !== -1) {
+      res.status(200).send({
+        message: 'Login Successful!',
+        status: 200,
+        data: users[index],
+      });
+    }
   }
 }
 

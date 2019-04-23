@@ -69,6 +69,44 @@ class validate {
     }
     return next();
   }
+
+  static loginValidation(req, res, next) {
+    req
+      .checkBody('email')
+      .notEmpty()
+      .withMessage('Email field is required')
+      .trim()
+      .isEmail()
+      .withMessage('Invalid Email Address Entered!')
+      .customSanitizer(email => email.toLowerCase());
+    req
+      .checkBody('password')
+      .notEmpty()
+      .withMessage('Password field is required');
+    const errors = req.validationErrors();
+    if (errors) {
+      return res.status(400).json({
+        status: 400,
+        error: errors[0].msg,
+      });
+    }
+    return next();
+  }
+
+  static loginCheck(req, res, next) {
+    const { email, password } = req.body;
+    const foundEmail = users.find(user => user.email === email);
+    const index = users.findIndex(user => user.email === email);
+    if (foundEmail && password === users[index].password) {
+      return next();
+    }
+    return res.status(400).json({
+      status: 400,
+      error: 'Invalid Email or Password Inputed!',
+    });
+    
+  }
 }
+
 
 export default validate;
