@@ -1,6 +1,6 @@
-import users from '../models/userdb';
+import users from '../models/userDb';
 
-class validate {
+class validateUser {
   static signupValidator(req, res, next) {
     req
       .checkBody('email')
@@ -58,18 +58,6 @@ class validate {
     next();
   }
 
-  static emailExist(req, res, next) {
-    const { email } = req.body;
-    const foundEmail = users.find(user => user.email === email);
-    if (foundEmail) {
-      return res.status(409).send({
-        status: 409,
-        error: 'Email already exists!',
-      });
-    }
-    return next();
-  }
-
   static loginValidation(req, res, next) {
     req
       .checkBody('email')
@@ -93,20 +81,20 @@ class validate {
     return next();
   }
 
-  static loginCheck(req, res, next) {
-    const { email, password } = req.body;
-    const foundEmail = users.find(user => user.email === email);
-    const index = users.findIndex(user => user.email === email);
-    if (foundEmail && password === users[index].password) {
-      return next();
-    }
-    return res.status(400).json({
-      status: 400,
-      error: 'Invalid Email or Password Inputed!',
-    });
-    
-  }
+  // static loginCheck(req, res, next) {
+  //   const { email, password } = req.body;
+  //   const foundEmail = users.find(user => user.email === email);
+  //   console.log(email);
+  //   const index = users.findIndex(user => user.email === email);
+  //   if (foundEmail && password === users[index].password) {
+  //     return next();
+  //   }
+  //   return res.status(400).json({
+  //     status: 400,
+  //     error: 'Invalid Email or Password Inputed!',
+  //   });
+
 }
 
 
-export default validate;
+export default validateUser;
