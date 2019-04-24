@@ -1,15 +1,15 @@
 {
   "name": "quick-credit",
   "version": "1.0.0",
-  "description": "Quick-Credit is an online lending platform that provides short term soft loans to individuals. This helps solve problems of financial inclusion as a way to alleviate poverty and empower low income earners",
-  "main": "app.js",
+  "description": "Quick-Credit is an online lending platform that provides short term soft loans to individuals.",
   "scripts": {
-    "lint": "eslint ./server/**/ --fix",
+    "lint": "./node_modules/.bin/eslint ./server",
+    "lint:fix": "./node_modules/.bin/eslint ./server --fix || true",
     "build": "babel server --out-dir build",
     "start": "node build/app.js",
     "start-dev": "nodemon --exec babel-node server/app.js",
     "heroku-postbuild": "npm run build",
-    "test": "nyc --reporter=text mocha -c ./server/test/loans.test.js  --require @babel/register --exit"
+    "test": "nyc --reporter=text mocha -c ./server/test/**.test.js  --require @babel/register --exit"
   },
   "repository": {
     "type": "git",
@@ -39,6 +39,7 @@
     "express-validator": "^5.3.1",
     "jsonwebtoken": "^8.5.1",
     "mocha": "^6.1.4",
+    "moment": "^2.24.0",
     "morgan": "^1.9.1"
   },
   "devDependencies": {
@@ -51,7 +52,6 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
     "nodemon": "^1.18.11",
-    "nyc": "^13.3.0",
-    "supertest": "^4.0.2"
+    "nyc": "^13.3.0"
   }
 }

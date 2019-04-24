@@ -19,7 +19,7 @@ class UserController {
     const { email, firstName, lastName, password, address } = req.body;
     const id = users.length + 1;
     const status = "unverified";
-    const isAdmin = "false";
+    const isAdmin = false;
 
     const token = Authenticator.createToken({
       id,

@@ -13,7 +13,7 @@ describe('User Sign Up Tests', () => {
   describe(`POST ${url}`, () => {
     it('Should create a new user account', (done) => {
       const user = {
-        email: 'emekaofe7@gmail.com',
+        email: 'emekaofe6@gmail.com',
         firstName: 'Emeka',
         lastName: 'Ofe',
         password: 'maths102',
@@ -151,7 +151,6 @@ describe(`POST ${url}`, () => {
       .post(url)
       .send(user)
       .end((err, res) => {
-        console.log(res.body.error);
         res.should.have.status(400);
         res.body.should.be.a('object');
         res.body.should.have.property('error');
@@ -175,7 +174,6 @@ describe(`POST ${url}`, () => {
       .post(url)
       .send(user)
       .end((err, res) => {
-        console.log(res.body.error);
         res.should.have.status(400);
         res.body.should.be.a('object');
         res.body.should.have.property('error');
@@ -197,7 +195,6 @@ describe(`POST ${url}`, () => {
       .post(url)
       .send(user)
       .end((err, res) => {
-        console.log(res.body.error);
         res.should.have.status(400);
         res.body.should.be.a('object');
         res.body.should.have.property('error');
@@ -334,7 +331,6 @@ describe(`POST ${url}`, () => {
       .post(url)
       .send(user)
       .end((err, res) => {
-        console.log(res.body.error);
         res.should.have.status(409);
         res.body.should.be.a('object');
         res.body.should.have.property('error');

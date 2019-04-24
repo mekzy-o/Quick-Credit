@@ -1,4 +1,8 @@
-import users from '../models/userDb';
+/**
+ * @class validateUser
+ * @description Contains methods for validating each user related endpoint
+ * @exports validateUser
+ */
 
 class validateUser {
   static signupValidator(req, res, next) {
