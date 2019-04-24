@@ -486,3 +486,86 @@ describe(`POST ${url}`, () => {
       });
   });
 });
+
+// TEST TO GET A LOAN APPLICATION
+describe(`GET ${url}`, () => {
+  it('Should return all loan applications', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        chai
+          .request(app)
+          .get(url)
+          .set('authorization', token)
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('data');
+            res.body.data[0].should.have.property('user');
+            res.body.data[0].should.have.property('createdOn');
+            done();
+          });
+      });
+
+  });
+
+  it('Should throw an error is user is not an admin', (done) => {
+    const login = {
+      email: 'emekaofe16@gmail.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        chai
+          .request(app)
+          .get(url)
+          .set('authorization', token)
+          .end((err, res) => {
+            res.should.have.status(403);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Only Admin can access this route');
+            done();
+
+          });
+      });
+  });
+
+  it('Should throw an error if token was not entered', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        chai
+          .request(app)
+          .get(url)
+          .end((err, res) => {
+            res.should.have.status(401);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Invalid or No Token Provided');
+            done();
+
+          });
+      });
+  });
+
+});
+
+

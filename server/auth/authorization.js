@@ -4,15 +4,14 @@ const { verifyToken } = Authenticator;
 
 class Authorization {
 
-
   static verifyAdmin(req, res, next) {
     try {
       const token = req.headers.authorization.split(' ')[1];
       const decoded = verifyToken(token);
-
       req.user = decoded.payload;
 
-      if (!req.user.isadmin) {
+      console.log(req.user)
+      if (req.user.email !== 'admin@quick-credit.com') {
         return res.status(403).send({
           status: 403,
           error: 'Only Admin can access this route',
