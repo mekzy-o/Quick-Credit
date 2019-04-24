@@ -73,6 +73,7 @@ describe('User Sign Up Tests', () => {
           done();
         });
     });
+
     it('Should return 400 if lastName is ommited', (done) => {
       const user = {
         email: 'emekaofe7@gmail.com',
@@ -95,6 +96,7 @@ describe('User Sign Up Tests', () => {
   });
 });
 
+
 describe(`POST ${url}`, () => {
   it('Should return 400 if address is ommited', (done) => {
     const user = {
@@ -115,6 +117,7 @@ describe(`POST ${url}`, () => {
         done();
       });
   });
+
   it('Should return 400 if password is ommited', (done) => {
     const user = {
       email: 'emekaofe7@gmail.com',
@@ -134,6 +137,7 @@ describe(`POST ${url}`, () => {
         done();
       });
   });
+
   it('Should return 400 if First Name is not an alphabet', (done) => {
     const user = {
       email: 'emekaofe7@gmail.com',
@@ -157,6 +161,7 @@ describe(`POST ${url}`, () => {
         done();
       });
   });
+
   it('Should return 400 if Last Name is not an alphabet', (done) => {
     const user = {
       email: 'emekaofe7@gmail.com',
@@ -178,6 +183,7 @@ describe(`POST ${url}`, () => {
         done();
       });
   });
+
   it('Should return 400 if Invalid Email Address is entered', (done) => {
     const user = {
       email: 'emekaofe7@gmail',
@@ -199,6 +205,7 @@ describe(`POST ${url}`, () => {
         done();
       });
   });
+
   it('Should return 400 if Invalid Address format is entered', (done) => {
     const user = {
       email: 'emekaofe7@gmail.com',
@@ -244,6 +251,7 @@ describe(`POST ${url}`, () => {
         done();
       });
   });
+
   it('Should return 400 if First Name length does not meet the minimum', (done) => {
     const user = {
       email: 'emekaofe7@gmail.com',
@@ -266,6 +274,7 @@ describe(`POST ${url}`, () => {
         done();
       });
   });
+
   it('Should return 400 if Last Name length does not meet the minimum', (done) => {
     const user = {
       email: 'emekaofe7@gmail.com',
@@ -311,6 +320,7 @@ describe(`POST ${url}`, () => {
         done();
       });
   });
+
   it('Should return 409 if Email Address already exist', (done) => {
     const user = {
       email: 'emekaofe7@gmail.com',
@@ -324,6 +334,7 @@ describe(`POST ${url}`, () => {
       .post(url)
       .send(user)
       .end((err, res) => {
+        console.log(res.body.error);
         res.should.have.status(409);
         res.body.should.be.a('object');
         res.body.should.have.property('error');
@@ -355,6 +366,7 @@ describe('User Login Tests', () => {
           done();
         });
     });
+
     it('Should return 400 and deny access if Invalid Email Address is inputed', (done) => {
       const user = {
         email: 'emekaofe1@gmail.com',
@@ -372,6 +384,7 @@ describe('User Login Tests', () => {
           done();
         });
     });
+
     it('Should return 400 and deny access if Invalid Password is inputed', (done) => {
       const user = {
         email: 'emekaofe16@gmail.com',
@@ -382,6 +395,7 @@ describe('User Login Tests', () => {
         .post(loginUrl)
         .send(user)
         .end((err, res) => {
+          // console.log(res.body.error);
           res.should.have.status(400);
           res.body.should.be.a('object');
           res.body.should.have.property('error');
@@ -389,6 +403,7 @@ describe('User Login Tests', () => {
           done();
         });
     });
+
     it('Should return 400  if Email field is omitted', (done) => {
       const user = {
         password: 'maths102',
@@ -405,7 +420,8 @@ describe('User Login Tests', () => {
           done();
         });
     });
-    it('Should return 400  if Email field is omitted', (done) => {
+    
+    it('Should return 400  if Password field is omitted', (done) => {
       const user = {
         email: 'emekaofe16@gmail.com',
       };

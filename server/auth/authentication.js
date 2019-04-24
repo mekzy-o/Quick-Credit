@@ -1,6 +1,6 @@
-import bcryptjs from "bcryptjs";
-import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
+import bcryptjs from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
 dotenv.config();
 const { SECRET } = process.env;
@@ -15,7 +15,7 @@ class Authenticator {
    * @return {string} access token
    */
   static createToken(payload) {
-    return jwt.sign({ payload }, SECRET, { expiresIn: "24d" });
+    return jwt.sign({ payload }, SECRET, { expiresIn: '24d' });
   }
 
   /**
@@ -35,6 +35,18 @@ class Authenticator {
    */
   static hashPassword(password) {
     return bcryptjs.hashSync(password, 10);
+  }
+
+  /**
+  * @method verifyPassword
+  * @description Verifies if the user password is valid by comparing
+  * it against the stored hashed password
+  * @param {string} plainTextPassword - The plain text password to be verified
+  * @param {string} hashedPassword - Stored hashed password to compare against
+  * @returns {boolean} Booelean indicating success or failure
+  */
+  static verifyPassword(plainTextPassword, hashedPassword) {
+    return bcryptjs.compareSync(plainTextPassword, hashedPassword);
   }
 }
 
