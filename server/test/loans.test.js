@@ -9,7 +9,13 @@ chai.use(chaiHttp);
 const url = '/api/v1/loans';
 const loginUrl = '/api/v1/auth/signin';
 const signupUrl = '/api/v1/auth/signup';
-const randomToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RuYW1lIjoiQ2h1a3d1ZGkiLCJsYXN0bmFtZSI6Ik5nd29iaWEiLCJvdGhlcm5hbWUiOiJNaWtlIiwiZW1haWwiOiJuZ3dvYmlhY2h1a3d1ZGlAZ21haWwuY29tIiwicGhvbmVOdW1iZXIiOiIwNzA2MDg1NDc3MyIsInBhc3Nwb3J0VXJsIjoiaHR0cHM6Ly9nbWFpbC5jb20vcGFzc3BvcnQiLCJpc0FkbWluIjp0cnVlLCJpYXQiOjE1NTExNzYzMzYsImV4cCI6MTU1MTE3OTkzNn0.';
+const randomToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RuYW1lIjoiQ.';
+const repaidUrl = '/api/v1/loans?status=approved&repaid=true';
+const unrepaidUrl = '/api/v1/loans?status=approved&repaid=false';
+const wrongStatusUrl = '/api/v1/loans?status=approve&repaid=true';
+const wrongRepaidUrl = '/api/v1/loans?status=approved&repaid=good';
+const wrongStatusType = '/api/v1/loans?status=1&repaid=true';
+const wrongRepaidType = '/api/v1/loans?status=approved&repaid=1';
 
 // TEST FOR LOAN APPLICATION ROUTES
 describe('Tests for Loan Endpoint', () => {
@@ -655,7 +661,7 @@ describe(`GET ${url}`, () => {
         const token = `Bearer ${loginRes.body.data.token}`;
         chai
           .request(app)
-          .get(`${url}/3`)
+          .get(`${url}/10`)
           .set('authorization', token)
           .end((err, res) => {
             res.should.have.status(404);
@@ -668,4 +674,155 @@ describe(`GET ${url}`, () => {
       });
   });
 
+});
+
+
+// TEST TO VALIDATE FOR LOAN QUERY PARAMETERS
+describe(`GET ${url}`, () => {
+  it('Should return all loan applications that are approved and repaid', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        chai
+          .request(app)
+          .get(repaidUrl)
+          .set('authorization', token)
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('data');
+            done();
+          });
+      });
+  });
+  it('Should return all loan applications that are approved and not repaid', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        chai
+          .request(app)
+          .get(unrepaidUrl)
+          .set('authorization', token)
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('data');
+            done();
+          });
+      });
+  });
+
+  it('Should return error for wrong status word entered', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        chai
+          .request(app)
+          .get(wrongStatusUrl)
+          .set('authorization', token)
+          .end((err, res) => {
+            res.should.have.status(400);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Invalid status specified!');
+            done();
+          });
+      });
+  });
+
+  it('Should return error for wrong repaid word entered', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        chai
+          .request(app)
+          .get(wrongRepaidUrl)
+          .set('authorization', token)
+          .end((err, res) => {
+            res.should.have.status(400);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Invalid repaid entered');
+            done();
+          });
+      });
+  });
+
+  it('Should return error for wrong status type entered', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        chai
+          .request(app)
+          .get(wrongStatusType)
+          .set('authorization', token)
+          .end((err, res) => {
+            res.should.have.status(400);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Invalid type of status entered!');
+            done();
+          });
+      });
+  });
+
+  it('Should return error for wrong status type entered', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        chai
+          .request(app)
+          .get(wrongRepaidType)
+          .set('authorization', token)
+          .end((err, res) => {
+            res.should.have.status(400);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Invalid type of repaid entered!');
+            done();
+          });
+      });
+  });
 });

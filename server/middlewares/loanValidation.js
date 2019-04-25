@@ -50,6 +50,29 @@ class LoanValidations {
     }
     return next();
   }
+
+  static queryValidation(req, res, next) {
+    req.checkQuery('status')
+      .optional()
+      .isAlpha()
+      .withMessage('Invalid type of status entered!')
+      .equals('approved')
+      .withMessage('Invalid status specified!');
+    req.checkQuery('repaid')
+      .optional()
+      .isAlpha()
+      .withMessage('Invalid type of repaid entered!')
+      .matches(/^(true|false)$/)
+      .withMessage('Invalid repaid entered');
+    const errors = req.validationErrors();
+    if (errors) {
+      return res.status(400).json({
+        status: 400,
+        error: errors[0].msg,
+      });
+    }
+    next();
+  }
 }
 
 

@@ -75,7 +75,16 @@ class LoanController {
    * @returns {object} JSON API Response
    */
   static getLoans(req, res) {
-    res.status(200).send({
+    let { status, repaid } = req.query;
+    if (status && repaid) {
+      repaid = JSON.parse(repaid);
+      const response = loans.filter(loan => loan.status === status && loan.repaid === repaid);
+      return res.status(200).send({
+        status: 200,
+        data: response,
+      });
+    }
+    return res.status(200).send({
       status: 200,
       data: loans,
     });

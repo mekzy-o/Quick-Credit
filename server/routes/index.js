@@ -11,9 +11,11 @@ const router = express.Router();
 router.use(expressValidator());
 
 const { userSignup, userLogin } = UserController;
-const { loanApply, getLoans, getOneLoan } = LoanController;
+const {
+  loanApply, getLoans, getOneLoan, getUnrepaidLoans,
+} = LoanController;
 const { signupValidator, loginValidation } = validateUser;
-const { loanApplyValidator } = LoanValidations;
+const { loanApplyValidator, queryValidation } = LoanValidations;
 const { verifyUser, verifyAdmin } = Authorization;
 
 // Router to create user account
@@ -26,9 +28,10 @@ router.post('/api/v1/auth/signin', loginValidation, userLogin);
 router.post('/api/v1/loans', verifyUser, loanApplyValidator, loanApply);
 
 // Router to get all loan applications
-router.get('/api/v1/loans', verifyAdmin, getLoans);
+router.get('/api/v1/loans', queryValidation, verifyAdmin, getLoans);
 
 // Router to get single loan application
 router.get('/api/v1/loans/:id', verifyAdmin, getOneLoan);
+
 
 export default router;
