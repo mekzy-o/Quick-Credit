@@ -297,12 +297,33 @@ i.far.fa-edit {
   background: #003468;
   border: 1px solid transparent;
   color: white;
+  margin: 2px;
+  display: inline-block;
   padding: 10px;
   border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
 }
+
 .user-table th,
 td {
   text-align: center;
+}
+
+.user-table td .reject {
+  background-color: red;
+}
+
+.user-table td button .accept .reject {
+  width: 100%;
+  display: inline-block;
+}
+.user-table td button.disabled,
+button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: none;
 }
 
 .approve {
@@ -638,7 +659,7 @@ a.active {
   }
 
   footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
   }
@@ -664,7 +685,7 @@ a.active {
 
 @media (max-width: 768px) {
   footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
   }

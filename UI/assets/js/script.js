@@ -85,3 +85,26 @@ const loanModal = document.getElementById("loan-modal");
 //     document.getElementById("loan-modal").style = "none";
 //   };
 // };
+
+// FUNCTION FOR ADMIN OR REJECT LOAN APPLICATIONS
+function adminAction() {
+  const loanTable = document.querySelector("#loan-table");
+  const statusClass = document.getElementsByClassName("loan-status");
+  const approveBtn = document.getElementsByClassName("accept");
+  const rejectBtn = document.getElementsByClassName("reject");
+  loanTable.addEventListener("click", event => {
+    if (event.target.className === "accept") {
+      statusClass[parseInt(event.target.id) - 1].innerHTML = "APPROVED";
+      rejectBtn[parseInt(event.target.id) - 1].style.display = "none";
+      statusClass[parseInt(event.target.id) - 1].classList.add("approve");
+      approveBtn[parseInt(event.target.id) - 1].style.cursor = "not-allowed";
+      approveBtn[parseInt(event.target.id) - 1].classList.add("disabled");
+    } else if (event.target.className === "reject") {
+      statusClass[parseInt(event.target.id) - 1].innerHTML = "REJECTED";
+      approveBtn[parseInt(event.target.id) - 1].style.display = "none";
+      statusClass[parseInt(event.target.id) - 1].classList.add("declined");
+      rejectBtn[parseInt(event.target.id) - 1].style.cursor = "not-allowed";
+      rejectBtn[parseInt(event.target.id) - 1].classList.add("disabled");
+    }
+  });
+}
