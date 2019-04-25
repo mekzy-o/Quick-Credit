@@ -1,5 +1,5 @@
+import moment from 'moment';
 import loans from '../models/loanDb';
-import moment from 'moment'
 /**
  * @class UserController
  * @description Contains methods for users to apply for loan
@@ -17,8 +17,8 @@ class LoanController {
 
   static loanApply(req, res) {
     const {
- firstName, lastName, email, amount 
-} = req.body;
+      firstName, lastName, email, amount,
+    } = req.body;
 
     const tenor = 12;
     const balance = parseInt(amount).toFixed(3);
@@ -78,6 +78,27 @@ class LoanController {
     res.status(200).send({
       status: 200,
       data: loans,
+    });
+  }
+
+  /**
+   * @method getLoans
+   * @description gets all loan applications
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @returns {object} JSON API Response
+   */
+  static getOneLoan(req, res) {
+    const { id } = req.params;
+    const data = loans.find(loan => loan.id === parseInt(id, 10));
+    if (data) {
+      return res.status(200).send({
+        status: 200,
+        data: [data],
+      });
+    }
+    return res.status(404).send({
+      error: 'No Loan with that id exist on database',
     });
   }
 }
