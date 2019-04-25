@@ -11,7 +11,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="assets/css/admin.css" />
-    <title>USERS-VERIFICATION | Quick-Credit</title>
+    <title>USERS-LOAN | Quick-Credit</title>
   </head>
 
   <body>
@@ -77,7 +77,7 @@
       <section class="user-container">
         <h2>LOAN APPLICATIONS</h2>
         <div class="user-details">
-          <table class="user-table" id="loan-table" onclick="">
+          <table class="user-table" id="loan-table" onclick="adminAction()">
             <tbody>
               <tr>
                 <th>Loan ID</th>
@@ -90,6 +90,7 @@
                 <th>Installment</th>
                 <th>Balance</th>
                 <th>Interest</th>
+                <th>Action</th>
               </tr>
               <tr>
                 <td>
@@ -102,12 +103,16 @@
                 <td>emekaofe@gmail.com</td>
                 <td>12-13-2019</td>
                 <td class="loan-status">PENDING</td>
-                <td>NULL</td>
+                <td>FALSE</td>
                 <td>10 months</td>
                 <td>₦200, 000</td>
                 <td>₦20, 000</td>
                 <td>₦200, 000</td>
                 <td>₦1000</td>
+                <td>
+                  <button class="accept" id="1">Approve</button>
+                  <button class="reject" id="1">Reject</button>
+                </td>
               </tr>
               <tr>
                 <td>
@@ -119,13 +124,17 @@
                 </td>
                 <td>emekaofe@gmail.com</td>
                 <td>12-13-2019</td>
-                <td class="approve loan-status" id="">APPROVED</td>
+                <td class="loan-status" id="">APPROVED</td>
                 <td>TRUE</td>
                 <td>10 months</td>
                 <td>₦200, 000</td>
                 <td>₦20, 000</td>
                 <td>0.00</td>
                 <td>₦1000</td>
+                <td>
+                  <button class="accept" id="2">Approve</button>
+                  <button class="reject" id="2">Reject</button>
+                </td>
               </tr>
               <tr>
                 <td>
@@ -137,13 +146,17 @@
                 </td>
                 <td>emekaofe@gmail.com</td>
                 <td>12-13-2019</td>
-                <td class="declined loan-status">REJECTED</td>
-                <td>NULL</td>
+                <td class="loan-status">REJECTED</td>
+                <td>FALSE</td>
                 <td>10 months</td>
                 <td>₦200, 000</td>
                 <td>₦20, 000</td>
                 <td>₦200, 000</td>
                 <td>₦1000</td>
+                <td>
+                  <button class="accept" id="3">Approve</button>
+                  <button class="reject" id="3">Reject</button>
+                </td>
               </tr>
             </tbody>
           </table>

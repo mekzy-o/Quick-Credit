@@ -419,7 +419,7 @@ button {
 }
 
 .form-box {
-  background: rgba(104, 131, 153, 0.849);
+  background: rgba(58, 71, 82, 0.849);
   width: 100%;
   min-height: 85vh;
   display: flex;
@@ -806,5 +806,11 @@ button.btn1 {
   }
   .section-2 {
     margin-top: 0px;
+  }
+}
+
+@media (min-width: 1024px) {
+  div .mobile-nav a {
+    display: none;
   }
 }
