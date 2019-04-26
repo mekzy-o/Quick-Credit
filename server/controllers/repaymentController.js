@@ -18,22 +18,27 @@ class RepaymentController {
 
   static repaymentRecord(req, res) {
     const { id } = req.params;
-    const { paidAmount } = req.body;
-    const data = loans.filter(item => item.id === parseInt(id, 10));
-
-    const newData = {
-      id: repaymentDb.length + 1,
-      loanId: data[0].id,
-      createdOn: data[0].createdOn,
-      amount: data[0].amount,
-      monthlyInstallments: data[0].paymentInstallment,
-      paidAmount,
-      balance: parseInt(data[0].balance, 10) - parseInt(paidAmount, 10),
-    };
-    repaymentDb.push(newData);
-    return res.status(201).send({
-      status: 201,
-      newData,
+    const paidAmount = parseInt(req.body.paidAmount, 10);
+    const data = loans.find(loan => loan.id === parseInt(id, 10));
+    if (data) {
+      const newData = {
+        id: repaymentDb.length + 1,
+        loanId: data.id,
+        createdOn: data.createdOn,
+        amount: data.amount,
+        monthlyInstallments: data.paymentInstallment,
+        paidAmount,
+        balance: parseInt(data.balance, 10) - paidAmount,
+      };
+      repaymentDb.push(newData);
+      return res.status(201).send({
+        status: 201,
+        data: [newData],
+      });
+    }
+    return res.status(404).send({
+      status: 404,
+      error: 'No Loan with that id found!',
     });
   }
 }

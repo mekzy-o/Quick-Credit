@@ -107,6 +107,7 @@ class LoanController {
       });
     }
     return res.status(404).send({
+      status: 404,
       error: 'No Loan with that id exist on database',
     });
   }

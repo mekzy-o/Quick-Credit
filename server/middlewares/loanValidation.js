@@ -1,6 +1,10 @@
-import users from '../models/userDb';
+/**
+ * @class LoanValidations
+ * @description Contains methods for validating each loan related endpoint
+ * @exports LoanValidations
+ */
 
-class LoanValidations {
+ class LoanValidations {
   static loanApplyValidator(req, res, next) {
     req
       .checkBody('email')
