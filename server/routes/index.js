@@ -17,8 +17,8 @@ const { loanApply, getLoans, getOneLoan } = LoanController;
 const { signupValidator, loginValidation } = validateUser;
 const { loanApplyValidator, queryValidation } = LoanValidations;
 const { verifyUser, verifyAdmin } = Authorization;
-const { repaymentRecord } = RepaymentController;
-const { repaymentRecordValidator } = repaymentValidations;
+const { repaymentRecord, getRepaymentRecord } = RepaymentController;
+const { repaymentRecordValidator, repaymentHistoryValidator } = repaymentValidations;
 
 // Router to create user account
 router.post('/api/v1/auth/signup', signupValidator, userSignup);
@@ -38,5 +38,7 @@ router.get('/api/v1/loans/:id', verifyAdmin, getOneLoan);
 // Router to post repayment record
 router.post('/api/v1/loans/:id/repayment', verifyAdmin, repaymentRecordValidator, repaymentRecord);
 
+// Router to get repayment history
+router.get('/api/v1/loans/:id/repayment', verifyUser, repaymentHistoryValidator, getRepaymentRecord);
 
 export default router;
