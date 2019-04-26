@@ -4,7 +4,7 @@
  * @exports LoanValidations
  */
 
- class LoanValidations {
+class LoanValidations {
   static loanApplyValidator(req, res, next) {
     req
       .checkBody('email')
@@ -76,6 +76,29 @@
       });
     }
     next();
+  }
+
+  static adminDecisionValidation(req, res, next) {
+    req
+      .checkParams('id')
+      .isNumeric()
+      .withMessage('Invalid type of id Entered!');
+    req
+      .checkBody('status')
+      .notEmpty()
+      .withMessage('Status field is required!')
+      .isAlpha()
+      .withMessage('Invalid type of status Entered!')
+      .matches(/^(approved|rejected)$/)
+      .withMessage('Invalid status specified');
+    const errors = req.validationErrors();
+    if (errors) {
+      return res.status(400).json({
+        status: 400,
+        error: errors[0].msg,
+      });
+    }
+    return next();
   }
 }
 

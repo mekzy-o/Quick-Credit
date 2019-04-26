@@ -5,7 +5,7 @@ import LoanController from '../controllers/loanController';
 import RepaymentController from '../controllers/repaymentController';
 import validateUser from '../middlewares/userValidation';
 import LoanValidations from '../middlewares/loanValidation';
-import repaymentValidations from '../middlewares/repaymentValidation'
+import repaymentValidations from '../middlewares/repaymentValidation';
 import Authorization from '../auth/authorization';
 
 const router = express.Router();
@@ -13,9 +13,11 @@ const router = express.Router();
 router.use(expressValidator());
 
 const { userSignup, userLogin } = UserController;
-const { loanApply, getLoans, getOneLoan } = LoanController;
+const {
+  loanApply, getLoans, getOneLoan, adminLoanDecision,
+} = LoanController;
 const { signupValidator, loginValidation } = validateUser;
-const { loanApplyValidator, queryValidation } = LoanValidations;
+const { loanApplyValidator, queryValidation, adminDecisionValidation } = LoanValidations;
 const { verifyUser, verifyAdmin } = Authorization;
 const { repaymentRecord, getRepaymentRecord } = RepaymentController;
 const { repaymentRecordValidator, repaymentHistoryValidator } = repaymentValidations;
@@ -41,4 +43,7 @@ router.post('/api/v1/loans/:id/repayment', verifyAdmin, repaymentRecordValidator
 // Router to get repayment history
 router.get('/api/v1/loans/:id/repayment', verifyUser, repaymentHistoryValidator, getRepaymentRecord);
 
+
+// Router to approve or reject loan
+router.patch('/api/v1/loans/:id', verifyAdmin, adminDecisionValidation, adminLoanDecision);
 export default router;
