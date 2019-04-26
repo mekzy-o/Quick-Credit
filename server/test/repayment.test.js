@@ -15,7 +15,7 @@ const loginUrl = '/api/v1/auth/signin';
 
 // TEST TO CREATE REPAYMENT RECORDS
 describe(`POST ${url}`, () => {
-  it('Should successfully create loan Application', (done) => {
+  it('Should successfully create loan application repayment record', (done) => {
     const login = {
       email: 'admin@quick-credit.com',
       password: 'maths102',
@@ -199,5 +199,112 @@ describe(`POST ${url}`, () => {
     });
   });
 });
+
+
+// TEST TO GET REPAYMENT HISTORY BY USER
+describe(`GET ${url}`, () => {
+  it('Should successfully get loan repayment history', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        chai
+          .request(app)
+          .get(url)
+          .set('authorization', token)
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('data');
+            res.body.data[0].should.have.property('loanId');
+            res.body.data[0].should.have.property('createdOn');
+            done();
+          });
+      });
+  });
+});
+
+
+describe(`GET ${url}`, () => {
+  it('Should throw error if id is invalid', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        chai
+          .request(app)
+          .get(invalidUrl)
+          .set('authorization', token)
+          .end((err, res) => {
+            res.should.have.status(400);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Invalid type of id Entered!');
+            done();
+          });
+      });
+  });
+  it('Should throw error if loan id is not found', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        chai
+          .request(app)
+          .get(notFoundId)
+          .set('authorization', token)
+          .end((err, res) => {
+            res.should.have.status(404);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('No Loan with that id found!');
+            done();
+          });
+      });
+  });
+  it('Should throw error if no token was entered', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        chai
+          .request(app)
+          .get(url)
+          .end((err, res) => {
+            res.should.have.status(401);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Invalid or No token provided');
+            done();
+          });
+      });
+  });
+});
+
+
+
 
 
