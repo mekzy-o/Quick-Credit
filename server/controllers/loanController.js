@@ -3,7 +3,7 @@ import loans from '../models/loanDb';
 /**
  * @class UserController
  * @description Contains methods for users to apply for loan
- * @exports UserLoanController
+ * @exports LoanController
  */
 
 class LoanController {
