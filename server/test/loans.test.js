@@ -15,6 +15,7 @@ const wrongStatusUrl = '/api/v1/loans?status=approve&repaid=true';
 const wrongRepaidUrl = '/api/v1/loans?status=approved&repaid=good';
 const wrongStatusType = '/api/v1/loans?status=1&repaid=true';
 const wrongRepaidType = '/api/v1/loans?status=approved&repaid=1';
+const loanId = 1;
 
 // TEST FOR LOAN APPLICATION ROUTES
 describe('Tests for Loan Endpoint', () => {
@@ -824,4 +825,215 @@ describe(`GET ${url}`, () => {
           });
       });
   });
+});
+
+// TEST TO VALIDATE FOR ADMIN DECISION
+describe(`PATCH ${url}`, () => {
+  it('Should update loan status successfully', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        const decision = { status: "approved" }
+        chai
+          .request(app)
+          .patch(`${url}/${loanId}`)
+          .set('authorization', token)
+          .send(decision)
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('data');
+            done();
+          });
+      });
+  });
+});
+
+
+describe(`PATCH ${url}`, () => {
+  it('Should return error for wrong status type entered', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        const decision = { status: "accept" }
+        chai
+          .request(app)
+          .patch(`${url}/${loanId}`)
+          .set('authorization', token)
+          .send(decision)
+          .end((err, res) => {
+            res.should.have.status(400);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Invalid status specified')
+            done();
+          });
+      });
+  });
+    it('Should return error for invalid character entered for status', (done) => {
+      const login = {
+        email: 'admin@quick-credit.com',
+        password: 'maths102',
+      };
+      chai
+        .request(app)
+        .post(loginUrl)
+        .send(login)
+        .end((loginErr, loginRes) => {
+          const token = `Bearer ${loginRes.body.data.token}`;
+          const decision = { status: 1 }
+          chai
+            .request(app)
+            .patch(`${url}/${loanId}`)
+            .set('authorization', token)
+            .send(decision)
+            .end((err, res) => {
+              res.should.have.status(400);
+              res.body.should.be.a('object');
+              res.body.should.have.property('error');
+              res.body.error.should.be.eql('Invalid type of status Entered!')
+              done();
+            });
+        });
+    });
+    it('Should return error for when status is not specified', (done) => {
+      const login = {
+        email: 'admin@quick-credit.com',
+        password: 'maths102',
+      };
+      chai
+        .request(app)
+        .post(loginUrl)
+        .send(login)
+        .end((loginErr, loginRes) => {
+          const token = `Bearer ${loginRes.body.data.token}`;
+          chai
+            .request(app)
+            .patch(`${url}/${loanId}`)
+            .set('authorization', token)
+            .end((err, res) => {
+              res.should.have.status(400);
+              res.body.should.be.a('object');
+              res.body.should.have.property('error');
+              res.body.error.should.be.eql('Status field is required!')
+              done();
+            });
+        });
+    });
+    it('Should return error for invalid id type entered in the parameter', (done) => {
+      const login = {
+        email: 'admin@quick-credit.com',
+        password: 'maths102',
+      };
+      chai
+        .request(app)
+        .post(loginUrl)
+        .send(login)
+        .end((loginErr, loginRes) => {
+          const token = `Bearer ${loginRes.body.data.token}`;
+          chai
+            .request(app)
+            .patch(`${url}/s`)
+            .set('authorization', token)
+            .end((err, res) => {
+              res.should.have.status(400);
+              res.body.should.be.a('object');
+              res.body.should.have.property('error');
+              res.body.error.should.be.eql('Invalid type of id Entered!')
+              done();
+            });
+        });
+    });
+
+    it('Should return error when id is not found', (done) => {
+      const login = {
+        email: 'admin@quick-credit.com',
+        password: 'maths102',
+      };
+      chai
+        .request(app)
+        .post(loginUrl)
+        .send(login)
+        .end((loginErr, loginRes) => {
+          const token = `Bearer ${loginRes.body.data.token}`;
+          const decision = { status: "approved"}
+          chai
+            .request(app)
+            .patch(`${url}/10`)
+            .set('authorization', token)
+            .send(decision)
+            .end((err, res) => {
+              res.should.have.status(404);
+              res.body.should.be.a('object');
+              res.body.should.have.property('error');
+              res.body.error.should.be.eql('No Loan with that id exist on database');
+              done();
+            });
+        });
+    });
+    it('Should return error when token is not entered', (done) => {
+      const login = {
+        email: 'admin@quick-credit.com',
+        password: 'maths102',
+      };
+      chai
+        .request(app)
+        .post(loginUrl)
+        .send(login)
+        .end((loginErr, loginRes) => {
+          const token = `Bearer ${loginRes.body.data.token}`;
+          const decision = { status: "approved"}
+          chai
+            .request(app)
+            .patch(`${url}/${loanId}`)
+            .send(decision)
+            .end((err, res) => {
+              res.should.have.status(401);
+              res.body.should.be.a('object');
+              res.body.should.have.property('error');
+              res.body.error.should.be.eql('Invalid or No Token Provided');
+              done();
+            });
+        });
+    });
+    it('Should return error when user that is not admin is trying to access route', (done) => {
+      const login = {
+        email: 'emekaofe16@gmail.com',
+        password: 'maths102',
+      };
+      chai
+        .request(app)
+        .post(loginUrl)
+        .send(login)
+        .end((loginErr, loginRes) => {
+          const token = `Bearer ${loginRes.body.data.token}`;
+          const decision = { status: "approved"}
+          chai
+            .request(app)
+            .patch(`${url}/${loanId}`)
+            .set('authorization', token)
+            .send(decision)
+            .end((err, res) => {
+              res.should.have.status(403);
+              res.body.should.be.a('object');
+              res.body.should.have.property('error');
+              res.body.error.should.be.eql('Only Admin can access this route');
+              done();
+            });
+        });
+    });
 });
