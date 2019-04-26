@@ -5,6 +5,7 @@ import LoanController from '../controllers/loanController';
 import RepaymentController from '../controllers/repaymentController';
 import validateUser from '../middlewares/userValidation';
 import LoanValidations from '../middlewares/loanValidation';
+import repaymentValidations from '../middlewares/repaymentValidation'
 import Authorization from '../auth/authorization';
 
 const router = express.Router();
@@ -17,6 +18,7 @@ const { signupValidator, loginValidation } = validateUser;
 const { loanApplyValidator, queryValidation } = LoanValidations;
 const { verifyUser, verifyAdmin } = Authorization;
 const { repaymentRecord } = RepaymentController;
+const { repaymentRecordValidator } = repaymentValidations;
 
 // Router to create user account
 router.post('/api/v1/auth/signup', signupValidator, userSignup);
@@ -34,7 +36,7 @@ router.get('/api/v1/loans', queryValidation, verifyAdmin, getLoans);
 router.get('/api/v1/loans/:id', verifyAdmin, getOneLoan);
 
 // Router to post repayment record
-router.post('/api/v1/loans/:id/repayment', repaymentRecord);
+router.post('/api/v1/loans/:id/repayment', verifyAdmin, repaymentRecordValidator, repaymentRecord);
 
 
 export default router;

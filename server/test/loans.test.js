@@ -9,7 +9,6 @@ chai.use(chaiHttp);
 const url = '/api/v1/loans';
 const loginUrl = '/api/v1/auth/signin';
 const signupUrl = '/api/v1/auth/signup';
-const randomToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZmlyc3RuYW1lIjoiQ.';
 const repaidUrl = '/api/v1/loans?status=approved&repaid=true';
 const unrepaidUrl = '/api/v1/loans?status=approved&repaid=false';
 const wrongStatusUrl = '/api/v1/loans?status=approve&repaid=true';
