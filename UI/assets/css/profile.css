@@ -35,11 +35,14 @@ i.far.fa-edit {
   padding: 5px;
   border: 1px solid #37393b;
 }
-
 .loans-container {
   width: 78%;
   margin: 0% auto;
   background: white;
+}
+.loans-container h2 {
+  margin-top: 20px;
+  text-align: center;
 }
 
 .transaction-table th,
@@ -51,6 +54,21 @@ td {
 }
 .transaction-table {
   width: 100%;
+}
+
+.transaction-table td button.disabled,
+button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+}
+.transaction-table td button.disabled a,
+button[disabled] {
+  background-color: #cccccc;
+  color: #666666;
+  cursor: not-allowed;
+  text-decoration: none;
 }
 .user-loans {
   width: 100%;
