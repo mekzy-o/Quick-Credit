@@ -39,7 +39,6 @@ describe('Tests for Loan Endpoint', () => {
               res.body.should.have.property('error');
               res.body.error.should.be.eql('Invalid or No Token Provided');
               done();
-
             });
         });
     });

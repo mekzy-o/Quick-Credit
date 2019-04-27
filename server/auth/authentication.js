@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const { SECRET } = process.env;
 
 /**
  * Handles access token generation and verification
@@ -15,7 +14,7 @@ class Authenticator {
    * @return {string} access token
    */
   static createToken(payload) {
-    return jwt.sign({ payload }, SECRET, { expiresIn: '24d' });
+    return jwt.sign({ payload }, process.env.SECRETKEY, { expiresIn: '24d' });
   }
 
   /**
@@ -24,7 +23,7 @@ class Authenticator {
    * @returns {object} payload - the decoded access token
    */
   static verifyToken(token) {
-    return jwt.verify(token, SECRET);
+    return jwt.verify(token, process.env.SECRETKEY);
   }
 
   /**
