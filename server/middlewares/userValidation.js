@@ -85,18 +85,21 @@ class validateUser {
     return next();
   }
 
-  // static loginCheck(req, res, next) {
-  //   const { email, password } = req.body;
-  //   const foundEmail = users.find(user => user.email === email);
-  //   console.log(email);
-  //   const index = users.findIndex(user => user.email === email);
-  //   if (foundEmail && password === users[index].password) {
-  //     return next();
-  //   }
-  //   return res.status(400).json({
-  //     status: 400,
-  //     error: 'Invalid Email or Password Inputed!',
-  //   });
+  static verifyUserValidation(req, res, next) {
+    req
+      .checkParams('email')
+      .isEmail()
+      .withMessage('Invalid Email Address Entered!')
+      .customSanitizer(email => email.toLowerCase());
+    const errors = req.validationErrors();
+    if (errors) {
+      return res.status(400).json({
+        status: 400,
+        error: errors[0].msg,
+      });
+    }
+    return next();
+  }
 
 }
 

@@ -12,11 +12,11 @@ const router = express.Router();
 
 router.use(expressValidator());
 
-const { userSignup, userLogin } = UserController;
+const { userSignup, userLogin, adminVerifyUser } = UserController;
 const {
   loanApply, getLoans, getOneLoan, adminLoanDecision,
 } = LoanController;
-const { signupValidator, loginValidation } = validateUser;
+const { signupValidator, loginValidation, verifyUserValidation } = validateUser;
 const { loanApplyValidator, queryValidation, adminDecisionValidation } = LoanValidations;
 const { verifyUser, verifyAdmin } = Authorization;
 const { repaymentRecord, getRepaymentRecord } = RepaymentController;
@@ -43,7 +43,10 @@ router.post('/api/v1/loans/:id/repayment', verifyAdmin, repaymentRecordValidator
 // Router to get repayment history
 router.get('/api/v1/loans/:id/repayment', verifyUser, repaymentHistoryValidator, getRepaymentRecord);
 
-
 // Router to approve or reject loan
 router.patch('/api/v1/loans/:id', verifyAdmin, adminDecisionValidation, adminLoanDecision);
+
+// Router to verify user
+router.patch('/api/v1/users/:email/verify', verifyAdmin, verifyUserValidation, adminVerifyUser);
+
 export default router;
