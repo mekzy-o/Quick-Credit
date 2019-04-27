@@ -113,6 +113,7 @@ describe('Tests for Loan Endpoint', () => {
             .set('authorization', token)
             .send(applyLoan)
             .end((err, res) => {
+              console.log(res.body.error);
               res.body.should.be.a('object');
               res.should.have.status(400);
               res.body.should.have.property('error');
@@ -175,6 +176,8 @@ describe('Tests for Loan Endpoint', () => {
             .set('authorization', token)
             .send(applyLoan)
             .end((err, res) => {
+             
+              console.log(res.body.error);
               res.body.should.be.a('object');
               res.should.have.status(400);
               res.body.should.have.property('error');
@@ -206,6 +209,7 @@ describe('Tests for Loan Endpoint', () => {
             .set('authorization', token)
             .send(applyLoan)
             .end((err, res) => {
+              console.log(res.body.error);
               res.body.should.be.a('object');
               res.should.have.status(400);
               res.body.should.have.property('error');
@@ -270,6 +274,7 @@ describe('Tests for Loan Endpoint', () => {
             .set('authorization', token)
             .send(applyLoan)
             .end((err, res) => {
+              console.log(res.body.error);
               res.body.should.be.a('object');
               res.should.have.status(400);
               res.body.should.have.property('error');
@@ -330,6 +335,7 @@ describe('Tests for Loan Endpoint', () => {
             .set('authorization', token)
             .send(applyLoan)
             .end((err, res) => {
+              console.log(res.body.error);
               res.body.should.be.a('object');
               res.should.have.status(400);
               res.body.should.have.property('error');
@@ -517,6 +523,7 @@ describe(`GET ${url}`, () => {
           .get(url)
           .set('authorization', token)
           .end((err, res) => {
+            console.log(res.body.err)
             res.should.have.status(200);
             res.body.should.be.a('object');
             res.body.should.have.property('data');
@@ -544,6 +551,7 @@ describe(`GET ${url}`, () => {
           .get(url)
           .set('authorization', token)
           .end((err, res) => {
+            console.log(res.body.err);
             res.should.have.status(403);
             res.body.should.be.a('object');
             res.body.should.have.property('error');
@@ -570,6 +578,7 @@ describe(`GET ${url}`, () => {
           .get(`${url}/1`)
           .set('authorization', token)
           .end((err, res) => {
+            console.log(err);
             res.should.have.status(200);
             res.body.should.be.a('object');
             res.body.should.have.property('data');
@@ -597,6 +606,7 @@ describe(`GET ${url}`, () => {
           .get(`${url}/10`)
           .set('authorization', token)
           .end((err, res) => {
+            console.log(res.body.error);
             res.should.have.status(404);
             res.body.should.be.a('object');
             res.body.should.have.property('error');
@@ -628,6 +638,7 @@ describe(`GET ${url}`, () => {
           .get(repaidUrl)
           .set('authorization', token)
           .end((err, res) => {
+            console.log(err);
             res.should.have.status(200);
             res.body.should.be.a('object');
             res.body.should.have.property('data');
