@@ -242,13 +242,6 @@ i.far.fa-edit {
   background-color: #09574b;
 }
 
-.show-modal {
-  opacity: 1;
-  visibility: visible;
-  transform: scale(1);
-  transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
-}
-
 /* USER TABLE STYLE */
 .user-container {
   width: 100%;
@@ -256,7 +249,6 @@ i.far.fa-edit {
   background: transparent;
   padding-bottom: 50px;
 }
-
 .user-container h2 {
   padding-top: 35px;
   text-transform: uppercase;
@@ -268,8 +260,8 @@ i.far.fa-edit {
   width: 90%;
   margin: 0 auto;
   background: white;
-  text-align: left;
-  overflow-x: auto;
+  text-align: center;
+  /* overflow-x: auto; */
 }
 
 .user-table {
@@ -297,12 +289,34 @@ i.far.fa-edit {
   background: #003468;
   border: 1px solid transparent;
   color: white;
+  margin: 2px;
+  display: inline-block;
   padding: 10px;
   border-radius: 5px;
+  width: 100%;
+  cursor: pointer;
+  white-space: nowrap;
 }
+
 .user-table th,
 td {
   text-align: center;
+}
+
+.user-table td .reject {
+  background-color: red;
+}
+
+.user-table td button .accept .reject {
+  width: 100%;
+  display: inline-block;
+}
+.user-table td button.disabled,
+button[disabled] {
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  color: #666666;
+  cursor: none;
 }
 
 .approve {
@@ -638,7 +652,7 @@ a.active {
   }
 
   footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
   }
@@ -664,7 +678,7 @@ a.active {
 
 @media (max-width: 768px) {
   footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
   }

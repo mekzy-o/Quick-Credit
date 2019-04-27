@@ -1,0 +1,57 @@
+{
+  "name": "quick-credit",
+  "version": "1.0.0",
+  "description": "Quick-Credit is an online lending platform that provides short term soft loans to individuals.",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint ./server",
+    "lint:fix": "./node_modules/.bin/eslint ./server --fix || true",
+    "build": "babel server --out-dir build",
+    "start": "node build/app.js",
+    "start-dev": "nodemon --exec babel-node server/app.js",
+    "heroku-postbuild": "npm run build",
+    "test": "nyc --reporter=text mocha -c ./server/test/**.test.js  --require @babel/register --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mekzy-o/Quick-Credit.git"
+  },
+  "keywords": [
+    "quick-credit",
+    "loans",
+    "express",
+    "node",
+    "api"
+  ],
+  "author": "Emeka Ofe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mekzy-o/Quick-Credit/issues"
+  },
+  "homepage": "https://github.com/mekzy-o/Quick-Credit#readme",
+  "dependencies": {
+    "@babel/polyfill": "^7.4.3",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4",
+    "express-validator": "^5.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "mocha": "^6.1.4",
+    "moment": "^2.24.0",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/register": "^7.4.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "nodemon": "^1.18.11",
+    "nyc": "^13.3.0"
+  }
+}

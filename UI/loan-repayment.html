@@ -79,27 +79,31 @@
           </ul>
         </aside>
 
-          <div class="loans-container">
+          <div class="loans-container" id='repayment-history'>
             <h2>REPAYMENT HISTORY</h2>
-            <div class="user-loans">
+            <div class="user-loans" id='table-scroll'>
               <table class="transaction-table">
                 <tbody>
                   <tr>
                     <th>Loan ID</th>
                     <th>Created On</th>
-                    <th>Month</th>
+                    <th>Monthly Installment</th>
                     <th>Amount</th>
+                    <th>Month</th>
                     <th>Status</th>
+                    <th>Balance</th>
                     <th>Action</th>
                   </tr>
                   <tr>
                     <td>#22338</td>
                     <td>03-01-2019</td>
+                    <td>₦26667.534</td>
+                    <td>₦200000</td>
                     <td>January</td>
-                    <td>₦200,000</td>
                     <td class="approve">PAID</td>
+                    <td>₦154660.770</td>
                     <td>
-                      <button>
+                      <button class='disabled'>
                         <a href="#" target="_blank"
                           >Make Payments</a
                         >
@@ -108,19 +112,37 @@
                   </tr>
 
                   <tr>
-                    <td>#22338</td>
-                    <td>20-12-2018</td>
-                    <td>February</td>
-                    <td>₦1,000,000</td>
-                    <td>PENDING</td>
-                    <td>
-                      <button>
-                        <a href="#" target="_blank"
-                          >Make Payments</a
-                        >
-                      </button>
-                    </td>
-                  </tr>
+                      <td>#22338</td>
+                      <td>03-01-2019</td>
+                      <td>₦26667.534</td>
+                      <td>₦200000</td>
+                      <td>January</td>
+                      <td>PENDING</td>
+                      <td>₦154660.770</td>
+                      <td>
+                        <button>
+                          <a href="#" target="_blank"
+                            >Make Payments</a
+                          >
+                        </button>
+                      </td>
+                    </tr>
+                    <tr>
+                        <td>#22338</td>
+                        <td>03-01-2019</td>
+                        <td>₦26667.534</td>
+                        <td>₦200000</td>
+                        <td>January</td>
+                        <td>PENDING</td>
+                        <td>₦154660.770</td>
+                        <td>
+                          <button>
+                            <a href="#" target="_blank"
+                              >Make Payments</a
+                            >
+                          </button>
+                        </td>
+                      </tr>
                 </tbody>
               </table>
 
