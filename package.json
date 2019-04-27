@@ -8,7 +8,8 @@
     "build": "babel server --out-dir build",
     "start": "node build/app.js",
     "start-dev": "nodemon --exec babel-node server/app.js",
-    "coverage": "nyc npm test &&  nyc report --reporter=text-lcov | coveralls",
+    "nyc": "nyc --reporter=lcov npm run test && nyc report --reporter=text-lcov | coveralls",
+    "coverage": "nyc npm test",
     "heroku-postbuild": "npm run build",
     "test": "nyc --reporter=text mocha --timeout 10000 -c ./server/test/**.test.js  --require @babel/register --exit"
   },
