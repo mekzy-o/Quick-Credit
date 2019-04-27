@@ -5,6 +5,11 @@ import app from '../app';
 chai.should();
 const url = '/api/v1/auth/signup';
 const loginUrl = '/api/v1/auth/signin';
+const email = 'emekaofe16@gmail.com';
+const verifyUrl = `/api/v1/users/${email}/verify`;
+const invalidUrl = '/api/v1/users/s/verify';
+const notFoundUrl = '/api/v1/users/emekaofe@gmail.com/verify';
+
 
 chai.use(chaiHttp);
 
@@ -320,7 +325,7 @@ describe(`POST ${url}`, () => {
 
   it('Should return 409 if Email Address already exist', (done) => {
     const user = {
-      email: 'emekaofe7@gmail.com',
+      email: 'emekaofe16@gmail.com',
       firstName: 'Emeka',
       lastName: 'Ofe',
       password: 'maths102',
@@ -416,7 +421,7 @@ describe('User Login Tests', () => {
           done();
         });
     });
-    
+
     it('Should return 400  if Password field is omitted', (done) => {
       const user = {
         email: 'emekaofe16@gmail.com',
@@ -433,5 +438,131 @@ describe('User Login Tests', () => {
           done();
         });
     });
+  });
+});
+
+
+// TEST FOR ADMIN TO MARK USER AS VERIFIED
+describe(`PATCH ${verifyUrl}`, () => {
+  it('Should successfully verify user', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        chai
+          .request(app)
+          .patch(verifyUrl)
+          .set('authorization', token)
+          .end((err, res) => {
+            console.log(res.body.err);
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('data');
+            done();
+          });
+      });
+  });
+  it('Should return error for invalid character entered for email', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        chai
+          .request(app)
+          .patch(invalidUrl)
+          .set('authorization', token)
+          .end((err, res) => {
+            res.should.have.status(400);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Invalid Email Address Entered!');
+            done();
+          });
+      });
+  });
+
+  it('Should return error when email is not found ', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        chai
+          .request(app)
+          .patch(notFoundUrl)
+          .set('authorization', token)
+          .end((err, res) => {
+            res.should.have.status(404);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Email does not exists!');
+            done();
+          });
+      });
+  });
+
+  it('Should return error when token is not entered', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        chai
+          .request(app)
+          .patch(verifyUrl)
+          .end((err, res) => {
+            res.should.have.status(401);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Invalid or No Token Provided');
+            done();
+          });
+      });
+  });
+  it('Should return error when user that is not admin is trying to access route', (done) => {
+    const login = {
+      email: 'emekaofe16@gmail.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        chai
+          .request(app)
+          .patch(verifyUrl)
+          .set('authorization', token)
+          .end((err, res) => {
+            res.should.have.status(403);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Only Admin can access this route');
+            done();
+          });
+      });
   });
 });
