@@ -22,6 +22,13 @@ const { verifyUser, verifyAdmin } = Authorization;
 const { repaymentRecord, getRepaymentRecord } = RepaymentController;
 const { repaymentRecordValidator, repaymentHistoryValidator } = repaymentValidations;
 
+// Default Router
+router.get('/', (req, res) => res.status(301).redirect('/api/v1'));
+router.get('/api/v1', (req, res) => res.status(200).send({
+  status: res.statusCode,
+  message: 'Welcome to Quick-Credit version 1',
+}));
+
 // Router to create user account
 router.post('/api/v1/auth/signup', signupValidator, userSignup);
 

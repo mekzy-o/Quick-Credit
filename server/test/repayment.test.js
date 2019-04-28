@@ -11,7 +11,7 @@ const url = '/api/v1/loans/1/repayment';
 const invalidUrl = '/api/v1/loans/s/repayment';
 const notFoundId = `/api/v1/loans/${10}/repayment`;
 const loginUrl = '/api/v1/auth/signin';
-
+const loanUrl = '/api/v1/loans';
 
 // TEST TO CREATE REPAYMENT RECORDS
 describe(`POST ${url}`, () => {
@@ -42,7 +42,6 @@ describe(`POST ${url}`, () => {
           });
       });
   });
-
 
   describe(`POST ${url}`, () => {
     it('Should throw error if user accessing route is not admin', (done) => {
@@ -200,7 +199,6 @@ describe(`POST ${url}`, () => {
   });
 });
 
-
 // TEST TO GET REPAYMENT HISTORY BY USER
 describe(`GET ${url}`, () => {
   it('Should successfully get loan repayment history', (done) => {
@@ -229,7 +227,6 @@ describe(`GET ${url}`, () => {
       });
   });
 });
-
 
 describe(`GET ${url}`, () => {
   it('Should throw error if id is invalid', (done) => {
@@ -304,7 +301,51 @@ describe(`GET ${url}`, () => {
   });
 });
 
-
-
-
-
+describe(`POST ${url}`, () => {
+  it('Should successfully update balance and loan repaid status', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        const applyLoan = {
+          firstName: 'Emeka',
+          lastName: 'Ofe',
+          amount: 200000,
+          tenor: 12,
+        };
+        chai
+          .request(app)
+          .post(loanUrl)
+          .set('authorization', token)
+          .send(applyLoan)
+          .end((err, res) => {
+            const amount = { paidAmount: 200000 };
+            chai
+              .request(app)
+              .post(url)
+              .set('authorization', token)
+              .send(amount)
+              .end((err, res) => {
+                const token = `Bearer ${loginRes.body.data.token}`;
+                chai
+                  .request(app)
+                  .get(loanUrl)
+                  .set('authorization', token)
+                  .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('data');
+                    res.body.data[0].repaid.should.be.eql(true);
+                    done();
+                  });
+              });
+          });
+      });
+  });
+});

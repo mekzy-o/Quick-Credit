@@ -44,7 +44,13 @@ class LoanValidations {
       .withMessage('Amount should be an integer')
       .isLength({ min: 5, max: 7 })
       .withMessage('Amount should not be less than 10,000');
-
+    req
+      .checkBody('tenor')
+      .notEmpty()
+      .withMessage('tenor is required')
+      .trim()
+      .isNumeric()
+      .withMessage('tenor should be an integer');
     const errors = req.validationErrors();
     if (errors) {
       return res.status(400).json({

@@ -17,13 +17,13 @@ class LoanController {
 
   static loanApply(req, res) {
     const {
-      firstName, lastName, email, amount,
+      firstName, lastName, email, amount, tenor
     } = req.body;
 
-    const tenor = 12;
-    const balance = parseInt(amount).toFixed(3);
-    const interest = 0.05 * parseInt(amount).toFixed(3);
-    const paymentInstallment = (parseInt(amount) / tenor + interest).toFixed(3);
+   
+    const balance = parseInt(amount, 10).toFixed(3);
+    const interest = 0.05 * parseInt(amount, 10).toFixed(3);
+    const paymentInstallment = (parseInt((amount), 10) / parseInt(tenor, 10) + interest).toFixed(3);
     const status = 'pending';
     const createdOn = moment().format('LLL');
     const repaid = false;

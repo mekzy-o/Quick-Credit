@@ -10,6 +10,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router);
 
+// Wrong Endpoints
+app.all('*', (req, res) => res.status(404).json({
+  status: 404,
+  error: 'Endpoint does not Exist!',
+}));
+
 const port = process.env.PORT || 8080;
 
 app.listen(port, () => {
