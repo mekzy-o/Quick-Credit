@@ -12,7 +12,9 @@ Quick Credit is an online lending platform that provides short term soft loans t
 
  - [Introduction](#introduction)
  - [UI Templates](#ui-templates)
+ - [API](#api)
  - [Pivotal Tracker ID](https://www.pivotaltracker.com/n/projects/2326723)
+ - [Technologies](#technologies)
  - [Installing](#installing)
  - [Working Routes](#working-routes)
  - [License](#license)
@@ -38,6 +40,10 @@ Quick Credit is an online lending platform that provides short term soft loans t
 
 Preview UI templates :+1: [Github Pages](/)
 
+# API
+
+The API  is currently in version 1 (v1) and is hosted at https://quick-credit-loan.herokuapp.com
+
 # Pivotal Tracker ID
 
 https://www.pivotaltracker.com/n/projects/2326723
@@ -56,6 +62,18 @@ https://www.pivotaltracker.com/n/projects/2326723
 - Admin can view all repaid loans
 - Admin can approve or reject a client's loan application
 - Admin can post loan repayment transaction in favour of client
+
+# Technologies
+
+- NodeJs
+- Express
+- Mocha & Chai
+- ESLint
+- Babel
+- Travis
+- Code Climate
+- Coveralls
+
 
 
 # Installing
@@ -112,4 +130,4 @@ npm test
 
  
 ## License :boom:
-This projects is under the MIT LICENSE
+This project is under the MIT LICENSE
