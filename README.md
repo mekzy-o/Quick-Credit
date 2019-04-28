@@ -68,7 +68,7 @@ If you don't have **NodeJS** installed, go to the [NodeJS Website](http://nodejs
 To install this app
 
 `
-git clone https://github.com/amaechi-chuks/Politico
+git clone https://github.com/mekzy-o/Quick-Credit
 `
 
 And install the required dependencies
