@@ -21,6 +21,11 @@ class RepaymentController {
     const paidAmount = parseInt(req.body.paidAmount, 10);
     const data = loans.find(loan => loan.id === parseInt(id, 10));
     if (data) {
+      const newBalance = parseInt(data.balance, 10) - paidAmount;
+      if (newBalance === 0) {
+        data.repaid = true;
+        data.balance = newBalance;
+      }
       const newData = {
         id: repayments.length + 1,
         loanId: data.id,
@@ -28,7 +33,7 @@ class RepaymentController {
         amount: data.amount,
         monthlyInstallments: data.paymentInstallment,
         paidAmount,
-        balance: parseInt(data.balance, 10) - paidAmount,
+        balance: newBalance,
       };
       repayments.push(newData);
       return res.status(201).send({
