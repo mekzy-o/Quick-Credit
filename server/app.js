@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router);
 
 // Wrong Endpoints
-app.all('*', (req, res) => res.status(404).json({
+app.all('*', (req, res) => res.status(404).send({
   status: 404,
   error: 'Endpoint does not Exist!',
 }));
