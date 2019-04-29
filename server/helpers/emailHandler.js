@@ -9,10 +9,10 @@ dotenv.config();
  * @exports EmailController
  */
 class EmailController {
-    
+
   /**
   * @method sendMailMethod
-  * @description sends an email notification to the specified email
+  * @description sends an email notification to the specified email address
   * @param {object} message - The email address, subject & body
   * @returns {*} nothing
   */
