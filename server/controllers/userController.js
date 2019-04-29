@@ -1,5 +1,7 @@
 import users from '../models/userdb';
 import Authenticator from '../auth/authentication';
+import EmailController from '../helpers/emailHandler';
+import MessageController from '../helpers/messageHandler';
 
 /**
  * @class UserController
@@ -49,10 +51,13 @@ class UserController {
       });
     }
     users.push(data);
+    const details = MessageController.signupMessage(data);
+    EmailController.sendMailMethod(details);
     return res.status(201).send({
       status: 201,
       data,
     });
+
   }
 
   static userLogin(req, res) {

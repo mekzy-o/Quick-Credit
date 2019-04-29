@@ -1,5 +1,7 @@
 import loans from '../models/loanDb';
 import repayments from '../models/repaymentDb';
+import EmailController from '../helpers/emailHandler';
+import MessageController from '../helpers/messageHandler';
 
 /**
  * @class UserController
@@ -20,12 +22,10 @@ class RepaymentController {
     const { id } = req.params;
     const paidAmount = parseInt(req.body.paidAmount, 10);
     const data = loans.find(loan => loan.id === parseInt(id, 10));
+
+    // if data is found continue to the next if block, else break and return error
     if (data) {
-      const newBalance = parseInt(data.balance, 10) - paidAmount;
-      if (newBalance === 0) {
-        data.repaid = true;
-        data.balance = newBalance;
-      }
+      let newBalance = data.balance;
       const newData = {
         id: repayments.length + 1,
         loanId: data.id,
@@ -35,7 +35,18 @@ class RepaymentController {
         paidAmount,
         balance: newBalance,
       };
+      newBalance = parseInt(data.balance, 10) - paidAmount;
+      if (newBalance === 0) data.repaid = true;
       repayments.push(newData);
+      const searchRepayment = repayments.filter(item => item.loanId === parseInt(id, 10));
+      const lastRepayment = searchRepayment[searchRepayment.length - 1];
+      if (lastRepayment) {
+        data.balance = parseInt(lastRepayment.balance, 10) - paidAmount;
+        newData.balance = data.balance;
+      }
+      // Get user transaction details from newData and user email from data
+      const details = MessageController.transactionMessage(newData, data.user);
+      EmailController.sendMailMethod(details);
       return res.status(201).send({
         status: 201,
         data: [newData],

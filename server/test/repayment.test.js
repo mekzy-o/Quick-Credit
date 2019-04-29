@@ -1,6 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
+import repayments from '../models/repaymentDb';
 
 chai.should();
 
@@ -12,8 +13,59 @@ const invalidUrl = '/api/v1/loans/s/repayment';
 const notFoundId = `/api/v1/loans/${10}/repayment`;
 const loginUrl = '/api/v1/auth/signin';
 const loanUrl = '/api/v1/loans';
+const repaymentUrl = `/api/v1/loans/${loanId}`;
 
 // TEST TO CREATE REPAYMENT RECORDS
+
+describe(`POST ${url}`, () => {
+  it('Should successfully update balance and loan repaid status', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        const applyLoan = {
+          firstName: 'Emeka',
+          lastName: 'Ofe',
+          amount: 200000,
+          tenor: 12,
+        };
+        chai
+          .request(app)
+          .post(loanUrl)
+          .set('authorization', token)
+          .send(applyLoan)
+          .end((err, res) => {
+            const amount = { paidAmount: 200000 };
+            chai
+              .request(app)
+              .post(url)
+              .set('authorization', token)
+              .send(amount)
+              .end((err, res) => {
+                const token = `Bearer ${loginRes.body.data.token}`;
+                chai
+                  .request(app)
+                  .get(repaymentUrl)
+                  .set('authorization', token)
+                  .end((err, res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('data');
+                    res.body.data[0].repaid.should.be.eql(true);
+                    done();
+                  });
+              });
+          });
+      });
+  });
+});
+
 describe(`POST ${url}`, () => {
   it('Should successfully create loan application repayment record', (done) => {
     const login = {
@@ -299,10 +351,7 @@ describe(`GET ${url}`, () => {
           });
       });
   });
-});
-
-describe(`POST ${url}`, () => {
-  it('Should successfully update balance and loan repaid status', (done) => {
+  it('Should successfully update loan balance with last repayment', (done) => {
     const login = {
       email: 'admin@quick-credit.com',
       password: 'maths102',
@@ -325,27 +374,57 @@ describe(`POST ${url}`, () => {
           .set('authorization', token)
           .send(applyLoan)
           .end((err, res) => {
-            const amount = { paidAmount: 200000 };
+            const amount = { paidAmount: 50000 };
+            const token = `Bearer ${loginRes.body.data.token}`;
             chai
               .request(app)
               .post(url)
               .set('authorization', token)
               .send(amount)
               .end((err, res) => {
-                const token = `Bearer ${loginRes.body.data.token}`;
                 chai
                   .request(app)
-                  .get(loanUrl)
+                  .post(url)
                   .set('authorization', token)
+                  .send(amount)
                   .end((err, res) => {
-                    res.should.have.status(200);
+                    res.should.have.status(201);
                     res.body.should.be.a('object');
                     res.body.should.have.property('data');
-                    res.body.data[0].repaid.should.be.eql(true);
+                    res.body.data[0].should.have.property('loanId');
+                    res.body.data[0].should.have.property('createdOn');
                     done();
                   });
               });
           });
       });
   });
+});
+
+describe(`GET ${url}`, () => {
+  it('Should throw error if id is invalid', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        chai
+          .request(app)
+          .get(invalidUrl)
+          .set('authorization', token)
+          .end((err, res) => {
+            res.should.have.status(400);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Invalid type of id Entered!');
+            done();
+          });
+      });
+  });
+
 });
