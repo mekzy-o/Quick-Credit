@@ -101,6 +101,28 @@ class validateUser {
     return next();
   }
 
+  static resetPasswordValidation(req, res, next) {
+    req
+      .checkBody('email')
+      .notEmpty()
+      .withMessage('Email field is required')
+      .trim()
+      .isEmail()
+      .withMessage('Invalid Email Address Entered!')
+      .customSanitizer(email => email.toLowerCase());
+    req
+      .checkBody('password')
+      .notEmpty()
+      .withMessage('Password field is required');
+    const errors = req.validationErrors();
+    if (errors) {
+      return res.status(400).json({
+        status: 400,
+        error: errors[0].msg,
+      });
+    }
+    return next();
+  }
 }
 
 
