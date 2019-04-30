@@ -107,6 +107,28 @@ class UserController {
       error: 'Email does not exists!',
     });
   }
+
+  static resetPassword(req, res) {
+
+    const { email } = req.body;
+    const { password } = req.body;
+    const data = users.find(user => user.email === email);
+
+    if (data) {
+      data.password = Authenticator.hashPassword(password);
+      return res.status(201).send({
+        status: 201,
+        message: 'Your Password has been reset Successfully!',
+      });
+
+    }
+    return res.status(404).send({
+      status: 404,
+      error: 'The Email Address you Entered was not found!',
+    });
+  }
+
+
 }
 
 export default UserController;

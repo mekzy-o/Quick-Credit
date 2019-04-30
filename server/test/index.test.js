@@ -21,7 +21,7 @@ describe('Tests for When Endpoint does not exist', () => {
           res.should.have.status(404);
           res.body.should.be.a('object');
           res.body.should.have.property('error');
-          res.body.error.should.be.eql('Endpoint does not Exist!');
+          res.body.error.should.be.eql('Oops! Endpoint not found.');
           done();
         });
     });
