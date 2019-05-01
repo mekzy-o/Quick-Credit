@@ -50,7 +50,9 @@ class LoanValidations {
       .withMessage('tenor is required')
       .trim()
       .isNumeric()
-      .withMessage('tenor should be an integer');
+      .withMessage('tenor should be an integer')
+      .isInt({ min: 1, max: 12 })
+      .withMessage('Tenor must be between 1 and 12 months');
     const errors = req.validationErrors();
     if (errors) {
       return res.status(400).json({

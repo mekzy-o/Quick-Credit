@@ -120,13 +120,13 @@ npm test
 |/api/v1/loans                               |Create a loan application        |POST
 |/api/v1/loans                               |Get all loan applications       |GET
 |/api/v1/loans/*loan_id*                              |Get a specific loan application       |GET
-|/api/v1/*loan_id*/repayment                       |View all loan repayment History       |GET
+|/api/v1/*loan_id*/repayments                       |View all loan repayment History       |GET
 |/api/v1/*user_email*/verify                                 |Mark User as Verified      |PATCH
 |/api/v1/loans?*status=approved&repaid=false*           |View all current loans(not fully repaid)         |GET
 |/api/v1/loans?*status=approved&repaid=true*                                |View all current repaid loans        |GET 
 |/api/v1/loan/*loan_id*                                |Reject or approve loan        |PATCH
-|/api/v1/*loan_id*/repayment                       |Create a repayment record      |POST
-
+|/api/v1/*loan_id*/repayments                       |Create a repayment record      |POST
+|/api/v1/users/password                               |Reset Pasword        |POST
 
  
 ## License :boom:

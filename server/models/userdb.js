@@ -22,6 +22,28 @@ const users = [
     status: 'unverified',
     isAdmin: false,
   },
+  {
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjozLCJlbWFpbCI6ImVtZWthb2ZlMjJAZ21haWwuY29tIiwic3RhdHVzIjoidW52ZXJpZmllZCIsImlzQWRtaW4iOmZhbHNlfSwiaWF0IjoxNTU2Njg4NzUxLCJleHAiOjE1NTg3NjIzNTF9.O1mTiHYk_qDA6BIDQjwpqOK9lMckCisQlgmXhdoGZaI',
+    id: 3,
+    email: 'emekaofe22@gmail.com',
+    firstName: 'Emeka',
+    lastName: 'Ofe',
+    password: '$2a$10$a6NcubTZ6a8GK2X2hailHOqT0JNPy2dP65xnx8HA/7DZ1ZQBJxLtq',
+    address: '75, Bode Thomas Street',
+    status: 'unverified',
+    isAdmin: false,
+  },
+  {
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjo0LCJlbWFpbCI6ImVtZWthb2ZlMjFAZ21haWwuY29tIiwic3RhdHVzIjoidW52ZXJpZmllZCIsImlzQWRtaW4iOmZhbHNlfSwiaWF0IjoxNTU2NjkwMDkzLCJleHAiOjE1NTg3NjM2OTN9.s7ASDpJI4dU6mlBVaZZ3A8zsW8ksexpOg_vxzPdpcK4',
+    id: 4,
+    email: 'emekaofe21@gmail.com',
+    firstName: 'Emeka',
+    lastName: 'Ofe',
+    password: '$2a$10$FVLuy.K.J647CADNUaoU.ew9TWsDw1cFH6.s/hi2xcoZreZXNmQc.',
+    address: '75, Bode Thomas Street',
+    status: 'unverified',
+    isAdmin: false,
+  },
 
 ];
 

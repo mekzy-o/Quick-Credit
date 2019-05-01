@@ -8,19 +8,18 @@ chai.should();
 chai.use(chaiHttp);
 
 const loanId = 1;
-const url = '/api/v1/loans/1/repayment';
-const invalidUrl = '/api/v1/loans/s/repayment';
-const notFoundId = `/api/v1/loans/${10}/repayment`;
+const url = '/api/v1/loans/1/repayments';
+const invalidUrl = '/api/v1/loans/s/repayments';
+const notFoundId = `/api/v1/loans/${10}/repayments`;
 const loginUrl = '/api/v1/auth/signin';
 const loanUrl = '/api/v1/loans';
 const repaymentUrl = `/api/v1/loans/${loanId}`;
 
 // TEST TO CREATE REPAYMENT RECORDS
-
 describe(`POST ${url}`, () => {
   it('Should successfully update balance and loan repaid status', (done) => {
     const login = {
-      email: 'admin@quick-credit.com',
+      email: 'emekaofe22@gmail.com',
       password: 'maths102',
     };
     chai
@@ -32,6 +31,7 @@ describe(`POST ${url}`, () => {
         const applyLoan = {
           firstName: 'Emeka',
           lastName: 'Ofe',
+          email: 'emekaofe22@gmail.com',
           amount: 200000,
           tenor: 12,
         };
@@ -41,56 +41,36 @@ describe(`POST ${url}`, () => {
           .set('authorization', token)
           .send(applyLoan)
           .end((err, res) => {
-            const amount = { paidAmount: 200000 };
+            const login = {
+              email: 'admin@quick-credit.com',
+              password: 'maths102',
+            };
             chai
               .request(app)
-              .post(url)
-              .set('authorization', token)
-              .send(amount)
+              .post(loginUrl)
+              .send(login)
               .end((err, res) => {
-                const token = `Bearer ${loginRes.body.data.token}`;
+                const token = `Bearer ${res.body.data.token}`;
+                const amount = { paidAmount: 200000 };
                 chai
                   .request(app)
-                  .get(repaymentUrl)
+                  .post(url)
                   .set('authorization', token)
+                  .send(amount)
                   .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.should.have.property('data');
-                    res.body.data[0].repaid.should.be.eql(true);
-                    done();
+                    chai
+                      .request(app)
+                      .get(repaymentUrl)
+                      .set('authorization', token)
+                      .end((err, res) => {
+                        res.should.have.status(200);
+                        res.body.should.be.a('object');
+                        res.body.should.have.property('data');
+                        res.body.data[0].repaid.should.be.eql(true);
+                        done();
+                      });
                   });
               });
-          });
-      });
-  });
-});
-
-describe(`POST ${url}`, () => {
-  it('Should successfully create loan application repayment record', (done) => {
-    const login = {
-      email: 'admin@quick-credit.com',
-      password: 'maths102',
-    };
-    chai
-      .request(app)
-      .post(loginUrl)
-      .send(login)
-      .end((loginErr, loginRes) => {
-        const token = `Bearer ${loginRes.body.data.token}`;
-        const amount = { paidAmount: 15000 };
-        chai
-          .request(app)
-          .post(url)
-          .set('authorization', token)
-          .send(amount)
-          .end((err, res) => {
-            res.should.have.status(201);
-            res.body.should.be.a('object');
-            res.body.should.have.property('data');
-            res.body.data[0].should.have.property('paidAmount');
-            res.body.data[0].should.have.property('createdOn');
-            done();
           });
       });
   });
@@ -192,6 +172,56 @@ describe(`POST ${url}`, () => {
               res.body.should.be.a('object');
               res.body.should.have.property('error');
               res.body.error.should.be.eql('Invalid type of Amount Entered!');
+              done();
+            });
+        });
+    });
+    it('Should throw error if paid amount entered is less than minimum required amount', (done) => {
+      const login = {
+        email: 'admin@quick-credit.com',
+        password: 'maths102',
+      };
+      chai
+        .request(app)
+        .post(loginUrl)
+        .send(login)
+        .end((loginErr, loginRes) => {
+          const token = `Bearer ${loginRes.body.data.token}`;
+          const amount = { paidAmount: 0 };
+          chai
+            .request(app)
+            .post(url)
+            .set('authorization', token)
+            .send(amount)
+            .end((err, res) => {
+              res.should.have.status(400);
+              res.body.should.be.a('object');
+              res.body.should.have.property('error');
+              done();
+            });
+        });
+    });
+    it('Should throw error if paid amount exceeds client debt', (done) => {
+      const login = {
+        email: 'admin@quick-credit.com',
+        password: 'maths102',
+      };
+      chai
+        .request(app)
+        .post(loginUrl)
+        .send(login)
+        .end((loginErr, loginRes) => {
+          const token = `Bearer ${loginRes.body.data.token}`;
+          const amount = { paidAmount: 0 };
+          chai
+            .request(app)
+            .post(url)
+            .set('authorization', token)
+            .send(amount)
+            .end((err, res) => {
+              res.should.have.status(400);
+              res.body.should.be.a('object');
+              res.body.should.have.property('error');
               done();
             });
         });
@@ -353,7 +383,7 @@ describe(`GET ${url}`, () => {
   });
   it('Should successfully update loan balance with last repayment', (done) => {
     const login = {
-      email: 'admin@quick-credit.com',
+      email: 'emekaofe21@gmail.com',
       password: 'maths102',
     };
     chai
@@ -365,7 +395,8 @@ describe(`GET ${url}`, () => {
         const applyLoan = {
           firstName: 'Emeka',
           lastName: 'Ofe',
-          amount: 200000,
+          email: 'emekaofe21@gmail.com',
+          amount: 20000,
           tenor: 12,
         };
         chai
@@ -374,20 +405,26 @@ describe(`GET ${url}`, () => {
           .set('authorization', token)
           .send(applyLoan)
           .end((err, res) => {
-            const amount = { paidAmount: 50000 };
-            const token = `Bearer ${loginRes.body.data.token}`;
+            console.log(res.body);
+            const applyId = `${res.body.data.loanId}`;
+            const admin = {
+              email: 'admin@quick-credit.com',
+              password: 'maths102',
+            };
             chai
               .request(app)
-              .post(url)
-              .set('authorization', token)
-              .send(amount)
+              .post(loginUrl)
+              .send(admin)
               .end((err, res) => {
+                const adminToken = `Bearer ${res.body.data.token}`;
+                const amount = { paidAmount: 10000 };
                 chai
                   .request(app)
-                  .post(url)
-                  .set('authorization', token)
+                  .post(`/api/v1/loans/${applyId}/repayments`)
+                  .set('authorization', adminToken)
                   .send(amount)
                   .end((err, res) => {
+                    console.log(res.body.error);
                     res.should.have.status(201);
                     res.body.should.be.a('object');
                     res.body.should.have.property('data');
