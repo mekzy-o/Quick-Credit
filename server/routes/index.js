@@ -45,10 +45,10 @@ router.get('/api/v1/loans', queryValidation, verifyAdmin, getLoans);
 router.get('/api/v1/loans/:id', verifyAdmin, getOneLoan);
 
 // Router to post repayment record
-router.post('/api/v1/loans/:id/repayment', verifyAdmin, repaymentRecordValidator, repaymentRecord);
+router.post('/api/v1/loans/:id/repayments', verifyAdmin, repaymentRecordValidator, repaymentRecord);
 
 // Router to get repayment history
-router.get('/api/v1/loans/:id/repayment', verifyUser, repaymentHistoryValidator, getRepaymentRecord);
+router.get('/api/v1/loans/:id/repayments', verifyUser, repaymentHistoryValidator, getRepaymentRecord);
 
 // Router to approve or reject loan
 router.patch('/api/v1/loans/:id', verifyAdmin, adminDecisionValidation, adminLoanDecision);

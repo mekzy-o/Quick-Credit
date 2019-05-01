@@ -681,8 +681,8 @@ describe('Tests for Loan Endpoint', () => {
             });
         });
     });
-
   });
+
 
 
   // TEST TO VALIDATE FOR LOAN QUERY PARAMETERS
@@ -1044,5 +1044,75 @@ describe('Tests for Loan Endpoint', () => {
             });
         });
     });
+  });
+});
+
+describe(`POST ${url}`, () => {
+  it('Should throw error if Tenor is less than 1', (done) => {
+    const login = {
+      email: 'emekaofe7@gmail.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        const applyLoan = {
+          firstName: 'Emeka',
+          lastName: 'Ofe',
+          email: 'emekaofe7@gmail.com',
+          amount: 200000,
+          tenor: 0,
+        };
+        chai
+          .request(app)
+          .post(url)
+          .set('authorization', token)
+          .send(applyLoan)
+          .end((err, res) => {
+            res.body.should.be.a('object');
+            res.should.have.status(400);
+            res.body.should.have.property('error');
+            res.body.error.should.eql('Tenor must be between 1 and 12 months');
+            done();
+          });
+      });
+  });
+});
+
+describe(`POST ${url}`, () => {
+  it('Should throw error if Tenor is greater than 12', (done) => {
+    const login = {
+      email: 'emekaofe7@gmail.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        const applyLoan = {
+          firstName: 'Emeka',
+          lastName: 'Ofe',
+          email: 'emekaofe7@gmail.com',
+          amount: 200000,
+          tenor: 14,
+        };
+        chai
+          .request(app)
+          .post(url)
+          .set('authorization', token)
+          .send(applyLoan)
+          .end((err, res) => {
+            res.body.should.be.a('object');
+            res.should.have.status(400);
+            res.body.should.have.property('error');
+            res.body.error.should.eql('Tenor must be between 1 and 12 months');
+            done();
+          });
+      });
   });
 });
