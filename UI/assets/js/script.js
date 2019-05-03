@@ -55,11 +55,7 @@ function closeNav() {
   document.getElementById("mySidenav").style.width = "0";
 }
 
-document.querySelector(".profile-img").addEventListener("click", openMobileNav);
-
-document
-  .querySelector(".close")
-  .addEventListener("click", closeChangeDestinationBox);
+// document.querySelector(".profile-img").addEventListener("click", openMobileNav);
 
 // POP UP MODAL SCRIPT FOR PAYMENT
 const modal = document.getElementById("payment-modal");
@@ -108,3 +104,15 @@ function adminAction() {
     }
   });
 }
+
+const submitBtn = document.getElementById("login-btn");
+console.log(submitBtn);
+submitBtn.addEventListener("click", function(e) {
+  e.preventDefault();
+  if(document.getElementById("email").value==='admin@admin.com'){
+    window.location.href='admin-dashboard.html';
+  }
+ else if(document.getElementById("email").value==='user@user.com'){
+  window.location.href='user-dashboard.html';
+ }
+});

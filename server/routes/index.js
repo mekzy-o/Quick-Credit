@@ -12,15 +12,22 @@ const router = express.Router();
 
 router.use(expressValidator());
 
-const { userSignup, userLogin, adminVerifyUser } = UserController;
+const { userSignup, userLogin, adminVerifyUser, resetPassword } = UserController;
 const {
   loanApply, getLoans, getOneLoan, adminLoanDecision,
 } = LoanController;
-const { signupValidator, loginValidation, verifyUserValidation } = validateUser;
+const { signupValidator, loginValidation, verifyUserValidation, resetPasswordValidation } = validateUser;
 const { loanApplyValidator, queryValidation, adminDecisionValidation } = LoanValidations;
 const { verifyUser, verifyAdmin } = Authorization;
 const { repaymentRecord, getRepaymentRecord } = RepaymentController;
 const { repaymentRecordValidator, repaymentHistoryValidator } = repaymentValidations;
+
+// Default Router
+router.get('/', (req, res) => res.status(301).redirect('/api/v1'));
+router.get('/api/v1', (req, res) => res.status(200).send({
+  status: res.statusCode,
+  message: 'Welcome to Quick-Credit version 1',
+}));
 
 // Router to create user account
 router.post('/api/v1/auth/signup', signupValidator, userSignup);
@@ -38,15 +45,18 @@ router.get('/api/v1/loans', queryValidation, verifyAdmin, getLoans);
 router.get('/api/v1/loans/:id', verifyAdmin, getOneLoan);
 
 // Router to post repayment record
-router.post('/api/v1/loans/:id/repayment', verifyAdmin, repaymentRecordValidator, repaymentRecord);
+router.post('/api/v1/loans/:id/repayments', verifyAdmin, repaymentRecordValidator, repaymentRecord);
 
 // Router to get repayment history
-router.get('/api/v1/loans/:id/repayment', verifyUser, repaymentHistoryValidator, getRepaymentRecord);
+router.get('/api/v1/loans/:id/repayments', verifyUser, repaymentHistoryValidator, getRepaymentRecord);
 
 // Router to approve or reject loan
 router.patch('/api/v1/loans/:id', verifyAdmin, adminDecisionValidation, adminLoanDecision);
 
 // Router to verify user
 router.patch('/api/v1/users/:email/verify', verifyAdmin, verifyUserValidation, adminVerifyUser);
+
+// Router to reset password
+router.post('/api/v1/users/password', resetPasswordValidation, resetPassword);
 
 export default router;

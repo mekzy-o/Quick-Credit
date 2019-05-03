@@ -1,5 +1,7 @@
 import moment from 'moment';
 import loans from '../models/loanDb';
+import MessageController from '../helpers/messageHandler';
+import EmailController from '../helpers/emailHandler';
 /**
  * @class UserController
  * @description Contains methods for users to apply for loan
@@ -17,13 +19,13 @@ class LoanController {
 
   static loanApply(req, res) {
     const {
-      firstName, lastName, email, amount,
+      firstName, lastName, email, amount, tenor,
     } = req.body;
 
-    const tenor = 12;
-    const balance = parseInt(amount).toFixed(3);
-    const interest = 0.05 * parseInt(amount).toFixed(3);
-    const paymentInstallment = (parseInt(amount) / tenor + interest).toFixed(3);
+
+    const balance = parseInt(amount, 10).toFixed(3);
+    const interest = 0.05 * parseInt(amount, 10).toFixed(3);
+    const paymentInstallment = (parseInt((amount), 10) / parseInt(tenor, 10) + interest).toFixed(3);
     const status = 'pending';
     const createdOn = moment().format('LLL');
     const repaid = false;
@@ -42,6 +44,7 @@ class LoanController {
       interest,
     };
 
+    // DATA SENT TO ADMIN SHOULD CONTAIN USER DETAILS
     const newData = {
       id: data.loanId,
       user: req.user.email,
@@ -54,12 +57,16 @@ class LoanController {
       balance,
       interest,
     };
+
     if (loans.find(loan => loan.user === req.user.email)) {
       return res.status(409).send({
         status: 409,
         error: 'You already applied for a loan!',
       });
     }
+    const details = MessageController.loanApplyMessage(data, newData.createdOn);
+    EmailController.sendMailMethod(details);
+
     loans.push(newData);
     return res.status(201).send({
       status: 201,
@@ -126,6 +133,8 @@ class LoanController {
         status: data.status,
         interest: data.interest,
       };
+      const details = MessageController.loanApprovalMessage(data, data.user);
+      EmailController.sendMailMethod(details);
       return res.status(200).send({
         status: 200,
         data: [newData],

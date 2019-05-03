@@ -48,21 +48,25 @@
 
         <div id="login" class="tab-data">
           <h1>Sign In</h1>
-          <form action="user-dashboard.html" method="post">
+          <form id='loginForm'>
 
             <label for="email"></i> Email</label>
-            <input type="email" autocomplete="off"/>
+            <input type="email" id='email' autocomplete="off"/>
 
             <label for="password"></i> Password</label>
-            <input class='name' type="password" autocomplete="off" />
+            <input class='name' id='password' type="password" autocomplete="off" />
 
-            <button class='btn1' type="submit">Login</button>
+            <button class='btn1' id='login-btn' type="submit">Login</button>
           </form>
         </div>
       </div>
    </div> 
    <!---------------------------------LOGIN FORM CONTAINER ENDS HERE------------------------------------------------------->
-  
+   <div class='instruction'>
+        <p>To navigate to admin dashboard use the following email: admin@admin.com</p>
+          <p>To navigate to user dashboard use the following email: user@user.com</p>
+          <p>N/B: Password field should be empty!</p>
+    </div>
   </div>
   <!---------------------------------MAIN SECTION ENDS HERE------------------------------------------------------->
   
