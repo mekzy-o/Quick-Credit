@@ -45,7 +45,7 @@ router.get('/api/v1/loans', queryValidation, verifyAdmin, getLoans);
 router.get('/api/v1/loans/:id', verifyAdmin, getOneLoan);
 
 // Router to post repayment record
-router.post('/api/v1/loans/:id/repayments', verifyAdmin, repaymentRecordValidator, repaymentRecord);
+router.post('/api/v1/loans/:id/repayment', verifyAdmin, repaymentRecordValidator, repaymentRecord);
 
 // Router to get repayment history
 router.get('/api/v1/loans/:id/repayments', verifyUser, repaymentHistoryValidator, getRepaymentRecord);
