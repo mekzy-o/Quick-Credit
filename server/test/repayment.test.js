@@ -1,19 +1,18 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
-import repayments from '../models/repaymentDb';
 
 chai.should();
 
 chai.use(chaiHttp);
 
 const loanId = 1;
-const url = '/api/v1/loans/1/repayments';
+const url = '/api/v1/loans/1/repayment';
 const invalidUrl = '/api/v1/loans/s/repayments';
 const notFoundId = `/api/v1/loans/${10}/repayments`;
 const loginUrl = '/api/v1/auth/signin';
 const loanUrl = '/api/v1/loans';
-const repaymentUrl = `/api/v1/loans/${loanId}`;
+const singleLoan = `/api/v1/loans/${loanId}`;
 
 // TEST TO CREATE REPAYMENT RECORDS
 describe(`POST ${url}`, () => {
@@ -60,7 +59,7 @@ describe(`POST ${url}`, () => {
                   .end((err, res) => {
                     chai
                       .request(app)
-                      .get(repaymentUrl)
+                      .get(singleLoan)
                       .set('authorization', token)
                       .end((err, res) => {
                         res.should.have.status(200);
@@ -102,7 +101,7 @@ describe(`POST ${url}`, () => {
             });
         });
     });
-    it('Should throw error if no token was entered', (done) => {
+    it('Should throw error if no token was entered for post request', (done) => {
       const login = {
         email: 'admin@quick-credit.com',
         password: 'maths102',
@@ -212,7 +211,7 @@ describe(`POST ${url}`, () => {
         .send(login)
         .end((loginErr, loginRes) => {
           const token = `Bearer ${loginRes.body.data.token}`;
-          const amount = { paidAmount: 0 };
+          const amount = { paidAmount: 8000 };
           chai
             .request(app)
             .post(url)
@@ -222,6 +221,7 @@ describe(`POST ${url}`, () => {
               res.should.have.status(400);
               res.body.should.be.a('object');
               res.body.should.have.property('error');
+              res.body.error.should.be.eql('The Paid Amount exceeds client debt!');
               done();
             });
         });
@@ -240,7 +240,7 @@ describe(`POST ${url}`, () => {
           const amount = { paidAmount: 15000 };
           chai
             .request(app)
-            .post(invalidUrl)
+            .post('/api/v1/loans/s/repayment')
             .set('authorization', token)
             .send(amount)
             .end((err, res) => {
@@ -252,7 +252,7 @@ describe(`POST ${url}`, () => {
             });
         });
     });
-    it('Should throw error if loan id is not found', (done) => {
+    it('Should throw error if loan id is not found for post request', (done) => {
       const login = {
         email: 'admin@quick-credit.com',
         password: 'maths102',
@@ -266,7 +266,7 @@ describe(`POST ${url}`, () => {
           const amount = { paidAmount: 15000 };
           chai
             .request(app)
-            .post(notFoundId)
+            .post('/api/v1/loans/10/repayment')
             .set('authorization', token)
             .send(amount)
             .end((err, res) => {
@@ -296,7 +296,7 @@ describe(`GET ${url}`, () => {
         const token = `Bearer ${loginRes.body.data.token}`;
         chai
           .request(app)
-          .get(url)
+          .get('/api/v1/loans/1/repayments')
           .set('authorization', token)
           .end((err, res) => {
             res.should.have.status(200);
@@ -335,7 +335,7 @@ describe(`GET ${url}`, () => {
           });
       });
   });
-  it('Should throw error if loan id is not found', (done) => {
+  it('Should throw error if loan id is not found for get request', (done) => {
     const login = {
       email: 'admin@quick-credit.com',
       password: 'maths102',
@@ -359,7 +359,7 @@ describe(`GET ${url}`, () => {
           });
       });
   });
-  it('Should throw error if no token was entered', (done) => {
+  it('Should throw error if no token was entered for get request', (done) => {
     const login = {
       email: 'admin@quick-credit.com',
       password: 'maths102',
@@ -371,7 +371,7 @@ describe(`GET ${url}`, () => {
       .end((loginErr, loginRes) => {
         chai
           .request(app)
-          .get(url)
+          .get('/api/v1/loans/1/repayments')
           .end((err, res) => {
             res.should.have.status(401);
             res.body.should.be.a('object');
@@ -381,7 +381,7 @@ describe(`GET ${url}`, () => {
           });
       });
   });
-  it('Should successfully update loan balance with last repayment', (done) => {
+  it('Should throw error if payment is made to a loan that is not approved', (done) => {
     const login = {
       email: 'emekaofe21@gmail.com',
       password: 'maths102',
@@ -405,7 +405,6 @@ describe(`GET ${url}`, () => {
           .set('authorization', token)
           .send(applyLoan)
           .end((err, res) => {
-            console.log(res.body);
             const applyId = `${res.body.data.loanId}`;
             const admin = {
               email: 'admin@quick-credit.com',
@@ -420,16 +419,16 @@ describe(`GET ${url}`, () => {
                 const amount = { paidAmount: 10000 };
                 chai
                   .request(app)
-                  .post(`/api/v1/loans/${applyId}/repayments`)
+                  .post(`/api/v1/loans/${applyId}/repayment`)
                   .set('authorization', adminToken)
                   .send(amount)
                   .end((err, res) => {
-                    console.log(res.body.error);
-                    res.should.have.status(201);
+                    res.should.have.status(400);
                     res.body.should.be.a('object');
-                    res.body.should.have.property('data');
-                    res.body.data[0].should.have.property('loanId');
-                    res.body.data[0].should.have.property('createdOn');
+                    res.body.should.have.property('error');
+                    res.body.error.should.be.eql(
+                      'This loan has not yet been approved!',
+                    );
                     done();
                   });
               });
@@ -463,5 +462,4 @@ describe(`GET ${url}`, () => {
           });
       });
   });
-
 });

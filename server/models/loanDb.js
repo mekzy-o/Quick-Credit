@@ -3,7 +3,7 @@ const loans = [
     id: 1,
     user: 'emekaofe6@gmail.com',
     createdOn: 'April 25, 2019 1:32 AM',
-    status: 'pending',
+    status: 'approved',
     repaid: false,
     tenor: 12,
     amount: '200000',
@@ -60,6 +60,5 @@ const loans = [
     interest: 10000,
   },
 ];
-
 
 export default loans;
