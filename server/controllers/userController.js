@@ -21,6 +21,15 @@ class UserController {
     const {
       email, firstName, lastName, password, address,
     } = req.body;
+
+    // Search data storage to check if email already exist
+    if (users.find(user => user.email === email)) {
+      return res.status(409).send({
+        status: 409,
+        error: 'Email already exists!',
+      });
+    }
+
     const id = users.length + 1;
     const status = 'unverified';
     const isAdmin = false;
@@ -44,26 +53,31 @@ class UserController {
       isAdmin,
     };
 
-    if (users.find(user => user.email === email)) {
-      return res.status(409).send({
-        status: 409,
-        error: 'Email already exists!',
-      });
-    }
     users.push(data);
+
+    // Send User(Client) an email on successful signup
     const details = MessageController.signupMessage(data);
     EmailController.sendMailMethod(details);
+
     return res.status(201).send({
       status: 201,
       data,
     });
-
   }
 
+  /**
+   * @method userLogin
+   * @description logs in a user account
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @returns {object} JSON API Response
+   */
   static userLogin(req, res) {
     const { email, password } = req.body;
+    // Search data storage to check if email excist
     const emailIndex = users.findIndex(user => user.email === email);
 
+    // if email index is not -1, check the password entered and compare with user input
     if (emailIndex !== -1) {
       const comparePassword = Authenticator.verifyPassword(
         password,
@@ -77,15 +91,27 @@ class UserController {
         });
       }
     }
+    // Throw error if email or password is invalid
     return res.status(400).json({
       status: 400,
       error: 'Invalid Email or Password Inputed!',
     });
   }
 
+  /**
+   * @method adminVerifyUser
+   * @description method for admin to verify a user or client
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @returns {object} JSON API Response
+   */
   static adminVerifyUser(req, res) {
     const { email } = req.params;
+
+    // Search if user exist in data storage
     const data = users.find(user => user.email === email);
+
+    // if user exist, set user status to verified
     if (data) {
       data.status = 'verified';
       const newData = {
@@ -99,17 +125,25 @@ class UserController {
       };
       return res.status(200).send({
         status: 200,
-        data: [newData],
+        data: newData,
       });
     }
+
+    // Throw error if user doesn't exist
     return res.status(404).send({
       status: 404,
       error: 'Email does not exists!',
     });
   }
 
+  /**
+   * @method resetPassword
+   * @description reset a user password
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @returns {object} JSON API Response
+   */
   static resetPassword(req, res) {
-
     const { email } = req.body;
     const { password } = req.body;
     const data = users.find(user => user.email === email);

@@ -25,52 +25,61 @@ class RepaymentController {
 
     // if data is found continue to the next if block, else return error
     if (data) {
-      let newBalance = data.balance;
-      const newData = {
-        id: repayments.length + 1,
-        loanId: data.id,
-        createdOn: data.createdOn,
-        amount: data.amount,
-        monthlyInstallments: data.paymentInstallment,
-        paidAmount,
-        balance: newBalance,
-      };
-      newBalance = parseInt(data.balance, 10) - paidAmount;
-      if (newBalance === 0) data.repaid = true;
-      repayments.push(newData);
-      const searchRepayment = repayments.filter(
-        item => item.loanId === parseInt(id, 10),
-      );
-      const lastRepayment = searchRepayment[searchRepayment.length - 1];
-      if (lastRepayment) {
-        if (paidAmount > data.balance) {
-          repayments.splice(repayments.length - 1, 1);
-          return res.status(400).send({
-            status: 400,
-            error: 'The Paid Amount exceeds client debt!',
-          });
-        }
-        data.balance = parseInt(lastRepayment.balance, 10) - paidAmount;
-        newData.balance = data.balance;
 
-        // If balance is zero, Client has repaid debt
+      // Check if loan status is approved, throw error if it is not
+      if (data.status !== 'approved') {
+        return res.status(400).send({
+          status: 400,
+          error: 'This loan has not yet been approved!',
+        });
+      }
+
+      // Check if paidAmount is greater than balance, throw error if it is
+      if (paidAmount > data.balance) {
+        return res.status(400).send({
+          status: 400,
+          error: 'The Paid Amount exceeds client debt!',
+        });
+      }
+
+      // if paidAmount is less than balance, proceed to post repayment details
+      if (paidAmount <= data.balance) {
+        data.balance -= paidAmount;
+
+        const newData = {
+          id: repayments.length + 1,
+          loanId: data.id,
+          createdOn: data.createdOn,
+          amount: data.amount,
+          monthlyInstallments: data.paymentInstallment,
+          paidAmount,
+          balance: data.balance,
+        };
+
+        // If balance is zero, set repaid status of client's loan to true
         if (data.balance === 0) {
+          repayments.push(newData);
+          data.repaid = true;
           return res.status(201).send({
             status: 201,
             message: 'Client has repaid loan fully!',
-            newData,
+            data: newData,
           });
         }
-      }
-      // Get user transaction details from newData and user email from data
-      const details = MessageController.transactionMessage(newData, data.user);
-      EmailController.sendMailMethod(details);
-      return res.status(201).send({
-        status: 201,
-        data: [newData],
-      });
-    }
 
+        // Get user transaction details from newData and user email from data
+        const details = MessageController.transactionMessage(
+          newData,
+          data.user,
+        );
+        EmailController.sendMailMethod(details);
+        repayments.push(newData);
+        return res.status(201).send({
+          status: 201,
+          data: newData,
+        });
+      }
+    }
     return res.status(404).send({
       status: 404,
       error: 'No Loan with that id found!',
