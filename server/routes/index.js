@@ -20,7 +20,7 @@ const {
   getAllUsers,
 } = UserController;
 const {
- loanApply, getLoans, getOneLoan, adminLoanDecision 
+  loanApply, getLoans, getOneLoan, adminLoanDecision,
 } = LoanController;
 const {
   signupValidator,
@@ -65,36 +65,16 @@ router.get('/api/v1/loans', queryValidation, verifyAdmin, getLoans);
 router.get('/api/v1/loans/:id', verifyAdmin, getOneLoan);
 
 // Router to post repayment record
-router.post(
-  '/api/v1/loans/:id/repayment',
-  verifyAdmin,
-  repaymentRecordValidator,
-  repaymentRecord,
-);
+router.post('/api/v1/loans/:id/repayment', verifyAdmin, repaymentRecordValidator, repaymentRecord);
 
 // Router to get repayment history
-router.get(
-  '/api/v1/loans/:id/repayments',
-  verifyUser,
-  repaymentHistoryValidator,
-  getRepaymentRecord,
-);
+router.get('/api/v1/loans/:id/repayments', verifyUser, repaymentHistoryValidator, getRepaymentRecord);
 
 // Router to approve or reject loan
-router.patch(
-  '/api/v1/loans/:id',
-  verifyAdmin,
-  adminDecisionValidation,
-  adminLoanDecision,
-);
+router.patch('/api/v1/loans/:id', verifyAdmin, adminDecisionValidation, adminLoanDecision);
 
 // Router to verify user
-router.patch(
-  '/api/v1/users/:email/verify',
-  verifyAdmin,
-  verifyUserValidation,
-  adminVerifyUser,
-);
+router.patch('/api/v1/users/:email/verify', verifyAdmin, verifyUserValidation, adminVerifyUser);
 
 // Router to reset password
 router.post('/api/v1/users/password', resetPasswordValidation, resetPassword);

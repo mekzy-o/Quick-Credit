@@ -1,4 +1,5 @@
 import moment from 'moment';
+import users from '../models/userdb';
 import loans from '../models/loanDb';
 import MessageController from '../helpers/messageHandler';
 import EmailController from '../helpers/emailHandler';
@@ -143,7 +144,22 @@ class LoanController {
   static adminLoanDecision(req, res) {
     const { id } = req.params;
     const data = loans.find(loan => loan.id === parseInt(id, 10));
+
+
+
     if (data) {
+
+      // Find User that applied for loan
+      const userDetails = users.find(user => user.email === data.user);
+
+      // Check the user status, throw error if user is not verified
+      if (userDetails.status === 'unverified') {
+        return res.status(400).send({
+          status: 400,
+          error: 'This User has not been verified!',
+        });
+      }
+
       data.status = req.body.status;
       const newData = {
         loanId: data.id,
