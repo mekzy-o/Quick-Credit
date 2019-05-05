@@ -433,6 +433,10 @@ button {
   height: 60vh;
 }
 
+.instruction p {
+  color: white;
+  font-size: 14px;
+}
 .tab-content {
   margin: 0px auto;
   width: 740px;
@@ -717,6 +721,10 @@ button.btn1 {
     position: absolute;
     margin-top: 5%;
     margin-left: 6%;
+  }
+  .instruction {
+    width: 50%;
+    margin-top: 0;
   }
 }
 
