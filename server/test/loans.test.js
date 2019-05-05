@@ -79,7 +79,6 @@ describe('Tests for Loan Endpoint', () => {
               .set('authorization', token)
               .send(applyLoan)
               .end((err, res) => {
-                console.log(res.body.error);
                 res.body.should.be.a('object');
                 res.should.have.status(201);
                 res.body.should.have.property('data');

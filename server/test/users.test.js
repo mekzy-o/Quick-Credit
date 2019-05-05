@@ -693,3 +693,34 @@ describe('User reset password test', () => {
       });
   });
 });
+
+describe('Admin should be able to get all users', () => {
+  it('Should successfully return user details to admin', (done) => {
+    const admin = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(admin)
+      .end((err, res) => {
+        const token = `Bearer ${res.body.data.token}`;
+        chai
+          .request(app)
+          .get('/api/v1/users')
+          .set('Authorization', token)
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('data');
+            res.body.data[0].should.have.property('firstName');
+            res.body.data[0].should.have.property('lastName');
+            res.body.data[0].should.have.property('email');
+            res.body.data[0].should.have.property('status');
+            res.body.data[0].should.have.property('address');
+            done();
+          });
+      });
+  });
+});
