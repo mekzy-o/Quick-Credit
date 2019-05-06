@@ -7,7 +7,7 @@ const repayments = [
     monthlyInstallments: '26666.667',
     paidAmount: 60000,
     balance: 140000,
-  }
+  },
 ];
 
 export default repayments;

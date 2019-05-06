@@ -19,8 +19,8 @@ class UserController {
    */
   static userSignup(req, res) {
     const {
- email, firstName, lastName, password, address 
-} = req.body;
+      email, firstName, lastName, password, address,
+    } = req.body;
 
     // Search data storage to check if email already exist
     if (users.find(user => user.email === email)) {
@@ -41,7 +41,6 @@ class UserController {
       status,
       isAdmin,
     });
-
     const data = {
       token,
       id,
@@ -53,13 +52,12 @@ class UserController {
       status,
       isAdmin,
     };
-
     users.push(data);
 
     // Send User(Client) an email on successful signup
     const details = MessageController.signupMessage(data);
     EmailController.sendMailMethod(details);
-
+    
     return res.status(201).send({
       status: 201,
       data,
@@ -129,7 +127,6 @@ class UserController {
         data: newData,
       });
     }
-
     // Throw error if user doesn't exist
     return res.status(404).send({
       status: 404,
@@ -170,7 +167,6 @@ class UserController {
    * @returns {object} JSON API Response
    */
   static getAllUsers(req, res) {
-
     // declare empty array to hold the values of user
     const data = [];
 
@@ -188,6 +184,40 @@ class UserController {
     return res.status(200).send({
       status: 200,
       data,
+    });
+  }
+
+  /**
+   * @method getSingleUser
+   * @description return all user accounts
+   * @param {object} req - The Request Object
+   * @param {object} res - The Response Object
+   * @returns {object} JSON API Response
+   */
+  static getSingleUser(req, res) {
+    const { email } = req.params;
+
+    // Search data storage to check if user with email exist
+    const data = users.find(user => user.email === email);
+
+    // if user exist, return neccessary data of user
+    if (data) {
+      const newData = {
+        id: data.id,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: data.email,
+        address: data.address,
+        status: data.status,
+      };
+      return res.status(200).send({
+        status: 200,
+        data: newData,
+      });
+    }
+    return res.status(404).send({
+      status: 404,
+      error: 'Email does not exist!',
     });
   }
 }
