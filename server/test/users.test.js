@@ -845,4 +845,28 @@ describe('Admin should be able to get all users', () => {
           });
       });
   });
+  it('Should return error if user email is not database', (done) => {
+    const admin = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(admin)
+      .end((err, res) => {
+        const token = `Bearer ${res.body.data.token}`;
+        chai
+          .request(app)
+          .get('/api/v1/users/emekaofe26@gmail.com')
+          .set('Authorization', token)
+          .end((err, res) => {
+            res.should.have.status(404);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Email does not exist!');
+            done();
+          });
+      });
+  });
 });
