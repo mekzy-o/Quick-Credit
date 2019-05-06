@@ -148,19 +148,21 @@ class LoanController {
 
 
     if (data) {
-
+      data.status = req.body.status;
+      
+      if (data.status === 'approved') {
       // Find User that applied for loan
-      const userDetails = users.find(user => user.email === data.user);
+        const userDetails = users.find(user => user.email === data.user);
 
-      // Check the user status, throw error if user is not verified
-      if (userDetails.status === 'unverified') {
-        return res.status(400).send({
-          status: 400,
-          error: 'This User has not been verified!',
-        });
+        // Check the user status, throw error if user is not verified
+        if (userDetails.status === 'unverified') {
+          return res.status(400).send({
+            status: 400,
+            error: 'This User has not been verified!',
+          });
+        }
       }
 
-      data.status = req.body.status;
       const newData = {
         loanId: data.id,
         loanAmount: data.amount,
