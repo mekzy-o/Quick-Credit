@@ -842,7 +842,7 @@ describe('Tests for Loan Endpoint', () => {
           const decision = { status: 'approved' };
           chai
             .request(app)
-            .patch(`${url}/${loanId}`)
+            .patch(`${url}/6`)
             .set('authorization', token)
             .send(decision)
             .end((err, res) => {
@@ -1005,6 +1005,32 @@ describe('Tests for Loan Endpoint', () => {
               res.body.should.be.a('object');
               res.body.should.have.property('error');
               res.body.error.should.be.eql('Invalid or No Token Provided');
+              done();
+            });
+        });
+    });
+    it('Should return error when user is not a verified user', (done) => {
+      const login = {
+        email: 'admin@quick-credit.com',
+        password: 'maths102',
+      };
+      chai
+        .request(app)
+        .post(loginUrl)
+        .send(login)
+        .end((loginErr, loginRes) => {
+          const token = `Bearer ${loginRes.body.data.token}`;
+          const decision = { status: 'approved' };
+          chai
+            .request(app)
+            .patch(`${url}/${loanId}`)
+            .set('Authorization', token)
+            .send(decision)
+            .end((err, res) => {
+              res.should.have.status(400);
+              res.body.should.be.a('object');
+              res.body.should.have.property('error');
+              res.body.error.should.be.eql('This User has not been verified!');
               done();
             });
         });

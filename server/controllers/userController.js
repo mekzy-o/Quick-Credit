@@ -1,7 +1,7 @@
-import users from "../models/userdb";
-import Authenticator from "../auth/authentication";
-import EmailController from "../helpers/emailHandler";
-import MessageController from "../helpers/messageHandler";
+import users from '../models/userdb';
+import Authenticator from '../auth/authentication';
+import EmailController from '../helpers/emailHandler';
+import MessageController from '../helpers/messageHandler';
 
 /**
  * @class UserController
@@ -18,18 +18,20 @@ class UserController {
    * @returns {object} JSON API Response
    */
   static userSignup(req, res) {
-    const { email, firstName, lastName, password, address } = req.body;
+    const {
+ email, firstName, lastName, password, address 
+} = req.body;
 
     // Search data storage to check if email already exist
     if (users.find(user => user.email === email)) {
       return res.status(409).send({
         status: 409,
-        error: "Email already exists!"
+        error: 'Email already exists!',
       });
     }
 
     const id = users.length + 1;
-    const status = "unverified";
+    const status = 'unverified';
     const isAdmin = false;
 
     // Create token with specified user details as payload
@@ -37,7 +39,7 @@ class UserController {
       id,
       email,
       status,
-      isAdmin
+      isAdmin,
     });
 
     const data = {
@@ -49,7 +51,7 @@ class UserController {
       password: Authenticator.hashPassword(password),
       address,
       status,
-      isAdmin
+      isAdmin,
     };
 
     users.push(data);
@@ -60,7 +62,7 @@ class UserController {
 
     return res.status(201).send({
       status: 201,
-      data
+      data,
     });
   }
 
@@ -80,20 +82,20 @@ class UserController {
     if (emailIndex !== -1) {
       const comparePassword = Authenticator.verifyPassword(
         password,
-        users[emailIndex].password
+        users[emailIndex].password,
       );
       if (comparePassword) {
         return res.status(200).send({
-          message: "Login Successful!",
+          message: 'Login Successful!',
           status: 200,
-          data: users[emailIndex]
+          data: users[emailIndex],
         });
       }
     }
     // Throw error if email or password is invalid
     return res.status(400).json({
       status: 400,
-      error: "Invalid Email or Password Inputed!"
+      error: 'Invalid Email or Password Inputed!',
     });
   }
 
@@ -112,7 +114,7 @@ class UserController {
 
     // if user exist, set user status to verified
     if (data) {
-      data.status = "verified";
+      data.status = 'verified';
       const newData = {
         email: data.email,
         firstName: data.firstName,
@@ -120,18 +122,18 @@ class UserController {
         password: data.password,
         address: data.address,
         status: data.status,
-        isAdmin: data.isAdmin
+        isAdmin: data.isAdmin,
       };
       return res.status(200).send({
         status: 200,
-        data: newData
+        data: newData,
       });
     }
 
     // Throw error if user doesn't exist
     return res.status(404).send({
       status: 404,
-      error: "Email does not exists!"
+      error: 'Email does not exists!',
     });
   }
 
@@ -151,12 +153,12 @@ class UserController {
       data.password = Authenticator.hashPassword(password);
       return res.status(201).send({
         status: 201,
-        message: "Your Password has been reset Successfully!"
+        message: 'Your Password has been reset Successfully!',
       });
     }
     return res.status(404).send({
       status: 404,
-      error: "The Email Address you Entered was not found!"
+      error: 'The Email Address you Entered was not found!',
     });
   }
 
@@ -168,24 +170,24 @@ class UserController {
    * @returns {object} JSON API Response
    */
   static getAllUsers(req, res) {
-    
-    //declare empty array to hold the values of user
+
+    // declare empty array to hold the values of user
     const data = [];
 
-    //use a forEach loop to add only neccessary user details to the data array
-    users.forEach(user => {
+    // use a forEach loop to add only neccessary user details to the data array
+    users.forEach((user) => {
       data.push({
         id: user.id,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
         address: user.address,
-        status: user.status
+        status: user.status,
       });
     });
     return res.status(200).send({
       status: 200,
-      data: data
+      data,
     });
   }
 }
