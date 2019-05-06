@@ -1,3 +1,4 @@
+
 import moment from 'moment';
 import users from '../models/userdb';
 import loans from '../models/loanDb';
@@ -149,8 +150,10 @@ class LoanController {
 
     if (data) {
       data.status = req.body.status;
-      
+
+      // If admin wants to approve loan, confirm user verification status
       if (data.status === 'approved') {
+
       // Find User that applied for loan
         const userDetails = users.find(user => user.email === data.user);
 

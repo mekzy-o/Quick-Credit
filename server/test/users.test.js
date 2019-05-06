@@ -723,4 +723,126 @@ describe('Admin should be able to get all users', () => {
           });
       });
   });
+  it('Should return error if Admin doesnt enter token', (done) => {
+    const admin = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(admin)
+      .end((err, res) => {
+        const token = `Bearer ${res.body.data.token}`;
+        chai
+          .request(app)
+          .get('/api/v1/users')
+          .end((err, res) => {
+            res.should.have.status(401);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Invalid or No Token Provided');
+            done();
+          });
+      });
+  });
+  it('Should return error if user that is not an admin tries to get users', (done) => {
+    const admin = {
+      email: 'emekaofe22@gmail.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(admin)
+      .end((err, res) => {
+        const token = `Bearer ${res.body.data.token}`;
+        chai
+          .request(app)
+          .get('/api/v1/users')
+          .set('Authorization', token)
+          .end((err, res) => {
+            res.should.have.status(403);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Only Admin can access this route');
+            done();
+          });
+      });
+  });
+  it('Should successfully return a single user details to admin', (done) => {
+    const admin = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(admin)
+      .end((err, res) => {
+        const token = `Bearer ${res.body.data.token}`;
+        chai
+          .request(app)
+          .get('/api/v1/users/emekaofe22@gmail.com')
+          .set('Authorization', token)
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.body.should.be.a('object');
+            res.body.should.have.property('data');
+            res.body.data.should.have.property('firstName');
+            res.body.data.should.have.property('lastName');
+            res.body.data.should.have.property('email');
+            res.body.data.should.have.property('status');
+            res.body.data.should.have.property('address');
+            done();
+          });
+      });
+  });
+  it('Should return error if Admin trying to fetch a single user doesnt enter token', (done) => {
+    const admin = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(admin)
+      .end((err, res) => {
+        const token = `Bearer ${res.body.data.token}`;
+        chai
+          .request(app)
+          .get('/api/v1/users/emekaofe22@gmail.com')
+          .end((err, res) => {
+            res.should.have.status(401);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Invalid or No Token Provided');
+            done();
+          });
+      });
+  });
+  it('Should return error if user that is not an admin tries to get single user', (done) => {
+    const admin = {
+      email: 'emekaofe22@gmail.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(admin)
+      .end((err, res) => {
+        const token = `Bearer ${res.body.data.token}`;
+        chai
+          .request(app)
+          .get('/api/v1/users/emekaofe22@gmail.com')
+          .set('Authorization', token)
+          .end((err, res) => {
+            res.should.have.status(403);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Only Admin can access this route');
+            done();
+          });
+      });
+  });
 });
