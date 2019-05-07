@@ -154,7 +154,7 @@ class LoanController {
       // If admin wants to approve loan, confirm user verification status
       if (data.status === 'approved') {
 
-      // Find User that applied for loan
+        // Find User that applied for loan
         const userDetails = users.find(user => user.email === data.user);
 
         // Check the user status, throw error if user is not verified
