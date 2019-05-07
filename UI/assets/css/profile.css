@@ -40,6 +40,7 @@ i.far.fa-edit {
   margin: 0% auto;
   background: white;
 }
+
 .loans-container h2 {
   margin-top: 20px;
   text-align: center;
@@ -48,6 +49,11 @@ i.far.fa-edit {
 .transaction-table th,
 td {
   text-align: center;
+}
+.transaction-table th {
+  background: #003468;
+  color: white;
+  font-size: 14px;
 }
 .loans-container h2 {
   background: transparent;
@@ -77,6 +83,7 @@ button[disabled] {
   text-align: left;
   overflow-x: auto;
 }
+
 
 .transaction-table {
   width: 100%;
@@ -156,8 +163,25 @@ th {
   }
 }
 @media (max-width: 768px) {
+  .transaction-table th,
+  td {
+    text-align: right;
+  }
+  .transaction-table tr:nth-child(odd) > td button {
+    background: white;
+  }
+  .transaction-table tr:nth-child(odd) > td button a {
+    color: black;
+    background: none;
+  }
+  .repayments-container {
+    width: 78%;
+    margin: 2% auto;
+    background: white;
+  }
+
   footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
   }

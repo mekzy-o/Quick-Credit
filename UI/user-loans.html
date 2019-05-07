@@ -78,84 +78,174 @@
         <h2>LOAN APPLICATIONS</h2>
         <div class="user-details">
           <table class="user-table" id="loan-table" onclick="adminAction()">
+            <thead>
+              <th>Loan ID</th>
+              <th>Email Address</th>
+              <th>Created On</th>
+              <th>Status</th>
+              <th>Repaid</th>
+              <th>Tenor</th>
+              <th>Loan Amount</th>
+              <th>Installment</th>
+              <th>Balance</th>
+              <th>Interest</th>
+              <th>Action</th>
+            </thead>
             <tbody>
               <tr>
-                <th>Loan ID</th>
-                <th>Email Address</th>
-                <th>Created On</th>
-                <th>Status</th>
-                <th>Repaid</th>
-                <th>Tenor</th>
-                <th>Loan Amount</th>
-                <th>Installment</th>
-                <th>Balance</th>
-                <th>Interest</th>
-                <th>Action</th>
-              </tr>
-              <tr>
-                <td>
+                <td data-th="Loan ID">
                   <a
                     href="#"
                     onclick="document.getElementById('loan-modal').style.display='block'"
                     >10113</a
                   >
                 </td>
-                <td>emekaofe@gmail.com</td>
-                <td>12-13-2019</td>
-                <td class="loan-status">PENDING</td>
-                <td>FALSE</td>
-                <td>10 months</td>
-                <td>₦200, 000</td>
-                <td>₦20, 000</td>
-                <td>₦200, 000</td>
-                <td>₦1000</td>
-                <td>
-                  <button class="accept" id="1">Approve</button>
-                  <button class="reject" id="1">Reject</button>
+                <td data-th="Email">emekaofe@gmail.com</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td class="loan-status" data-th="Status">PENDING</td>
+                <td data-th="Repaid">FALSE</td>
+                <td data-th="Tenor">10 months</td>
+                <td data-th="Amount">₦200, 000</td>
+                <td data-th="Installment">₦20, 000</td>
+                <td data-th="Balance">₦200, 000</td>
+                <td data-th="interest">₦1000</td>
+                <td data-th="Action">
+                  <button class="accept" id="1">
+                    <i class="fas fa-check"></i>
+                  </button>
+                  <button class="reject" id="1">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
                 </td>
               </tr>
               <tr>
-                <td>
+                <td data-th="Loan ID">
                   <a
                     href="#"
                     onclick="document.getElementById('loan-modal').style.display='block'"
                     >10113</a
                   >
                 </td>
-                <td>emekaofe@gmail.com</td>
-                <td>12-13-2019</td>
-                <td class="loan-status" id="">APPROVED</td>
-                <td>TRUE</td>
-                <td>10 months</td>
-                <td>₦200, 000</td>
-                <td>₦20, 000</td>
-                <td>0.00</td>
-                <td>₦1000</td>
-                <td>
-                  <button class="accept" id="2">Approve</button>
-                  <button class="reject" id="2">Reject</button>
+                <td data-th="Email">emekaofe@gmail.com</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td class="loan-status" data-th="Status">PENDING</td>
+                <td data-th="Repaid">FALSE</td>
+                <td data-th="Tenor">10 months</td>
+                <td data-th="Amount">₦200, 000</td>
+                <td data-th="Installment">₦20, 000</td>
+                <td data-th="Balance">₦200, 000</td>
+                <td data-th="interest">₦1000</td>
+                <td data-th="Action">
+                  <button class="accept" id="2">
+                    <i class="fas fa-check"></i>
+                  </button>
+                  <button class="reject" id="2">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
                 </td>
               </tr>
               <tr>
-                <td>
+                <td data-th="Loan ID">
                   <a
                     href="#"
                     onclick="document.getElementById('loan-modal').style.display='block'"
                     >10113</a
                   >
                 </td>
-                <td>emekaofe@gmail.com</td>
-                <td>12-13-2019</td>
-                <td class="loan-status">REJECTED</td>
-                <td>FALSE</td>
-                <td>10 months</td>
-                <td>₦200, 000</td>
-                <td>₦20, 000</td>
-                <td>₦200, 000</td>
-                <td>₦1000</td>
-                <td>
-                  <button class="accept" id="3">Approve</button>
-                  <button class="reject" id="3">Reject</button>
+                <td data-th="Email">emekaofe@gmail.com</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td class="loan-status" data-th="Status">PENDING</td>
+                <td data-th="Repaid">FALSE</td>
+                <td data-th="Tenor">10 months</td>
+                <td data-th="Amount">₦200, 000</td>
+                <td data-th="Installment">₦20, 000</td>
+                <td data-th="Balance">₦200, 000</td>
+                <td data-th="interest">₦1000</td>
+                <td data-th="Action">
+                  <button class="accept" id="3">
+                    <i class="fas fa-check"></i>
+                  </button>
+                  <button class="reject" id="3">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td data-th="Loan ID">
+                  <a
+                    href="#"
+                    onclick="document.getElementById('loan-modal').style.display='block'"
+                    >10113</a
+                  >
+                </td>
+                <td data-th="Email">emekaofe@gmail.com</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td class="loan-status" data-th="Status">PENDING</td>
+                <td data-th="Repaid">FALSE</td>
+                <td data-th="Tenor">10 months</td>
+                <td data-th="Amount">₦200, 000</td>
+                <td data-th="Installment">₦20, 000</td>
+                <td data-th="Balance">₦200, 000</td>
+                <td data-th="interest">₦1000</td>
+                <td data-th="Action">
+                  <button class="accept" id="4">
+                    <i class="fas fa-check"></i>
+                  </button>
+                  <button class="reject" id="4">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td data-th="Loan ID">
+                  <a
+                    href="#"
+                    onclick="document.getElementById('loan-modal').style.display='block'"
+                    >10113</a
+                  >
+                </td>
+                <td data-th="Email">emekaofe@gmail.com</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td class="loan-status" data-th="Status">PENDING</td>
+                <td data-th="Repaid">FALSE</td>
+                <td data-th="Tenor">10 months</td>
+                <td data-th="Amount">₦200, 000</td>
+                <td data-th="Installment">₦20, 000</td>
+                <td data-th="Balance">₦200, 000</td>
+                <td data-th="interest">₦1000</td>
+                <td data-th="Action">
+                  <button class="accept" id="5">
+                    <i class="fas fa-check"></i>
+                  </button>
+                  <button class="reject" id="5">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td data-th="Loan ID">
+                  <a
+                    href="#"
+                    onclick="document.getElementById('loan-modal').style.display='block'"
+                    >10113</a
+                  >
+                </td>
+                <td data-th="Email">emekaofe@gmail.com</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td class="loan-status" data-th="Status">PENDING</td>
+                <td data-th="Repaid">FALSE</td>
+                <td data-th="Tenor">10 months</td>
+                <td data-th="Amount">₦200, 000</td>
+                <td data-th="Installment">₦20, 000</td>
+                <td data-th="Balance">₦200, 000</td>
+                <td data-th="interest">₦1000</td>
+                <td data-th="Action">
+                  <button class="accept" id="6">
+                    <i class="fas fa-check"></i>
+                  </button>
+                  <button class="reject" id="6">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
                 </td>
               </tr>
             </tbody>

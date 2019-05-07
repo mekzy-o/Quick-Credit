@@ -119,28 +119,32 @@
             <h2>LOAN TRANSACTIONS</h2>
             <div class="user-loans">
               <table class="transaction-table">
-                <tbody>
+                <thead>
                   <tr>
                     <th>Loan ID</th>
                     <th>Date</th>
                     <th>Amount</th>
                     <th>Tenor</th>
-                    <th>Monthly Installments</th>
+                    <th>Installments</th>
                     <th>Interest</th>
                     <th>Status</th>
                     <th>Repaid</th>
+                    <th>Next Payment</th>
                     <th>Action</th>
                   </tr>
+                </thead>
+                <tbody>
                   <tr>
-                    <td>#22338</td>
-                    <td>03-01-2019</td>
-                    <td>₦200000</td>
-                    <td>6 months</td>
-                    <td>₦26000</td>
-                    <td>₦6000</td>
-                    <td class="approve">APPROVED</td>
-                    <td>ONGOING</td>
-                    <td>
+                    <td data-th="Loan ID">#22338</td>
+                    <td data-th="Created On">03-01-2019</td>
+                    <td data-th="Loan Amount">₦200000</td>
+                    <td data-th="Tenor">6 months</td>
+                    <td data-th="Monthly Installments">₦26000</td>
+                    <td data-th="Interest">₦6000</td>
+                    <td class="approve" data-th="Status">APPROVED</td>
+                    <td data-th="Repaid">ONGOING</td>
+                    <td data-th="Next Payment">14-6-2019</td>
+                    <td data-th="Action">
                       <button>
                         <a href="loan-repayment.html" target="_blank"
                           >Repayments</a
@@ -150,21 +154,21 @@
                   </tr>
 
                   <tr>
-                    <td>#22338</td>
-                    <td>03-01-2019</td>
-                    <td>₦200000</td>
-                    <td>12 months</td>
-                    <td>₦26000</td>
-                    <td>₦6000</td>
-                    <td class="approve">APPROVED</td>
-                    <td>COMPLETED</td>
-                    <td>
+                    <td data-th="Loan ID">#22338</td>
+                    <td data-th="Created On">03-01-2019</td>
+                    <td data-th="Loan Amount">₦200000</td>
+                    <td data-th="Tenor">6 months</td>
+                    <td data-th="Monthly Installments">₦26000</td>
+                    <td data-th="Interest">₦6000</td>
+                    <td class="approve" data-th="Status">APPROVED</td>
+                    <td data-th="Repaid">COMPLETED</td>
+                    <td data-th="Next Payment">NULL</td>
+                    <td data-th="Action">
                       <button>
                         <a href="loan-repayment.html" target="_blank"
                           >Repayments</a
                         >
                       </button>
-                    </td>
                     </td>
                   </tr>
                 </tbody>
