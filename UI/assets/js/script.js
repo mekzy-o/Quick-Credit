@@ -32,6 +32,7 @@ function verifyUser() {
     }
   });
 }
+
 // const closeButton = document.querySelector(".close");
 
 // const img = document.getElementById("profile-img");
@@ -109,10 +110,63 @@ const submitBtn = document.getElementById("login-btn");
 console.log(submitBtn);
 submitBtn.addEventListener("click", function(e) {
   e.preventDefault();
-  if(document.getElementById("email").value==='admin@admin.com'){
-    window.location.href='admin-dashboard.html';
+  if (document.getElementById("email").value === "admin@admin.com") {
+    window.location.href = "admin-dashboard.html";
+  } else if (document.getElementById("email").value === "user@user.com") {
+    window.location.href = "user-dashboard.html";
   }
- else if(document.getElementById("email").value==='user@user.com'){
-  window.location.href='user-dashboard.html';
- }
 });
+
+//Function to search for users in user-verification table
+function myFunction() {
+  // Declare variables
+  let input, filter, table, tr, td, i, txtValue;
+  //input id in desktop view
+  input = document.getElementById("myInput");
+
+  //input id in mobile view
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("user-table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+
+//Function to search for users in user-verification table in mobile view
+function mobileFunction() {
+  // Declare variables
+  let input, filter, table, tr, td, i, txtValue;
+
+  input = document.getElementById("mobileInput");
+
+  //input id in mobile view
+  input = document.getElementById("mobileInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("user-table");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[2];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}

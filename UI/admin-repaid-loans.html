@@ -43,9 +43,13 @@
         <h1 class="logo-header"><a href="../index.html">QUICK-CREDIT</a></h1>
       </div>
       <div class="search">
-        <input type="text" class="search-input" placeholder="search..." /><i
-          class="fas fa-search"
-        ></i>
+        <input
+          type="text"
+          class="search-input"
+          id="myInput"
+          onkeyup="myFunction()"
+          placeholder="Search Email..."
+        /><i class="fas fa-search"></i>
       </div>
 
       <div class="nav-profile">
@@ -79,15 +83,20 @@
         </ul>
       </aside>
       <section class="user-container">
-        <h2>REPAID LOANS</h2>
         <div class="user-details">
-          <table class="user-table" id="loan-table" onclick="">
-            <tbody>
+          <input
+            type="text"
+            id="mobileInput"
+            onkeyup="mobileFunction()"
+            placeholder="Search for User Email Address..."
+          />
+          <h2>REPAID LOANS</h2>
+          <table class="user-table" id="user-table" onclick="">
+            <thead>
               <tr>
                 <th>Loan ID</th>
-                <th>Email Address</th>
                 <th>Created On</th>
-                <th>Status</th>
+                <th>Email Address</th>
                 <th>Repaid</th>
                 <th>Tenor</th>
                 <th>Loan Amount</th>
@@ -95,41 +104,95 @@
                 <th>Balance</th>
                 <th>Interest</th>
               </tr>
+            </thead>
+            <tbody>
               <tr>
-                <td>10113</td>
-                <td>emekaofe@gmail.com</td>
-                <td>12-13-2019</td>
-                <td class=" approve loan-status">APPROVED</td>
-                <td>TRUE</td>
-                <td>10 months</td>
-                <td>₦200,000</td>
-                <td>₦20,000</td>
-                <td>₦0.00</td>
-                <td>₦1000</td>
+                <td data-th="Loan ID">10113</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email">gift42@gmail.com</td>
+                <td data-th="Repaid">TRUE</td>
+                <td data-th="Tenor">10 months</td>
+                <td data-th="Amount">₦200,000</td>
+                <td data-th="Installment">₦20,000</td>
+                <td data-th="Balance">₦0.00</td>
+                <td data-th="Interest">₦1000</td>
               </tr>
               <tr>
-                <td>10113</td>
-                <td>emekaofe@gmail.com</td>
-                <td>12-13-2019</td>
-                <td class="approve loan-status" id="">APPROVED</td>
-                <td>TRUE</td>
-                <td>10 months</td>
-                <td>₦200,000</td>
-                <td>₦20,000</td>
-                <td>₦0.00</td>
-                <td>₦1000</td>
+                <td data-th="Loan ID">10113</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email">obinnaofe@gmail.com</td>
+                <td data-th="Repaid">TRUE</td>
+                <td data-th="Tenor">10 months</td>
+                <td data-th="Amount">₦200,000</td>
+                <td data-th="Installment">₦20,000</td>
+                <td data-th="Balance">₦0.00</td>
+                <td data-th="Interest">₦1000</td>
               </tr>
               <tr>
-                <td>10113</td>
-                <td>emekaofe@gmail.com</td>
-                <td>12-13-2019</td>
-                <td class="approve loan-status">APPROVED</td>
-                <td>TRUE</td>
-                <td>10 months</td>
-                <td>₦200,000</td>
-                <td>₦20,000</td>
-                <td>₦0.00</td>
-                <td>₦1000</td>
+                <td data-th="Loan ID">10113</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email">odunayo@gmail.com</td>
+                <td data-th="Repaid">TRUE</td>
+                <td data-th="Tenor">10 months</td>
+                <td data-th="Amount">₦200,000</td>
+                <td data-th="Installment">₦20,000</td>
+                <td data-th="Balance">₦0.00</td>
+                <td data-th="Interest">₦1000</td>
+              </tr>
+              <tr>
+                <td data-th="Loan ID">10113</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email">pricajoe@gmail.com</td>
+                <td data-th="Repaid">TRUE</td>
+                <td data-th="Tenor">10 months</td>
+                <td data-th="Amount">₦200,000</td>
+                <td data-th="Installment">₦20,000</td>
+                <td data-th="Balance">₦0.00</td>
+                <td data-th="Interest">₦1000</td>
+              </tr>
+              <tr>
+                <td data-th="Loan ID">10113</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email">emekaofe@gmail.com</td>
+                <td data-th="Repaid">TRUE</td>
+                <td data-th="Tenor">10 months</td>
+                <td data-th="Amount">₦200,000</td>
+                <td data-th="Installment">₦20,000</td>
+                <td data-th="Balance">₦0.00</td>
+                <td data-th="Interest">₦1000</td>
+              </tr>
+              <tr>
+                <td data-th="Loan ID">10113</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email">maurine21@gmail.com</td>
+                <td data-th="Repaid">TRUE</td>
+                <td data-th="Tenor">10 months</td>
+                <td data-th="Amount">₦200,000</td>
+                <td data-th="Installment">₦20,000</td>
+                <td data-th="Balance">₦0.00</td>
+                <td data-th="Interest">₦1000</td>
+              </tr>
+              <tr>
+                <td data-th="Loan ID">10113</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email">princess21@gmail.com</td>
+                <td data-th="Repaid">TRUE</td>
+                <td data-th="Tenor">10 months</td>
+                <td data-th="Amount">₦200,000</td>
+                <td data-th="Installment">₦20,000</td>
+                <td data-th="Balance">₦0.00</td>
+                <td data-th="Interest">₦1000</td>
+              </tr>
+              <tr>
+                <td data-th="Loan ID">10113</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email">ugochukwu21@gmail.com</td>
+                <td data-th="Repaid">TRUE</td>
+                <td data-th="Tenor">10 months</td>
+                <td data-th="Amount">₦200,000</td>
+                <td data-th="Installment">₦20,000</td>
+                <td data-th="Balance">₦0.00</td>
+                <td data-th="Interest">₦1000</td>
               </tr>
             </tbody>
           </table>
