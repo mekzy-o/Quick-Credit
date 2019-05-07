@@ -43,9 +43,13 @@
         <h1 class="logo-header"><a href="../index.html">QUICK-CREDIT</a></h1>
       </div>
       <div class="search">
-        <input type="text" class="search-input" placeholder="search..." /><i
-          class="fas fa-search"
-        ></i>
+        <input
+          type="text"
+          class="search-input"
+          id="myInput"
+          onkeyup="myFunction()"
+          placeholder="Search Email..."
+        /><i class="fas fa-search"></i>
       </div>
 
       <div class="nav-profile">
@@ -81,14 +85,20 @@
         </ul>
       </aside>
       <section class="user-container">
-        <h2>REPAYMENT TRANSACTIONS</h2>
         <div class="user-details">
-          <table class="user-table" id="loan-table" onclick="">
+          <input
+            type="text"
+            id="mobileInput"
+            onkeyup="mobileFunction()"
+            placeholder="Search for User Email Address..."
+          />
+          <h2>REPAYMENT TRANSACTIONS</h2>
+          <table class="user-table" id="user-table" onclick="">
             <thead>
               <tr>
                 <th>Loan ID</th>
-                <th>Email Address</th>
                 <th>Created On</th>
+                <th>Email Address</th>
                 <th>Loan Amount</th>
                 <th>Monthly Installment</th>
                 <th>Month</th>
@@ -100,8 +110,8 @@
             <tbody>
               <tr>
                 <td data-th="Loan ID">10113</td>
-                <td data-th="Email Address">emekaofe@gmail.com</td>
                 <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email Address">emekaofe@gmail.com</td>
                 <td data-th="Loan Amount">₦200,000</td>
                 <td data-th="Monthly Installments">₦20,000</td>
                 <td data-th="Month">January</td>
@@ -111,8 +121,8 @@
               </tr>
               <tr>
                 <td data-th="Loan ID">10113</td>
-                <td data-th="Email Address">emekaofe@gmail.com</td>
                 <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email Address">obinnaofe@gmail.com</td>
                 <td data-th="Loan Amount">₦200,000</td>
                 <td data-th="Monthly Installments">₦20,000</td>
                 <td data-th="Month">February</td>
@@ -122,8 +132,8 @@
               </tr>
               <tr>
                 <td data-th="Loan ID">10113</td>
-                <td data-th="Email Address">emekaofe@gmail.com</td>
                 <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email Address">odunayo@gmail.com</td>
                 <td data-th="Loan Amount">₦200,000</td>
                 <td data-th="Monthly Installments">₦20,000</td>
                 <td data-th="Month">March</td>
@@ -133,8 +143,8 @@
               </tr>
               <tr>
                 <td data-th="Loan ID">10113</td>
-                <td data-th="Email Address">emekaofe@gmail.com</td>
                 <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email Address">patricia@gmail.com</td>
                 <td data-th="Loan Amount">₦200,000</td>
                 <td data-th="Monthly Installments">₦20,000</td>
                 <td data-th="Month">April</td>
@@ -144,8 +154,30 @@
               </tr>
               <tr>
                 <td data-th="Loan ID">10113</td>
-                <td data-th="Email Address">emekaofe@gmail.com</td>
                 <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email Address">angela201@gmail.com</td>
+                <td data-th="Loan Amount">₦200,000</td>
+                <td data-th="Monthly Installments">₦20,000</td>
+                <td data-th="Month">May</td>
+                <td data-th="Paid Amount">₦20,000</td>
+                <td data-th="Balance">₦190,000</td>
+                <!-- <td><button>CONFIRM PAYMENT</button></td> -->
+              </tr>
+              <tr>
+                <td data-th="Loan ID">10113</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email Address">victor22@gmail.com</td>
+                <td data-th="Loan Amount">₦200,000</td>
+                <td data-th="Monthly Installments">₦20,000</td>
+                <td data-th="Month">May</td>
+                <td data-th="Paid Amount">₦20,000</td>
+                <td data-th="Balance">₦190,000</td>
+                <!-- <td><button>CONFIRM PAYMENT</button></td> -->
+              </tr>
+              <tr>
+                <td data-th="Loan ID">10113</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email Address">stephenmiles@gmail.com</td>
                 <td data-th="Loan Amount">₦200,000</td>
                 <td data-th="Monthly Installments">₦20,000</td>
                 <td data-th="Month">May</td>
