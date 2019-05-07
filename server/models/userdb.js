@@ -43,8 +43,17 @@ const users = [
     address: '75, Bode Thomas Street',
     status: 'unverified',
     isAdmin: false,
+  }, {
+    token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjo1LCJlbWFpbCI6ImVtZWthb2ZlMThAZ21haWwuY29tIiwic3RhdHVzIjoidW52ZXJpZmllZCIsImlzQWRtaW4iOmZhbHNlfSwiaWF0IjoxNTU3MDc4MzcwLCJleHAiOjE1NTkxNTE5NzB9.0rpyamb75Wa9AEd-BEdjQV4ZHlJ7vnm4ko1KzZcfGc4',
+    id: 5,
+    email: 'emekaofe18@gmail.com',
+    firstName: 'Emeka',
+    lastName: 'Ofe',
+    password: '$2a$10$Lqrs/fyeuH8AYGtl.cUe8egPNohxjSdallGjTKKdqgqqJiZU.FS2.',
+    address: '75, Bode Thomas Street',
+    status: 'verified',
+    isAdmin: false,
   },
-
 ];
 
 export default users;

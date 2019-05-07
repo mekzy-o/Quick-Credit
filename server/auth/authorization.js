@@ -10,6 +10,7 @@ class Authorization {
       const decoded = verifyToken(token);
       req.user = decoded.payload;
       if (req.user.email !== 'admin@quick-credit.com') {
+        console.log(req.user);
         return res.status(403).send({
           status: 403,
           error: 'Only Admin can access this route',

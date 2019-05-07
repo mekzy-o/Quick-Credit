@@ -19,398 +19,43 @@ const loanId = 1;
 
 // TEST FOR LOAN APPLICATION ROUTES
 describe('Tests for Loan Endpoint', () => {
-  describe(`POST ${url}`, () => {
-    it('Should throw an error if token was not entered', (done) => {
-      const login = {
-        email: 'admin@quick-credit.com',
-        password: 'maths102',
-      };
-      chai
-        .request(app)
-        .post(loginUrl)
-        .send(login)
-        .end((loginErr, loginRes) => {
-          chai
-            .request(app)
-            .get(url)
-            .end((err, res) => {
-              res.should.have.status(401);
-              res.body.should.be.a('object');
-              res.body.should.have.property('error');
-              res.body.error.should.be.eql('Invalid or No Token Provided');
-              done();
-            });
-        });
-    });
+  it('Should throw an error if token was not entered', (done) => {
+    const login = {
+      email: 'admin@quick-credit.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        chai
+          .request(app)
+          .get(url)
+          .end((err, res) => {
+            res.should.have.status(401);
+            res.body.should.be.a('object');
+            res.body.should.have.property('error');
+            res.body.error.should.be.eql('Invalid or No Token Provided');
+            done();
+          });
+      });
+  });
 
-    it('Should create loan application successful', (done) => {
-      const user = {
-        email: 'emekaofe7@gmail.com',
-        firstName: 'Emeka',
-        lastName: 'Ofe',
-        password: 'maths102',
-        address: '75, Bode Thomas Street',
-      };
-      chai
-        .request(app)
-        .post(signupUrl)
-        .send(user)
-        .end((signupErr, signupRes) => {
+  it('Should create loan application successful', (done) => {
+    const user = {
+      email: 'emekaofe7@gmail.com',
+      firstName: 'Emeka',
+      lastName: 'Ofe',
+      password: 'maths102',
+      address: '75, Bode Thomas Street',
+    };
+    chai
+      .request(app)
+      .post(signupUrl)
+      .send(user)
+      .end((signupErr, signupRes) => {
 
-          const login = {
-            email: 'emekaofe7@gmail.com',
-            password: 'maths102',
-          };
-          chai
-            .request(app)
-            .post(loginUrl)
-            .send(login)
-            .end((loginErr, loginRes) => {
-              const token = `Bearer ${loginRes.body.data.token}`;
-              const applyLoan = {
-                firstName: 'Emeka',
-                lastName: 'Ofe',
-                email: 'emekaofe7@gmail.com',
-                amount: 200000,
-                tenor: 12,
-              };
-              chai
-                .request(app)
-                .post(url)
-                .set('authorization', token)
-                .send(applyLoan)
-                .end((err, res) => {
-                  console.log(res.body.error);
-                  res.body.should.be.a('object');
-                  res.should.have.status(201);
-                  res.body.should.have.property('data');
-                  done();
-                });
-            });
-        });
-    });
-
-    it('Should throw error if email is omitted', (done) => {
-      const login = {
-        email: 'emekaofe7@gmail.com',
-        password: 'maths102',
-      };
-      chai
-        .request(app)
-        .post(loginUrl)
-        .send(login)
-        .end((loginErr, loginRes) => {
-          const token = `Bearer ${loginRes.body.data.token}`;
-          const applyLoan = {
-            firstName: 'Emeka',
-            lastName: 'Ofe',
-            amount: 200000,
-            tenor: 12,
-          };
-          chai
-            .request(app)
-            .post(url)
-            .set('authorization', token)
-            .send(applyLoan)
-            .end((err, res) => {
-              console.log(res.body.error);
-              res.body.should.be.a('object');
-              res.should.have.status(400);
-              res.body.should.have.property('error');
-              res.body.error.should.eql('Email field is required');
-              done();
-            });
-        });
-    });
-    it('Should throw error if First name Omitted', (done) => {
-      const login = {
-        email: 'emekaofe7@gmail.com',
-        password: 'maths102',
-      };
-      chai
-        .request(app)
-        .post(loginUrl)
-        .send(login)
-        .end((loginErr, loginRes) => {
-          const token = `Bearer ${loginRes.body.data.token}`;
-          const applyLoan = {
-            lastName: 'Ofe',
-            email: 'emekaofe7@gmail.com',
-            amount: 'abc',
-            tenor: 12,
-          };
-          chai
-            .request(app)
-            .post(url)
-            .set('authorization', token)
-            .send(applyLoan)
-            .end((err, res) => {
-              console.log(err);
-              res.body.should.be.a('object');
-              res.should.have.status(400);
-              res.body.should.have.property('error');
-              res.body.error.should.eql('First name field is required');
-              done();
-            });
-        });
-    });
-    it('Should throw error if First name is less than 3 characters', (done) => {
-      const login = {
-        email: 'emekaofe7@gmail.com',
-        password: 'maths102',
-      };
-      chai
-        .request(app)
-        .post(loginUrl)
-        .send(login)
-        .end((loginErr, loginRes) => {
-          const token = `Bearer ${loginRes.body.data.token}`;
-          const applyLoan = {
-            firstName: 'Of',
-            lastName: 'Ofe',
-            email: 'emekaofe7@gmail.com',
-            amount: 200000,
-            tenor: 12,
-          };
-          chai
-            .request(app)
-            .post(url)
-            .set('authorization', token)
-            .send(applyLoan)
-            .end((err, res) => {
-
-              console.log(res.body.error);
-              res.body.should.be.a('object');
-              res.should.have.status(400);
-              res.body.should.have.property('error');
-              res.body.error.should.eql('First name should be between 3 to 15 characters');
-              done();
-            });
-        });
-    });
-    it('Should throw error if invalid First name is entered', (done) => {
-      const login = {
-        email: 'emekaofe7@gmail.com',
-        password: 'maths102',
-      };
-      chai
-        .request(app)
-        .post(loginUrl)
-        .send(login)
-        .end((loginErr, loginRes) => {
-          const token = `Bearer ${loginRes.body.data.token}`;
-          const applyLoan = {
-            firstName: 1234,
-            lastName: 'Ofe',
-            email: 'emekaofe7@gmail.com',
-            amount: 200000,
-            tenor: 12,
-          };
-          chai
-            .request(app)
-            .post(url)
-            .set('authorization', token)
-            .send(applyLoan)
-            .end((err, res) => {
-              res.body.should.be.a('object');
-              res.should.have.status(400);
-              res.body.should.have.property('error');
-              res.body.error.should.eql('First name should only contain alphabets');
-              done();
-            });
-        });
-    });
-    it('Should throw error if invalid Last name is entered', (done) => {
-      const login = {
-        email: 'emekaofe7@gmail.com',
-        password: 'maths102',
-      };
-      chai
-        .request(app)
-        .post(loginUrl)
-        .send(login)
-        .end((loginErr, loginRes) => {
-          const token = `Bearer ${loginRes.body.data.token}`;
-          const applyLoan = {
-            firstName: 'Emeka',
-            lastName: 1234,
-            email: 'emekaofe7@gmail.com',
-            amount: 200000,
-            tenor: 12,
-          };
-          chai
-            .request(app)
-            .post(url)
-            .set('authorization', token)
-            .send(applyLoan)
-            .end((err, res) => {
-              res.body.should.be.a('object');
-              res.should.have.status(400);
-              res.body.should.have.property('error');
-              res.body.error.should.eql('Last name should only contain alphabets');
-              done();
-            });
-        });
-    });
-    it('Should throw error if Last name is less than 3 characters', (done) => {
-      const login = {
-        email: 'emekaofe7@gmail.com',
-        password: 'maths102',
-      };
-      chai
-        .request(app)
-        .post(loginUrl)
-        .send(login)
-        .end((loginErr, loginRes) => {
-          const token = `Bearer ${loginRes.body.data.token}`;
-          const applyLoan = {
-            firstName: 'Emeka',
-            lastName: 'Of',
-            email: 'emekaofe7@gmail.com',
-            amount: 200000,
-            tenor: 12,
-          };
-          chai
-            .request(app)
-            .post(url)
-            .set('authorization', token)
-            .send(applyLoan)
-            .end((err, res) => {
-              console.log(res.body.error);
-              res.body.should.be.a('object');
-              res.should.have.status(400);
-              res.body.should.have.property('error');
-              res.body.error.should.eql('Last name should be between 3 to 15 characters');
-              done();
-            });
-        });
-    });
-    it('Should throw error if Amount name is omitted', (done) => {
-      const login = {
-        email: 'emekaofe7@gmail.com',
-        password: 'maths102',
-      };
-      chai
-        .request(app)
-        .post(loginUrl)
-        .send(login)
-        .end((loginErr, loginRes) => {
-          const token = `Bearer ${loginRes.body.data.token}`;
-          const applyLoan = {
-            firstName: 'Emeka',
-            lastName: 'Ofe',
-            email: 'emekaofe@gmail.com',
-            tenor: 12,
-          };
-          chai
-            .request(app)
-            .post(url)
-            .set('authorization', token)
-            .send(applyLoan)
-            .end((err, res) => {
-              res.body.should.be.a('object');
-              res.should.have.status(400);
-              res.body.should.have.property('error');
-              res.body.error.should.eql('Amount is required');
-              done();
-            });
-        });
-    });
-    it('Should throw error if tenor is omitted', (done) => {
-      const login = {
-        email: 'emekaofe7@gmail.com',
-        password: 'maths102',
-      };
-      chai
-        .request(app)
-        .post(loginUrl)
-        .send(login)
-        .end((loginErr, loginRes) => {
-          const token = `Bearer ${loginRes.body.data.token}`;
-          const applyLoan = {
-            firstName: 'Emeka',
-            lastName: 'Ofe',
-            email: 'emekaofe@gmail.com',
-            amount: 200000,
-          };
-          chai
-            .request(app)
-            .post(url)
-            .set('authorization', token)
-            .send(applyLoan)
-            .end((err, res) => {
-              res.body.should.be.a('object');
-              res.should.have.status(400);
-              res.body.should.have.property('error');
-              res.body.error.should.eql('tenor is required');
-              done();
-            });
-        });
-    });
-    it('Should throw error if Last name is omitted', (done) => {
-      const login = {
-        email: 'emekaofe7@gmail.com',
-        password: 'maths102',
-      };
-      chai
-        .request(app)
-        .post(loginUrl)
-        .send(login)
-        .end((loginErr, loginRes) => {
-          const token = `Bearer ${loginRes.body.data.token}`;
-          const applyLoan = {
-            firstName: 'Emeka',
-            email: 'emekaofe@gmail.com',
-            amount: 200000,
-            tenor: 12,
-          };
-          chai
-            .request(app)
-            .post(url)
-            .set('authorization', token)
-            .send(applyLoan)
-            .end((err, res) => {
-              console.log(res.body.error);
-              res.body.should.be.a('object');
-              res.should.have.status(400);
-              res.body.should.have.property('error');
-              res.body.error.should.eql('Last name field is required');
-              done();
-            });
-        });
-    });
-    it('Should throw error if Amount is not an integer', (done) => {
-      const login = {
-        email: 'emekaofe7@gmail.com',
-        password: 'maths102',
-      };
-      chai
-        .request(app)
-        .post(loginUrl)
-        .send(login)
-        .end((loginErr, loginRes) => {
-          const token = `Bearer ${loginRes.body.data.token}`;
-          const applyLoan = {
-            firstName: 'Emeka',
-            lastName: 'Ofe',
-            email: 'emekaofe7@gmail.com',
-            amount: 'abc',
-            tenor: 12,
-          };
-          chai
-            .request(app)
-            .post(url)
-            .set('authorization', token)
-            .send(applyLoan)
-            .end((err, res) => {
-              res.body.should.be.a('object');
-              res.should.have.status(400);
-              res.body.should.have.property('error');
-              res.body.error.should.eql('Amount should be an integer');
-              done();
-            });
-        });
-      it('Should throw error if Tenor is not an integer', (done) => {
         const login = {
           email: 'emekaofe7@gmail.com',
           password: 'maths102',
@@ -426,7 +71,385 @@ describe('Tests for Loan Endpoint', () => {
               lastName: 'Ofe',
               email: 'emekaofe7@gmail.com',
               amount: 200000,
-              tenor: 'ab',
+              tenor: 12,
+            };
+            chai
+              .request(app)
+              .post(url)
+              .set('authorization', token)
+              .send(applyLoan)
+              .end((err, res) => {
+                res.body.should.be.a('object');
+                res.should.have.status(201);
+                res.body.should.have.property('data');
+                done();
+              });
+          });
+      });
+  });
+
+  it('Should throw error if email is omitted', (done) => {
+    const login = {
+      email: 'emekaofe7@gmail.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        const applyLoan = {
+          firstName: 'Emeka',
+          lastName: 'Ofe',
+          amount: 200000,
+          tenor: 12,
+        };
+        chai
+          .request(app)
+          .post(url)
+          .set('authorization', token)
+          .send(applyLoan)
+          .end((err, res) => {
+            res.body.should.be.a('object');
+            res.should.have.status(400);
+            res.body.should.have.property('error');
+            res.body.error.should.eql('Email field is required');
+            done();
+          });
+      });
+  });
+  it('Should throw error if First name Omitted', (done) => {
+    const login = {
+      email: 'emekaofe7@gmail.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        const applyLoan = {
+          lastName: 'Ofe',
+          email: 'emekaofe7@gmail.com',
+          amount: 'abc',
+          tenor: 12,
+        };
+        chai
+          .request(app)
+          .post(url)
+          .set('authorization', token)
+          .send(applyLoan)
+          .end((err, res) => {
+            res.body.should.be.a('object');
+            res.should.have.status(400);
+            res.body.should.have.property('error');
+            res.body.error.should.eql('First name field is required');
+            done();
+          });
+      });
+  });
+  it('Should throw error if First name is less than 3 characters', (done) => {
+    const login = {
+      email: 'emekaofe7@gmail.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        const applyLoan = {
+          firstName: 'Of',
+          lastName: 'Ofe',
+          email: 'emekaofe7@gmail.com',
+          amount: 200000,
+          tenor: 12,
+        };
+        chai
+          .request(app)
+          .post(url)
+          .set('authorization', token)
+          .send(applyLoan)
+          .end((err, res) => {
+            res.body.should.be.a('object');
+            res.should.have.status(400);
+            res.body.should.have.property('error');
+            res.body.error.should.eql('First name should be between 3 to 15 characters');
+            done();
+          });
+      });
+  });
+  it('Should throw error if invalid First name is entered', (done) => {
+    const login = {
+      email: 'emekaofe7@gmail.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        const applyLoan = {
+          firstName: 1234,
+          lastName: 'Ofe',
+          email: 'emekaofe7@gmail.com',
+          amount: 200000,
+          tenor: 12,
+        };
+        chai
+          .request(app)
+          .post(url)
+          .set('authorization', token)
+          .send(applyLoan)
+          .end((err, res) => {
+            res.body.should.be.a('object');
+            res.should.have.status(400);
+            res.body.should.have.property('error');
+            res.body.error.should.eql('First name should only contain alphabets');
+            done();
+          });
+      });
+  });
+  it('Should throw error if invalid Last name is entered', (done) => {
+    const login = {
+      email: 'emekaofe7@gmail.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        const applyLoan = {
+          firstName: 'Emeka',
+          lastName: 1234,
+          email: 'emekaofe7@gmail.com',
+          amount: 200000,
+          tenor: 12,
+        };
+        chai
+          .request(app)
+          .post(url)
+          .set('authorization', token)
+          .send(applyLoan)
+          .end((err, res) => {
+            res.body.should.be.a('object');
+            res.should.have.status(400);
+            res.body.should.have.property('error');
+            res.body.error.should.eql('Last name should only contain alphabets');
+            done();
+          });
+      });
+  });
+  it('Should throw error if Last name is less than 3 characters', (done) => {
+    const login = {
+      email: 'emekaofe7@gmail.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        const applyLoan = {
+          firstName: 'Emeka',
+          lastName: 'Of',
+          email: 'emekaofe7@gmail.com',
+          amount: 200000,
+          tenor: 12,
+        };
+        chai
+          .request(app)
+          .post(url)
+          .set('authorization', token)
+          .send(applyLoan)
+          .end((err, res) => {
+            res.body.should.be.a('object');
+            res.should.have.status(400);
+            res.body.should.have.property('error');
+            res.body.error.should.eql('Last name should be between 3 to 15 characters');
+            done();
+          });
+      });
+  });
+  it('Should throw error if Amount name is omitted', (done) => {
+    const login = {
+      email: 'emekaofe7@gmail.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        const applyLoan = {
+          firstName: 'Emeka',
+          lastName: 'Ofe',
+          email: 'emekaofe@gmail.com',
+          tenor: 12,
+        };
+        chai
+          .request(app)
+          .post(url)
+          .set('authorization', token)
+          .send(applyLoan)
+          .end((err, res) => {
+            res.body.should.be.a('object');
+            res.should.have.status(400);
+            res.body.should.have.property('error');
+            res.body.error.should.eql('Amount is required');
+            done();
+          });
+      });
+  });
+  it('Should throw error if tenor is omitted', (done) => {
+    const login = {
+      email: 'emekaofe7@gmail.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        const applyLoan = {
+          firstName: 'Emeka',
+          lastName: 'Ofe',
+          email: 'emekaofe@gmail.com',
+          amount: 200000,
+        };
+        chai
+          .request(app)
+          .post(url)
+          .set('authorization', token)
+          .send(applyLoan)
+          .end((err, res) => {
+            res.body.should.be.a('object');
+            res.should.have.status(400);
+            res.body.should.have.property('error');
+            res.body.error.should.eql('tenor is required');
+            done();
+          });
+      });
+  });
+  it('Should throw error if Last name is omitted', (done) => {
+    const login = {
+      email: 'emekaofe7@gmail.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        const applyLoan = {
+          firstName: 'Emeka',
+          email: 'emekaofe@gmail.com',
+          amount: 200000,
+          tenor: 12,
+        };
+        chai
+          .request(app)
+          .post(url)
+          .set('authorization', token)
+          .send(applyLoan)
+          .end((err, res) => {
+            res.body.should.be.a('object');
+            res.should.have.status(400);
+            res.body.should.have.property('error');
+            res.body.error.should.eql('Last name field is required');
+            done();
+          });
+      });
+  });
+  it('Should throw error if Amount is not an integer', (done) => {
+    const login = {
+      email: 'emekaofe7@gmail.com',
+      password: 'maths102',
+    };
+    chai
+      .request(app)
+      .post(loginUrl)
+      .send(login)
+      .end((loginErr, loginRes) => {
+        const token = `Bearer ${loginRes.body.data.token}`;
+        const applyLoan = {
+          firstName: 'Emeka',
+          lastName: 'Ofe',
+          email: 'emekaofe7@gmail.com',
+          amount: 'abc',
+          tenor: 12,
+        };
+        chai
+          .request(app)
+          .post(url)
+          .set('authorization', token)
+          .send(applyLoan)
+          .end((err, res) => {
+            res.body.should.be.a('object');
+            res.should.have.status(400);
+            res.body.should.have.property('error');
+            res.body.error.should.eql('Amount should be an integer');
+            done();
+          });
+      });
+    it('Should throw error if Tenor is not an integer', (done) => {
+      const login = {
+        email: 'emekaofe7@gmail.com',
+        password: 'maths102',
+      };
+      chai
+        .request(app)
+        .post(loginUrl)
+        .send(login)
+        .end((loginErr, loginRes) => {
+          const token = `Bearer ${loginRes.body.data.token}`;
+          const applyLoan = {
+            firstName: 'Emeka',
+            lastName: 'Ofe',
+            email: 'emekaofe7@gmail.com',
+            amount: 200000,
+            tenor: 'ab',
+          };
+          chai
+            .request(app)
+            .post(url)
+            .set('authorization', token)
+            .send(applyLoan)
+            .end((err, res) => {
+              res.body.should.be.a('object');
+              res.should.have.status(400);
+              res.body.should.have.property('error');
+              res.body.error.should.eql('tenor should be an integer');
+              done();
+            });
+        });
+      it('Should throw error if Amount is less than 10000', (done) => {
+        const login = {
+          email: 'emekaofe7@gmail.com',
+          password: 'maths102',
+        };
+        chai
+          .request(app)
+          .post(loginUrl)
+          .send(login)
+          .end((loginErr, loginRes) => {
+            const token = `Bearer ${loginRes.body.data.token}`;
+            const applyLoan = {
+              firstName: 'Emeka',
+              lastName: 'Ofe',
+              email: 'emekaofe7@gmail.com',
+              amount: 1000,
+              tenor: 12,
             };
             chai
               .request(app)
@@ -437,42 +460,10 @@ describe('Tests for Loan Endpoint', () => {
                 res.body.should.be.a('object');
                 res.should.have.status(400);
                 res.body.should.have.property('error');
-                res.body.error.should.eql('tenor should be an integer');
+                res.body.error.should.eql('Amount should not be less than 10,000');
                 done();
               });
           });
-        it('Should throw error if Amount is less than 10000', (done) => {
-          const login = {
-            email: 'emekaofe7@gmail.com',
-            password: 'maths102',
-          };
-          chai
-            .request(app)
-            .post(loginUrl)
-            .send(login)
-            .end((loginErr, loginRes) => {
-              const token = `Bearer ${loginRes.body.data.token}`;
-              const applyLoan = {
-                firstName: 'Emeka',
-                lastName: 'Ofe',
-                email: 'emekaofe7@gmail.com',
-                amount: 1000,
-                tenor: 12,
-              };
-              chai
-                .request(app)
-                .post(url)
-                .set('authorization', token)
-                .send(applyLoan)
-                .end((err, res) => {
-                  res.body.should.be.a('object');
-                  res.should.have.status(400);
-                  res.body.should.have.property('error');
-                  res.body.error.should.eql('Amount should not be less than 10,000');
-                  done();
-                });
-            });
-        });
       });
     });
   });
@@ -851,7 +842,7 @@ describe('Tests for Loan Endpoint', () => {
           const decision = { status: 'approved' };
           chai
             .request(app)
-            .patch(`${url}/${loanId}`)
+            .patch(`${url}/6`)
             .set('authorization', token)
             .send(decision)
             .end((err, res) => {
@@ -1014,6 +1005,32 @@ describe('Tests for Loan Endpoint', () => {
               res.body.should.be.a('object');
               res.body.should.have.property('error');
               res.body.error.should.be.eql('Invalid or No Token Provided');
+              done();
+            });
+        });
+    });
+    it('Should return error when user is not a verified user', (done) => {
+      const login = {
+        email: 'admin@quick-credit.com',
+        password: 'maths102',
+      };
+      chai
+        .request(app)
+        .post(loginUrl)
+        .send(login)
+        .end((loginErr, loginRes) => {
+          const token = `Bearer ${loginRes.body.data.token}`;
+          const decision = { status: 'approved' };
+          chai
+            .request(app)
+            .patch(`${url}/${loanId}`)
+            .set('Authorization', token)
+            .send(decision)
+            .end((err, res) => {
+              res.should.have.status(400);
+              res.body.should.be.a('object');
+              res.body.should.have.property('error');
+              res.body.error.should.be.eql('This User has not been verified!');
               done();
             });
         });

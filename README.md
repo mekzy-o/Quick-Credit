@@ -10,27 +10,24 @@ Quick Credit is an online lending platform that provides short term soft loans t
 
 ## Table of Contents
 
- - [Introduction](#introduction)
- - [UI Templates](#ui-templates)
- - [API](#api)
- - [Pivotal Tracker ID](https://www.pivotaltracker.com/n/projects/2326723)
- - [Technologies](#technologies)
- - [Installing](#installing)
- - [Working Routes](#working-routes)
- - [License](#license)
-
+- [Introduction](#introduction)
+- [UI Templates](#ui-templates)
+- [API](#api)
+- [Pivotal Tracker ID](https://www.pivotaltracker.com/n/projects/2326723)
+- [Technologies](#technologies)
+- [Installing](#installing)
+- [Working Routes](#working-routes)
+- [License](#license)
 
 # Introduction
 
-## *Project Overview*
+## _Project Overview_
 
 Quick Credit is an online lending platform that provides short term soft loans to individuals earning low-income. Loans are provided instantly upon administrator approval.
 
-
-### __Style guide__
+### **Style guide**
 
 [Airbnb ](https://github.com/airbnb/javascript)(Javascript style guide)
-
 
 ## Screenshot(UI template)
 
@@ -42,19 +39,18 @@ Preview UI templates :+1: [Github Pages](/)
 
 # API
 
-The API  is currently in version 1 (v1) and is hosted at https://quick-credit-loan.herokuapp.com
+The API is currently in version 1 (v1) and is hosted at https://quick-credit-loan.herokuapp.com
 
 # Pivotal Tracker ID
 
 https://www.pivotaltracker.com/n/projects/2326723
-
 
 ## Required Features
 
 - Users can sign up.
 - Users can login.
 - User can apply for loan.
-- User can view  loan repayment history.
+- User can view loan repayment history.
 - Admin can mark user as verified`.
 - Admin can view all loan applications
 - Admin can view a specific loan application
@@ -74,32 +70,24 @@ https://www.pivotaltracker.com/n/projects/2326723
 - Code Climate
 - Coveralls
 
-
-
 # Installing
 
-#### *Prerequisites*
+#### _Prerequisites_
 
 Ensure you have **NodeJS** installed by entering `node -v` on your terminal
-If you don't have **NodeJS** installed, go to the [NodeJS Website](http://nodejs.org),  and follow the download instructions
+If you don't have **NodeJS** installed, go to the [NodeJS Website](http://nodejs.org), and follow the download instructions
 
 To install this app
 
-`
-git clone https://github.com/mekzy-o/Quick-Credit
-`
+`git clone https://github.com/mekzy-o/Quick-Credit`
 
 And install the required dependencies
 
-`
-npm install
-`
+`npm install`
 
 Run server
 
-`
-npm run start-dev
-`
+`npm run start-dev`
 
 Server listens on port `8080`
 
@@ -107,27 +95,28 @@ Server listens on port `8080`
 
 To run test cases
 
-`
-npm test
-`
+`npm test`
+
 # Working Routes
 
- ## *API Endpoints*
-|Endpoint                                           | Functionality                     |HTTP method 
-|---------------------------------------------------|:-----------------------------------:|-------------:
-|/api/v1/auth/signup                            |Create a user account        |POST
-|/api/v1/auth/login                                |Login a user        |POST
-|/api/v1/loans                               |Create a loan application        |POST
-|/api/v1/loans                               |Get all loan applications       |GET
-|/api/v1/loans/*loan_id*                              |Get a specific loan application       |GET
-|/api/v1/*loan_id*/repayments                       |View all loan repayment History       |GET
-|/api/v1/*user_email*/verify                                 |Mark User as Verified      |PATCH
-|/api/v1/loans?*status=approved&repaid=false*           |View all current loans(not fully repaid)         |GET
-|/api/v1/loans?*status=approved&repaid=true*                                |View all current repaid loans        |GET 
-|/api/v1/loan/*loan_id*                                |Reject or approve loan        |PATCH
-|/api/v1/*loan_id*/repayments                       |Create a repayment record      |POST
-|/api/v1/users/password                               |Reset Pasword        |POST
+## _API Endpoints_
 
- 
+| Endpoint                                     |              Functionality               | HTTP method |
+| -------------------------------------------- | :--------------------------------------: | ----------: |
+| /api/v1/auth/signup                          |          Create a user account           |        POST |
+| /api/v1/auth/login                           |               Login a user               |        POST |
+| /api/v1/loans                                |        Create a loan application         |        POST |
+| /api/v1/loans                                |        Get all loan applications         |         GET |
+| /api/v1/loans/_loan_id_                      |     Get a specific loan application      |         GET |
+| /api/v1/_loan_id_/repayments                 |     View all loan repayment History      |         GET |
+| /api/v1/_user_email_/verify                  |          Mark User as Verified           |       PATCH |
+| /api/v1/loans?_status=approved&repaid=false_ | View all current loans(not fully repaid) |         GET |
+| /api/v1/loans?_status=approved&repaid=true_  |      View all current repaid loans       |         GET |
+| /api/v1/loan/_loan_id_                       |          Reject or approve loan          |       PATCH |
+| /api/v1/_loan_id_/repayments                 |        Create a repayment record         |        POST |
+| /api/v1/users/password                       |              Reset Pasword               |        POST |
+| /api/v1/users/                               |              Get All Users               |         GET |
+
 ## License :boom:
+
 This project is under the MIT LICENSE

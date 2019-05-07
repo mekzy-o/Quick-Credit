@@ -1,9 +1,9 @@
 const loans = [
   {
     id: 1,
-    user: 'emekaofe6@gmail.com',
+    user: 'emekaofe22@gmail.com',
     createdOn: 'April 25, 2019 1:32 AM',
-    status: 'pending',
+    status: 'approved',
     repaid: false,
     tenor: 12,
     amount: '200000',
@@ -49,7 +49,7 @@ const loans = [
   },
   {
     id: 5,
-    user: 'emekaofe15@gmail.com',
+    user: 'emekaofe22@gmail.com',
     createdOn: 'April 25, 2019 1:32 AM',
     status: 'approved',
     repaid: false,
@@ -59,7 +59,18 @@ const loans = [
     balance: '200000.000',
     interest: 10000,
   },
+  {
+    id: 6,
+    user: 'emekaofe18@gmail.com',
+    createdOn: 'May 5, 2019 7:27 PM',
+    status: 'pending',
+    repaid: false,
+    tenor: '12',
+    amount: '50000',
+    paymentInstallment: '6666.667',
+    balance: '79992.000',
+    interest: 2500,
+  },
 ];
-
 
 export default loans;
