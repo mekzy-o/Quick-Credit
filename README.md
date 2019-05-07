@@ -113,9 +113,10 @@ To run test cases
 | /api/v1/loans?_status=approved&repaid=false_ | View all current loans(not fully repaid) |         GET |
 | /api/v1/loans?_status=approved&repaid=true_  |      View all current repaid loans       |         GET |
 | /api/v1/loan/_loan_id_                       |          Reject or approve loan          |       PATCH |
-| /api/v1/_loan_id_/repayments                 |        Create a repayment record         |        POST |
+| /api/v1/_loan_id_/repayment                 |        Create a repayment record         |        POST |
 | /api/v1/users/password                       |              Reset Pasword               |        POST |
 | /api/v1/users/                               |              Get All Users               |         GET |
+| /api/v1/users/:email                         |            Get A Single User             |         GET |
 
 ## License :boom:
 
