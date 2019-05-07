@@ -35,7 +35,7 @@
       <a href="user-loans.html">Loans</a>
       <a href="admin-current-loans.html">Current Loans</a>
       <a href="admin-repaid-loans.html">Repaid Loans</a>
-      <a href="admin-repayment-transactions.html">Repayment Transactions</a>
+      <a href="admin-repayment-transactions.html">Transactions</a>
       <a href="login.html">Logout</a>
     </div>
     <nav>
@@ -76,7 +76,7 @@
         <h2>USERS</h2>
         <div class="user-details">
           <table class="user-table" id="user-table" onclick="verifyUser()">
-            <tbody>
+            <thead>
               <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
@@ -85,13 +85,15 @@
                 <th>Registered on</th>
                 <th>Status</th>
               </tr>
+            </thead>
+            <tbody>
               <tr>
-                <td>Emeka</td>
-                <td>Ofe</td>
-                <td>emekaofe@gmail.com</td>
-                <td>10 Adekoya Street, Aba</td>
-                <td>12-13-2019</td>
-                <td>
+                <td data-th="First Name">Emeka</td>
+                <td data-th="Last Name">Ofe</td>
+                <td data-th="Email">emekaofe@gmail.com</td>
+                <td data-th="Address">10 Adekoya Street, Aba</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td data-th="Status">
                   <label class="switch"
                     ><input type="checkbox" class="myCheck" id="1"/><span
                       class="slider round"
@@ -101,33 +103,108 @@
                 </td>
               </tr>
               <tr>
-                <td>Emeka</td>
-                <td>Ofe</td>
-                <td>emekaofe@gmail.com</td>
-                <td>10 Adekoya Street, Aba</td>
-                <td>12-13-2019</td>
-                <td>
+                <td data-th="First Name">Emeka</td>
+                <td data-th="Last Name">Ofe</td>
+                <td data-th="Email">emekaofe@gmail.com</td>
+                <td data-th="Address">10 Adekoya Street, Aba</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td data-th="Status">
                   <label class="switch"
-                    ><input type="checkbox" class="myCheck" id="2" /><span
+                    ><input type="checkbox" class="myCheck" id="1"/><span
                       class="slider round"
-                    ></span>
-                  </label>
+                    ></span
+                  ></label>
                   <span id="2" class="user-status">UNVERIFIED</span>
                 </td>
               </tr>
               <tr>
-                <td>Emeka</td>
-                <td>Ofe</td>
-                <td>emekaofe@gmail.com</td>
-                <td>10 Adekoya Street, Aba</td>
-                <td>12-13-2019</td>
-                <td>
+                <td data-th="First Name">Emeka</td>
+                <td data-th="Last Name">Ofe</td>
+                <td data-th="Email">emekaofe@gmail.com</td>
+                <td data-th="Address">10 Adekoya Street, Aba</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td data-th="Status">
                   <label class="switch"
-                    ><input type="checkbox" class="myCheck" id="3"/><span
+                    ><input type="checkbox" class="myCheck" id="1"/><span
                       class="slider round"
                     ></span
                   ></label>
                   <span id="3" class="user-status">UNVERIFIED</span>
+                </td>
+              </tr>
+              <tr>
+                <td data-th="First Name">Emeka</td>
+                <td data-th="Last Name">Ofe</td>
+                <td data-th="Email">emekaofe@gmail.com</td>
+                <td data-th="Address">10 Adekoya Street, Aba</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td data-th="Status">
+                  <label class="switch"
+                    ><input type="checkbox" class="myCheck" id="1"/><span
+                      class="slider round"
+                    ></span
+                  ></label>
+                  <span id="4" class="user-status">UNVERIFIED</span>
+                </td>
+              </tr>
+              <tr>
+                <td data-th="First Name">Emeka</td>
+                <td data-th="Last Name">Ofe</td>
+                <td data-th="Email">emekaofe@gmail.com</td>
+                <td data-th="Address">10 Adekoya Street, Aba</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td data-th="Status">
+                  <label class="switch"
+                    ><input type="checkbox" class="myCheck" id="1"/><span
+                      class="slider round"
+                    ></span
+                  ></label>
+                  <span id="5" class="user-status">UNVERIFIED</span>
+                </td>
+              </tr>
+              <tr>
+                <td data-th="First Name">Emeka</td>
+                <td data-th="Last Name">Ofe</td>
+                <td data-th="Email">emekaofe@gmail.com</td>
+                <td data-th="Address">10 Adekoya Street, Aba</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td data-th="Status">
+                  <label class="switch"
+                    ><input type="checkbox" class="myCheck" id="1"/><span
+                      class="slider round"
+                    ></span
+                  ></label>
+                  <span id="6" class="user-status">UNVERIFIED</span>
+                </td>
+              </tr>
+              <tr>
+                <td data-th="First Name">Emeka</td>
+                <td data-th="Last Name">Ofe</td>
+                <td data-th="Email">emekaofe@gmail.com</td>
+                <td data-th="Address">10 Adekoya Street, Aba</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td data-th="Status">
+                  <label class="switch"
+                    ><input type="checkbox" class="myCheck" id="1"/><span
+                      class="slider round"
+                    ></span
+                  ></label>
+                  <span id="7" class="user-status">UNVERIFIED</span>
+                </td>
+              </tr>
+              <tr>
+                <td data-th="First Name">Emeka</td>
+                <td data-th="Last Name">Ofe</td>
+                <td data-th="Email">emekaofe@gmail.com</td>
+                <td data-th="Address">10 Adekoya Street, Aba</td>
+                <td data-th="Created On">12-13-2019</td>
+                <td data-th="Status">
+                  <label class="switch"
+                    ><input type="checkbox" class="myCheck" id="1"/><span
+                      class="slider round"
+                    ></span
+                  ></label>
+                  <span id="8" class="user-status">UNVERIFIED</span>
                 </td>
               </tr>
             </tbody>
