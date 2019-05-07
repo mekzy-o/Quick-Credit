@@ -243,12 +243,32 @@ i.far.fa-edit {
 }
 
 /* USER TABLE STYLE */
+#mobileInput {
+  display: none;
+  background: #003468; /* Add a search icon to input */
+  background-position: 10px 12px; /* Position the search icon */
+  background-repeat: no-repeat; /* Do not repeat the icon image */
+  width: 70%; /* Full-width */
+  font-size: 12px; /* Increase font-size */
+  padding: 12px 20px 12px 40px; /* Add some padding */
+  border: 1px solid #ddd; /* Add a grey border */
+  color: white;
+  margin-top: 12px; /* Add some space below the input */
+}
 .user-container {
   width: 100%;
   margin: 0 auto;
   background: transparent;
   padding-bottom: 50px;
 }
+
+#user-table h2 {
+  padding-top: 10px;
+  text-transform: uppercase;
+  margin-left: 5%;
+  text-align: center;
+}
+
 .user-container h2 {
   padding-top: 35px;
   text-transform: uppercase;
@@ -798,6 +818,9 @@ a.active {
 }
 
 @media (max-width: 768px) {
+  #mobileInput {
+    display: block;
+  }
   .icon::before {
     right: 18%;
     top: 5%;

@@ -43,9 +43,13 @@
         <h1 class="logo-header"><a href="../index.html">QUICK-CREDIT</a></h1>
       </div>
       <div class="search">
-        <input type="text" class="search-input" placeholder="search..." /><i
-          class="fas fa-search"
-        ></i>
+        <input
+          type="text"
+          class="search-input"
+          id="myInput"
+          onkeyup="myFunction()"
+          placeholder="Search Email..."
+        /><i class="fas fa-search"></i>
       </div>
 
       <div class="nav-profile">
@@ -75,14 +79,20 @@
         </ul>
       </aside>
       <section class="user-container">
-        <h2>CURRENT LOANS (NOT FULLY REPAID)</h2>
         <div class="user-details">
-          <table class="user-table" id="loan-table" onclick="">
+          <input
+            type="text"
+            id="mobileInput"
+            onkeyup="mobileFunction()"
+            placeholder="Search for User Email Address..."
+          />
+          <h2>CURRENT LOANS (NOT FULLY REPAID)</h2>
+          <table class="user-table" id="user-table" onclick="">
             <thead>
               <tr>
                 <th>Loan ID</th>
-                <th>Email Address</th>
                 <th>Created On</th>
+                <th>Email Address</th>
                 <th>Repaid</th>
                 <th>Tenor</th>
                 <th>Loan Amount</th>
@@ -94,8 +104,8 @@
             <tbody>
               <tr>
                 <td data-th="Loan ID">10113</td>
-                <td data-th="Email">emekaofe@gmail.com</td>
                 <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email">emekaofe@gmail.com</td>
                 <td data-th="Repaid">FALSE</td>
                 <td data-th="Tenor">10 months</td>
                 <td data-th="Amount">₦200,000</td>
@@ -105,8 +115,8 @@
               </tr>
               <tr>
                 <td data-th="Loan ID">10113</td>
-                <td data-th="Email">emekaofe@gmail.com</td>
                 <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email">obinnaofe@gmail.com</td>
                 <td data-th="Repaid">FALSE</td>
                 <td data-th="Tenor">10 months</td>
                 <td data-th="Amount">₦200,000</td>
@@ -116,8 +126,8 @@
               </tr>
               <tr>
                 <td data-th="Loan ID">10113</td>
-                <td data-th="Email">emekaofe@gmail.com</td>
                 <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email">odunayo@gmail.com</td>
                 <td data-th="Repaid">FALSE</td>
                 <td data-th="Tenor">10 months</td>
                 <td data-th="Amount">₦200,000</td>
@@ -127,8 +137,8 @@
               </tr>
               <tr>
                 <td data-th="Loan ID">10113</td>
-                <td data-th="Email">emekaofe@gmail.com</td>
                 <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email">mike23@gmail.com</td>
                 <td data-th="Repaid">FALSE</td>
                 <td data-th="Tenor">10 months</td>
                 <td data-th="Amount">₦200,000</td>
@@ -138,8 +148,8 @@
               </tr>
               <tr>
                 <td data-th="Loan ID">10113</td>
-                <td data-th="Email">emekaofe@gmail.com</td>
                 <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email">giftofe42@gmail.com</td>
                 <td data-th="Repaid">FALSE</td>
                 <td data-th="Tenor">10 months</td>
                 <td data-th="Amount">₦200,000</td>
@@ -149,8 +159,8 @@
               </tr>
               <tr>
                 <td data-th="Loan ID">10113</td>
-                <td data-th="Email">emekaofe@gmail.com</td>
                 <td data-th="Created On">12-13-2019</td>
+                <td data-th="Email">precious42@gmail.com</td>
                 <td data-th="Repaid">FALSE</td>
                 <td data-th="Tenor">10 months</td>
                 <td data-th="Amount">₦200,000</td>
