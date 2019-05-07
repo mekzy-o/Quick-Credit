@@ -57,7 +57,7 @@
         <div class="nav-profile">
           <div class="icon"><i class="fas fa-envelope email"></i></div>
           <div>
-            <img src="assets/img/avatar2.png" alt="avatar">
+            <img src="assets/img/avatar2.png" alt="avatar" />
           </div>
           <h4>Emeka</h4>
         </div>
@@ -65,7 +65,7 @@
           <span class="mobile-nav" onclick="openNav()">&#9776;</span>
         </div>
       </nav>
-       <!-----------------------------------MAIN NAVBAR ENDS HERE------------------------------------------------------>
+      <!-----------------------------------MAIN NAVBAR ENDS HERE------------------------------------------------------>
 
       <div class="container">
         <aside class="sidebar">
@@ -74,82 +74,113 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="apply-loan.html">Apply for loans</a></li>
             <li><a href="user-dashboard.html">Profile</a></li>
-            <li><a class="active" href="loan-repayment.html">Transactions</a></li>
+            <li>
+              <a class="active" href="loan-repayment.html">Transactions</a>
+            </li>
             <li><a href="login.html">Logout</a></li>
           </ul>
         </aside>
 
-          <div class="loans-container" id='repayment-history'>
-            <h2>REPAYMENT HISTORY</h2>
-            <div class="user-loans" id='table-scroll'>
-              <table class="transaction-table">
-                <tbody>
-                  <tr>
-                    <th>Loan ID</th>
-                    <th>Created On</th>
-                    <th>Monthly Installment</th>
-                    <th>Amount</th>
-                    <th>Month</th>
-                    <th>Status</th>
-                    <th>Balance</th>
-                    <th>Action</th>
-                  </tr>
-                  <tr>
-                    <td>#22338</td>
-                    <td>03-01-2019</td>
-                    <td>₦26667.534</td>
-                    <td>₦200000</td>
-                    <td>January</td>
-                    <td class="approve">PAID</td>
-                    <td>₦154660.770</td>
-                    <td>
-                      <button class='disabled'>
-                        <a href="#" target="_blank"
-                          >Make Payments</a
-                        >
-                      </button>
-                    </td>
-                  </tr>
+        <div class="repayments-container loans-container">
+          <h2>REPAYMENT HISTORY</h2>
+          <div class="user-loans">
+            <table class="transaction-table">
+              <thead>
+                <tr>
+                  <th>Loan ID</th>
+                  <th>Created On</th>
+                  <th>Monthly Installment</th>
+                  <th>Amount</th>
+                  <th>Month</th>
+                  <th>Paid Amount</th>
+                  <th>Status</th>
+                  <th>Balance</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-th="Loan ID">#22338</td>
+                  <td data-th="Created On">03-01-2019</td>
+                  <td data-th="Monthly Installment">₦26667.534</td>
+                  <td data-th="Loan Amount">₦200000</td>
+                  <td data-th="Month">January</td>
+                  <td data-th="Paid Amount">₦27000</td>
+                  <td data-th="Status" class="approve">PAID</td>
+                  <td data-th="Balance">₦154660.770</td>
+                  <td data-th="Action">
+                    <button class="disabled">
+                      <a href="#" target="_blank">Make Payments</a>
+                    </button>
+                  </td>
+                </tr>
 
-                  <tr>
-                      <td>#22338</td>
-                      <td>03-01-2019</td>
-                      <td>₦26667.534</td>
-                      <td>₦200000</td>
-                      <td>January</td>
-                      <td>PENDING</td>
-                      <td>₦154660.770</td>
-                      <td>
-                        <button>
-                          <a href="#" target="_blank"
-                            >Make Payments</a
-                          >
-                        </button>
-                      </td>
-                    </tr>
-                    <tr>
-                        <td>#22338</td>
-                        <td>03-01-2019</td>
-                        <td>₦26667.534</td>
-                        <td>₦200000</td>
-                        <td>January</td>
-                        <td>PENDING</td>
-                        <td>₦154660.770</td>
-                        <td>
-                          <button>
-                            <a href="#" target="_blank"
-                              >Make Payments</a
-                            >
-                          </button>
-                        </td>
-                      </tr>
-                </tbody>
-              </table>
+                <tr>
+                  <td data-th="Loan ID">#22338</td>
+                  <td data-th="Created On">03-01-2019</td>
+                  <td data-th="Monthly Installment">₦26667.534</td>
+                  <td data-th="Loan Amount">₦200000</td>
+                  <td data-th="Month">February</td>
+                  <td data-th="Paid Amount">₦27000</td>
+                  <td data-th="Status" class="approve">PAID</td>
+                  <td data-th="Balance">₦154660.770</td>
+                  <td data-th="Action">
+                    <button class="disabled">
+                      <a href="#" target="_blank">Make Payments</a>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td data-th="Loan ID">#22338</td>
+                  <td data-th="Created On">03-01-2019</td>
+                  <td data-th="Monthly Installment">₦26667.534</td>
+                  <td data-th="Loan Amount">₦200000</td>
+                  <td data-th="Month">March</td>
+                  <td data-th="Paid Amount">₦27000</td>
+                  <td data-th="Status" class="approve">PAID</td>
+                  <td data-th="Balance">₦154660.770</td>
+                  <td data-th="Action">
+                    <button class="disabled">
+                      <a href="#" target="_blank">Make Payments</a>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td data-th="Loan ID">#22338</td>
+                  <td data-th="Created On">03-01-2019</td>
+                  <td data-th="Monthly Installment">₦26667.534</td>
+                  <td data-th="Loan Amount">₦200000</td>
+                  <td data-th="Month">April</td>
+                  <td data-th="Paid Amount">₦27000</td>
+                  <td data-th="Status" class="approve">PAID</td>
+                  <td data-th="Balance">₦154660.770</td>
+                  <td data-th="Action">
+                    <button class="disabled">
+                      <a href="#" target="_blank">Make Payments</a>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td data-th="Loan ID">#22338</td>
+                  <td data-th="Created On">03-01-2019</td>
+                  <td data-th="Monthly Installment">₦26667.534</td>
+                  <td data-th="Loan Amount">₦200000</td>
+                  <td data-th="Month">May</td>
+                  <td data-th="Paid Amount">₦27000</td>
+                  <td data-th="Status">PENDING</td>
+                  <td data-th="Balance">₦154660.770</td>
+                  <td data-th="Action">
+                    <button>
+                      <a href="#" target="_blank">Make Payments</a>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
 
-              <div class="pagination">
-                <a href="#"><i class="fas fa-angle-double-right"></i></a>
-                <a href="#"><i class="fas fa-angle-double-left"></i></a>
-              </div>
+            <div class="pagination">
+              <a href="#"><i class="fas fa-angle-double-right"></i></a>
+              <a href="#"><i class="fas fa-angle-double-left"></i></a>
             </div>
           </div>
         </div>
