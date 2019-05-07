@@ -8,8 +8,8 @@ import MessageController from '../helpers/messageHandler';
  * @description Contains methods for users to apply for loan
  * @exports RepaymentController
  */
-
 class RepaymentController {
+
   /**
    * @method repaymentRecord
    * @description creates a loan repayment record
@@ -17,7 +17,6 @@ class RepaymentController {
    * @param {object} res - The Response Object
    * @returns {object} JSON API Response
    */
-
   static repaymentRecord(req, res) {
     const { id } = req.params;
     const paidAmount = parseInt(req.body.paidAmount, 10);
@@ -45,7 +44,6 @@ class RepaymentController {
       // if paidAmount is less than balance, proceed to post repayment details
       if (paidAmount <= data.balance) {
         data.balance -= paidAmount;
-
         const newData = {
           id: repayments.length + 1,
           loanId: data.id,
@@ -93,7 +91,6 @@ class RepaymentController {
    * @param {object} res - The Response Object
    * @returns {object} JSON API Response
    */
-
   static getRepaymentRecord(req, res) {
     const { id } = req.params;
     const data = repayments.filter(
