@@ -1,5 +1,7 @@
 import express from 'express';
 import expressValidator from 'express-validator';
+import swaggerUi from 'swagger-ui-express';
+import swaggerDoc from '../../swagger.json';
 import UserController from '../controllers/userController';
 import LoanController from '../controllers/loanController';
 import RepaymentController from '../controllers/repaymentController';
@@ -11,6 +13,8 @@ import Authorization from '../auth/authorization';
 const router = express.Router();
 
 router.use(expressValidator());
+
+router.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 
 const {
  userSignup, userLogin, adminVerifyUser, resetPassword, getAllUsers, getSingleUser 
