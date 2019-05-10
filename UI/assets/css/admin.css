@@ -245,7 +245,7 @@ i.far.fa-edit {
 /* USER TABLE STYLE */
 #mobileInput {
   display: none;
-  background: #003468; /* Add a search icon to input */
+  background: grey; /* Add a search icon to input */
   background-position: 10px 12px; /* Position the search icon */
   background-repeat: no-repeat; /* Do not repeat the icon image */
   width: 70%; /* Full-width */
@@ -368,7 +368,15 @@ button[disabled] {
   cursor: none;
   width: 80%;
 }
-
+#desktop-btn {
+  float: right;
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  background: #003468;
+  color: white;
+  border: none;
+}
 .approve {
   color: green;
   font-weight: 900;
@@ -821,6 +829,24 @@ a.active {
   #mobileInput {
     display: block;
   }
+  #desktop-btn {
+    display: none;
+  }
+  #mobilePayment {
+    display: block;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 100%;
+    background: #003468;
+    color: white;
+    border: none;
+  }
+  #loan-btn {
+    font-size: 14px;
+  }
   .icon::before {
     right: 18%;
     top: 5%;
@@ -978,6 +1004,20 @@ a.active {
 }
 
 @media (max-width: 320px) {
+  .mobile-content {
+    flex-direction: column;
+  }
+  .mobile-content > .input-button {
+    justify-content: flex-start;
+    width: 92%;
+  }
+  .mobile-content > #loan-btn {
+    background: green;
+    color: white;
+  }
+  #loan-btn {
+    font-size: 12px;
+  }
   .icon::before {
     right: 23%;
     top: 5%;
@@ -1024,4 +1064,23 @@ a.active {
   .sidenav {
     display: none;
   }
+  #mobilePayment {
+    display: none;
+  }
+}
+.mobile-content {
+  display: flex;
+  justify-content: space-around;
+}
+
+.mobile-content > .input-button {
+  margin-top: 10px;
+  /* margin-left: 30px; */
+  font-size: 10px;
+  /* align-self: flex-end; */
+  flex-grow: 1;
+}
+
+.mobile-content > .input-search {
+  flex-grow: 1;
 }
