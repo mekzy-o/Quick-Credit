@@ -4,8 +4,8 @@ import EmailController from '../helpers/emailHandler';
 import MessageController from '../helpers/messageHandler';
 
 /**
- * @class UserController
- * @description Contains methods for users to apply for loan
+ * @class RepaymentController
+ * @description Contains methods for admin to make repayments
  * @exports RepaymentController
  */
 class RepaymentController {
@@ -66,11 +66,9 @@ class RepaymentController {
         }
 
         // Get user transaction details from newData and user email from data
-        const details = MessageController.transactionMessage(
-          newData,
-          data.user,
-        );
+        const details = MessageController.transactionMessage(newData, data.user);
         EmailController.sendMailMethod(details);
+
         repayments.push(newData);
         return res.status(201).send({
           status: 201,
@@ -85,8 +83,8 @@ class RepaymentController {
   }
 
   /**
-   * @method repaymentRecord
-   * @description creates a loan repayment record
+   * @method getRepaymentRecord
+   * @description get loan repayment history
    * @param {object} req - The Request Object
    * @param {object} res - The Response Object
    * @returns {object} JSON API Response
@@ -96,16 +94,23 @@ class RepaymentController {
     const data = repayments.filter(
       repayment => repayment.loanId === parseInt(id, 10),
     );
-
+    const user = loans.find(loan => loan.id === parseInt(id, 10));
     if (data.length > 0) {
-      return res.status(200).send({
-        status: 200,
-        data,
+      // Check if user email is the same with user that applied for loan
+      if (req.user.email === user.user) {
+        return res.status(200).send({
+          status: 200,
+          data,
+        });
+      }
+      return res.status(400).send({
+        status: 400,
+        error: 'Unauthorized access, please check you are entering correct loan Id!',
       });
     }
     return res.status(404).send({
       status: 404,
-      error: 'No Loan with that id found!',
+      error: 'No Loan with that id exist on repayment database',
     });
   }
 }

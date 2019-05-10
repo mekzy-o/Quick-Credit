@@ -10,10 +10,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router);
 
-// Wrong Endpoints
-app.all('*', (req, res) => res.status(404).send({
+// Throw error when user enters wrong Endpoints
+app.use((req, res) => res.status(404).send({
   status: res.statusCode,
-  error: 'Oops! Endpoint not found.',
+  error: 'Oops! Endpoint not found, Please Check that you are entering the right thing!',
 }));
 
 const port = process.env.PORT || 8080;
