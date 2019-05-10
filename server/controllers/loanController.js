@@ -5,12 +5,11 @@ import MessageController from '../helpers/messageHandler';
 import EmailController from '../helpers/emailHandler';
 
 /**
- * @class UserController
+ * @class LoanController
  * @description Contains methods for users to apply for loan
  * @exports LoanController
  */
 class LoanController {
-
   /**
    * @method loanApply
    * @description creates a loan application
@@ -23,63 +22,78 @@ class LoanController {
       firstName, lastName, email, amount, tenor,
     } = req.body;
 
-    // Search data storage  to check if loan already exist by the same user
-    if (loans.find(loan => loan.user === req.user.email)) {
-      return res.status(409).send({
-        status: 409,
-        error: 'You already applied for a loan!',
+    // Search data storage  to check if user email already exist
+    const checkUser = users.find(user => user.email === req.user.email);
+
+    if (checkUser) {
+      // declare loan data that are not immutable by user
+      const loanData = {
+        interest: 0.05 * parseInt(amount, 10).toFixed(3),
+        get paymentInstallment() {
+          return (
+            parseInt(amount, 10) / parseInt(tenor, 10)
+            + this.interest).toFixed(3);
+        },
+        get balance() {
+          return (
+            parseInt(this.paymentInstallment, 10) * parseInt(tenor, 10)
+          ).toFixed(3);
+        },
+        status: 'pending',
+        createdOn: moment().format('LLL'),
+        repaid: false,
+      };
+
+      const data = {
+        loanId: loans.length + 1,
+        firstName,
+        lastName,
+        email,
+        tenor,
+        amount,
+        paymentInstallment: loanData.paymentInstallment,
+        status: loanData.status,
+        balance: loanData.balance,
+        interest: loanData.interest,
+      };
+
+      // Send user data to admin including loan id and user email
+      const newData = {
+        id: data.loanId,
+        user: req.user.email,
+        createdOn: loanData.createdOn,
+        status: data.status,
+        repaid: loanData.repaid,
+        tenor: data.tenor,
+        amount: data.amount,
+        paymentInstallment: data.paymentInstallment,
+        balance: data.balance,
+        interest: data.interest,
+      };
+      loans.push(newData);
+      const user = loans.filter(loan => loan.user === req.user.email);
+      const loanStatus = loans.find(loan => loan.id === data.loanId - 1);
+      if (user) {
+        if (user.length > 1 && loanStatus.repaid === false) {
+          loans.pop();
+          return res.status(409).send({
+            status: 409,
+            error: 'You already applied for a loan',
+          });
+        }
+      }
+      // get client details and send an email to client
+      const details = MessageController.loanApplyMessage(data, newData.createdOn);
+      EmailController.sendMailMethod(details);
+
+      return res.status(201).send({
+        status: 201,
+        data,
       });
     }
-
-    // declare loan data that are not immutable by user
-    const loanData = {
-      interest: 0.05 * parseInt(amount, 10).toFixed(3),
-      get paymentInstallment() {
-        return (parseInt((amount), 10) / parseInt(tenor, 10) + this.interest).toFixed(3);
-      },
-      get balance() {
-        return (parseInt(this.paymentInstallment, 10) * parseInt(tenor, 10)).toFixed(3);
-      },
-      status: 'pending',
-      createdOn: moment().format('LLL'),
-      repaid: false,
-    };
-
-    const data = {
-      loanId: loans.length + 1,
-      firstName,
-      lastName,
-      email,
-      tenor,
-      amount,
-      paymentInstallment: loanData.paymentInstallment,
-      status: loanData.status,
-      balance: loanData.balance,
-      interest: loanData.interest,
-    };
-
-    // Send user data to admin including loan id and user email
-    const newData = {
-      id: data.loanId,
-      user: req.user.email,
-      createdOn: loanData.createdOn,
-      status: data.status,
-      repaid: loanData.repaid,
-      tenor: data.tenor,
-      amount: data.amount,
-      paymentInstallment: data.paymentInstallment,
-      balance: data.balance,
-      interest: data.interest,
-    };
-
-    loans.push(newData);
-
-    // get client details and send an email to client
-    const details = MessageController.loanApplyMessage(data, newData.createdOn);
-    EmailController.sendMailMethod(details);
-    return res.status(201).send({
-      status: 201,
-      data,
+    return res.status(400).send({
+      status: 400,
+      error: 'Email not found in the database!',
     });
   }
 
@@ -96,7 +110,9 @@ class LoanController {
     // check if  status and repaid are in the query of the url
     if (status && repaid) {
       repaid = JSON.parse(repaid);
-      const response = loans.filter(loan => loan.status === status && loan.repaid === repaid);
+      const response = loans.filter(
+        loan => loan.status === status && loan.repaid === repaid,
+      );
       return res.status(200).send({
         status: 200,
         data: response,
@@ -109,8 +125,8 @@ class LoanController {
   }
 
   /**
-   * @method getLoans
-   * @description gets all loan applications
+   * @method getOneLoan
+   * @description gets a single loan application
    * @param {object} req - The Request Object
    * @param {object} res - The Response Object
    * @returns {object} JSON API Response
@@ -151,7 +167,6 @@ class LoanController {
 
       // If admin wants to approve loan, confirm user verification status
       if (data.status === 'approved') {
-
         // Find User that applied for loan
         const userDetails = users.find(user => user.email === data.user);
 

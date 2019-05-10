@@ -470,59 +470,68 @@ describe('Tests for Loan Endpoint', () => {
 
   describe(`POST ${url}`, () => {
     it('Should throw error if user applies for loan more than once', (done) => {
-      const user = {
+      const login = {
         email: 'emekaofe7@gmail.com',
-        firstName: 'Emeka',
-        lastName: 'Ofe',
         password: 'maths102',
-        address: '75, Bode Thomas Street',
       };
       chai
         .request(app)
-        .post(signupUrl)
-        .send(user)
-        .end((signupErr, signupRes) => {
-
-          const login = {
+        .post(loginUrl)
+        .send(login)
+        .end((loginErr, loginRes) => {
+          const token = `Bearer ${loginRes.body.data.token}`;
+          const applyLoan = {
+            firstName: 'Emeka',
+            lastName: 'Ofe',
             email: 'emekaofe7@gmail.com',
-            password: 'maths102',
+            amount: 200000,
+            tenor: 12,
           };
           chai
             .request(app)
-            .post(loginUrl)
-            .send(login)
-            .end((loginErr, loginRes) => {
-              const token = `Bearer ${loginRes.body.data.token}`;
-              const applyLoan = {
-                firstName: 'Emeka',
-                lastName: 'Ofe',
-                email: 'emekaofe7@gmail.com',
-                amount: 200000,
-                tenor: 12,
-              };
+            .post(url)
+            .set('authorization', token)
+            .send(applyLoan)
+            .end((err, res) => {
               chai
                 .request(app)
                 .post(url)
                 .set('authorization', token)
                 .send(applyLoan)
                 .end((err, res) => {
-                  chai
-                    .request(app)
-                    .post(url)
-                    .set('authorization', token)
-                    .send(applyLoan)
-                    .end((err, res) => {
-                      res.should.have.status(409);
-                      res.body.should.be.a('object');
-                      res.body.should.have.property('error');
-                      res.body.error.should.eql('You already applied for a loan!');
-                      done();
-                    });
+                  res.should.have.status(409);
+                  res.body.should.be.a('object');
+                  res.body.should.have.property('error');
+                  res.body.error.should.eql('You already applied for a loan');
+                  done();
                 });
             });
         });
     });
+    it('Should throw error if an unregistered user tries to apply for loan more than once', (done) => {
+      const token = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjo2LCJlbWFpbCI6ImVtZWthb2ZlMjRAZ21haWwuY29tIiwic3RhdHVzIjoidW52ZXJpZmllZCIsImlzQWRtaW4iOmZhbHNlfSwiaWF0IjoxNTU3MzgyNTA1LCJleHAiOjE1NTk0NTYxMDV9.UeJFjDGHngk7FkGglXqIlEF_JZmZ8SwW-_tbJB0HIJs`;
+      const applyLoan = {
+        firstName: 'Emeka',
+        lastName: 'Ofe',
+        email: 'emekaofe7@gmail.com',
+        amount: 200000,
+        tenor: 12,
+      };
+      chai
+        .request(app)
+        .post(url)
+        .set('authorization', token)
+        .send(applyLoan)
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.should.be.a('object');
+          res.body.should.have.property('error');
+          res.body.error.should.eql('Email not found in the database!');
+          done();
+        });
+    });
   });
+
 
   describe(`POST ${url}`, () => {
     it('Should throw error if user is not authenticated', (done) => {
@@ -673,7 +682,6 @@ describe('Tests for Loan Endpoint', () => {
         });
     });
   });
-
 
 
   // TEST TO VALIDATE FOR LOAN QUERY PARAMETERS

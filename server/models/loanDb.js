@@ -63,7 +63,7 @@ const loans = [
     id: 6,
     user: 'emekaofe18@gmail.com',
     createdOn: 'May 5, 2019 7:27 PM',
-    status: 'pending',
+    status: 'approved',
     repaid: false,
     tenor: '12',
     amount: '50000',

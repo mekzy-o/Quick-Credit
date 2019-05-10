@@ -6,7 +6,7 @@ chai.should();
 
 chai.use(chaiHttp);
 
-const wrongUrl = '/api/v1/hsfgf';
+const wrongUrl = '/api/v1/hsfgf%';
 const url = '/api/v1';
 const redirectUrl = '/';
 
@@ -21,7 +21,7 @@ describe('Tests for When Endpoint does not exist', () => {
           res.should.have.status(404);
           res.body.should.be.a('object');
           res.body.should.have.property('error');
-          res.body.error.should.be.eql('Oops! Endpoint not found.');
+          res.body.error.should.be.eql('Oops! Endpoint not found, Please Check that you are entering the right thing!');
           done();
         });
     });

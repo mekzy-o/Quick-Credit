@@ -189,7 +189,7 @@ class UserController {
 
   /**
    * @method getSingleUser
-   * @description return all user accounts
+   * @description return a single user account
    * @param {object} req - The Request Object
    * @param {object} res - The Response Object
    * @returns {object} JSON API Response
