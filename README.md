@@ -14,6 +14,7 @@ Quick Credit is an online lending platform that provides short term soft loans t
 - [Introduction](#introduction)
 - [UI Templates](#ui-templates)
 - [API](#api)
+- [API Documentation](#api-documentation)
 - [Pivotal Tracker ID](https://www.pivotaltracker.com/n/projects/2326723)
 - [Technologies](#technologies)
 - [Installing](#installing)
@@ -41,6 +42,10 @@ Preview UI templates :+1: [Github Pages](/)
 # API
 
 The API is currently in version 1 (v1) and is hosted at https://quick-credit-loan.herokuapp.com
+
+# API-Documentation
+
+The API endpoints are documented using swagger.json and can be accessed here [API-Docs](https://app.swaggerhub.com/apis-docs/mekzy4/Quick-Credit/1.0.0)
 
 # Pivotal Tracker ID
 
@@ -114,10 +119,11 @@ To run test cases
 | /api/v1/loans?_status=approved&repaid=false_ | View all current loans(not fully repaid) |         GET |
 | /api/v1/loans?_status=approved&repaid=true_  |      View all current repaid loans       |         GET |
 | /api/v1/loan/_loan_id_                       |          Reject or approve loan          |       PATCH |
-| /api/v1/_loan_id_/repayment                 |        Create a repayment record         |        POST |
+| /api/v1/_loan_id_/repayment                  |        Create a repayment record         |        POST |
 | /api/v1/users/password                       |              Reset Pasword               |        POST |
 | /api/v1/users/                               |              Get All Users               |         GET |
 | /api/v1/users/:email                         |            Get A Single User             |         GET |
+| /api/v1/docs                                 |          Read API documentation          |         GET |
 
 ## License :boom:
 
