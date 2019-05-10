@@ -8,8 +8,8 @@ import MessageController from '../helpers/messageHandler';
  * @description Contains methods for each user related endpoint
  * @exports UserController
  */
-
 class UserController {
+  
   /**
    * @method userSignup
    * @description creates a user account

@@ -1,16 +1,16 @@
-
 import moment from 'moment';
 import users from '../models/userdb';
 import loans from '../models/loanDb';
 import MessageController from '../helpers/messageHandler';
 import EmailController from '../helpers/emailHandler';
+
 /**
  * @class UserController
  * @description Contains methods for users to apply for loan
  * @exports LoanController
  */
-
 class LoanController {
+
   /**
    * @method loanApply
    * @description creates a loan application
@@ -18,7 +18,6 @@ class LoanController {
    * @param {object} res - The Response Object
    * @returns {object} JSON API Response
    */
-
   static loanApply(req, res) {
     const {
       firstName, lastName, email, amount, tenor,
@@ -146,15 +145,14 @@ class LoanController {
     const { id } = req.params;
     const data = loans.find(loan => loan.id === parseInt(id, 10));
 
-
-
+    // if data is true, set new data status to req.body.status
     if (data) {
       data.status = req.body.status;
 
       // If admin wants to approve loan, confirm user verification status
       if (data.status === 'approved') {
 
-      // Find User that applied for loan
+        // Find User that applied for loan
         const userDetails = users.find(user => user.email === data.user);
 
         // Check the user status, throw error if user is not verified
@@ -165,7 +163,6 @@ class LoanController {
           });
         }
       }
-
       const newData = {
         loanId: data.id,
         loanAmount: data.amount,

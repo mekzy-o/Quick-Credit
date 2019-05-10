@@ -35,7 +35,7 @@
       <a href="user-loans">Loans</a>
       <a href="admin-current-loans.html">Current Loans</a>
       <a href="admin-repaid-loans.html">Repaid Loans</a>
-      <a class="active" href="#">Repayment Transactions</a>
+      <a class="active" href="#">Transactions</a>
       <a href="#">Logout</a>
     </div>
     <nav>
@@ -86,13 +86,31 @@
       </aside>
       <section class="user-container">
         <div class="user-details">
-          <input
-            type="text"
-            id="mobileInput"
-            onkeyup="mobileFunction()"
-            placeholder="Search for User Email Address..."
-          />
+          <div class="mobile-content">
+            <div class="input-search">
+              <input
+                type="text"
+                id="mobileInput"
+                onkeyup="mobileFunction()"
+                placeholder="Search for User Email Address..."
+              />
+            </div>
+            <div class="input-button">
+              <button
+                id="mobilePayment"
+                onclick="document.getElementById('loan-modal').style.display='block'"
+              >
+                PAY NOW!
+              </button>
+            </div>
+          </div>
           <h2>REPAYMENT TRANSACTIONS</h2>
+          <button
+            id="desktop-btn"
+            onclick="document.getElementById('loan-modal').style.display='block'"
+          >
+            MAKE PAYMENT
+          </button>
           <table class="user-table" id="user-table" onclick="">
             <thead>
               <tr>
@@ -192,8 +210,42 @@
             <a href="#"><i class="fas fa-angle-double-right"></i></a>
             <a href="#"><i class="fas fa-angle-double-left"></i></a>
           </div>
-          <div>
-            <form></form>
+          <div id="loan-modal" class="modal">
+            <span
+              onclick="document.getElementById('loan-modal').style.display='none'"
+              class="close"
+              >×</span
+            >
+            <form class="modal-content">
+              <div class="headers">
+                <div class="card"><h3>PAYMENT FORM</h3></div>
+              </div>
+              <hr />
+              <div class="modal-container">
+                <label for="loan-id">LOAN ID</label>
+                <input
+                  type="number"
+                  class="modal-input"
+                  value="11332"
+                  required
+                />
+
+                <label for="loan-id">EMAIL</label>
+                <input
+                  type="email"
+                  class="modal-input"
+                  value="emekaofe@gmail.com"
+                  required
+                />
+
+                <label for="number">PAID AMOUNT</label>
+                <input type="number" class="modal-input" value="" required />
+
+                <button type="submit" id="loan-btn" class="signupbtn">
+                  POST PAYMENT
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </section>
