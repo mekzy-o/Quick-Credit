@@ -933,7 +933,7 @@ a.active {
   }
   .modal-content {
     width: 60vh;
-    height: 65vh;
+    height: 70vh;
     background: grey;
     margin-top: 30px;
   }
@@ -989,7 +989,7 @@ a.active {
   }
   .modal-content {
     width: 50vh;
-    height: 65vh;
+    height: 70vh;
     background: grey;
     margin-top: 30px;
   }
@@ -1032,7 +1032,7 @@ a.active {
   }
   .modal-content {
     width: 50vh;
-    height: 65vh;
+    height: 70vh;
     background: grey;
   }
   .close {
