@@ -1,116 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Profile | Quick-Credit </title>
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
-    crossorigin="anonymous">
-  <!-- <link rel="stylesheet" href="assets/css/user-dashboard.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Profile | Quick-Credit</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.4.2/css/all.css"
+      integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
+      crossorigin="anonymous"
+    />
+    <!-- <link rel="stylesheet" href="assets/css/user-dashboard.css">
   <link rel="stylesheet" href="assets/css/style.css">  -->
-  <link rel="stylesheet" href="assets/css/apply-loan.css">
-  <link rel="stylesheet" href="assets/css/admin.css"/>
-</head>
+    <link rel="stylesheet" href="assets/css/apply-loan.css" />
+    <link rel="stylesheet" href="assets/css/admin.css" />
+    <link rel="stylesheet" href="assets/css/profile.css" />
+  </head>
 
-<body>
- <!-------------------------------------------MAIN SECTION STARTS HERE---------------------------------------------->
- <main>
-    <!-----------------------------------MOBILE NAVBAR STARTS HERE------------------------------------------------------>
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
-        >&times;</a
-      >
-      <div class="mobile-profile">
-        <div class="profile-img-nav">
-          <img
-            onclick="profile.html"
-            id="profile-img"
-            src="assets/img/avatar2.png"
-            alt=""
-          />
-        </div>
-        <h4>Emeka</h4>
-      </div>
-      <a href="user-dashboard.html">Dashboard</a>
-      <a href="index.html">Home</a>
-      <a href="apply-loan.html">Apply for loans</a>
-      <a href="user-dashboard.html">Profile</a>
-      <a class="active" href="loan-repayment.html">Transactions</a>
-      <a href="login.html">Logout</a>
-    </div>
-    <!-----------------------------------MOBILE NAVBAR ENDS HERE------------------------------------------------------>
-
-    <!-----------------------------------MAIN NAVBAR STARTS HERE------------------------------------------------------>
-    <nav>
-      <div class="logo">
-        <h1 class="logo-header"><a href="../index.html">QUICK-CREDIT</a></h1>
-      </div>
-      <div class="search">
-        <input type="text" class="search-input" placeholder="search..." /><i
-          class="fas fa-search"
-        ></i>
-      </div>
-
-      <div class="nav-profile">
-        <div class="icon"><i class="fas fa-envelope email"></i></div>
-        <div>
-          <img src="assets/img/avatar2.png" alt="avatar">
-        </div>
-        <h4>Emeka</h4>
-      </div>
-      <div>
-        <span class="mobile-nav" onclick="openNav()">&#9776;</span>
-      </div>
-    </nav>
-     <!-----------------------------------MAIN NAVBAR ENDS HERE------------------------------------------------------>
-
-    <div class="container">
-      <aside class="sidebar">
-        <ul>
-          <li><a href="user-dashboard.html">Dashboard</a></li>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="apply-loan.html">Apply for loans</a></li>
-          <li><a href="user-dashboard.html">Profile</a></li>
-          <li><a class="active" href="loan-repayment.html">Transactions</a></li>
-          <li><a href="login.html">Logout</a></li>
-        </ul>
-      </aside>
-
-    <section class="content">
-        <form action="#">
-          <div class="new-order">
-            <div class="user-info">
-              <h3>QUICK-CREDIT LOAN APPLICATION</h3>
-              <hr>
-              <label for="name">First Name</label>
-              <input type="text" placeholder="Enter Full Name">
-              <label for="name">Last Name</label>
-              <input type="text" placeholder="Enter Full Name">
-
-              <label for="number">Account Number</label>
-              <input type="number" placeholder="Enter Account Number">
-  
-              <label for="user-address">Address</label>
-              <input type="text" placeholder="Enter Address">
-  
-              <label for="amount">Amount</label>
-              <input type="number" placeholder="Enter loan Amount">
-  
-              <label for="description">Description</label>
-              <textarea placeholder="Brief reason why you need loan....."></textarea>
-  
-              <label for="number">Phone Number</label>
-              <input type="number" placeholder="Phone number">
-            </div>
-            <button type="submit">Submit</button>
+  <body>
+    <!-------------------------------------------MAIN SECTION STARTS HERE---------------------------------------------->
+    <main>
+      <!-----------------------------------MOBILE NAVBAR STARTS HERE------------------------------------------------------>
+      <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+          >&times;</a
+        >
+        <div class="mobile-profile">
+          <div class="profile-img-nav">
+            <img
+              onclick="profile.html"
+              id="profile-img"
+              src="assets/img/img4.jpg"
+              alt=""
+            />
           </div>
-        </form>
-      </section>
-      <footer class='apply-footer'>
-        <p>copyright &copy; 2019 Andela boot-camp project</p>
-      </footer>
-      <script src="js/script.js"></script>
- </body>
+          <h4>Emeka</h4>
+        </div>
+        <a href="user-dashboard.html">Dashboard</a>
+        <a class="active" href="apply-loan.html">Apply for loan</a>
+        <a href="user-profile.html">Profile</a>
+        <a href="login.html">Logout</a>
+      </div>
+      <!-----------------------------------MOBILE NAVBAR ENDS HERE------------------------------------------------------>
+
+      <!-----------------------------------MAIN NAVBAR STARTS HERE------------------------------------------------------>
+      <nav>
+        <div class="logo">
+          <h1 class="logo-header">
+            <a href="user-dashboard.html">QUICK-CREDIT</a>
+          </h1>
+        </div>
+        <div class="search">
+          <input type="text" class="search-input" placeholder="search..." /><i
+            class="fas fa-search"
+          ></i>
+        </div>
+
+        <div class="nav-profile">
+          <div class="icon"><i class="fas fa-envelope email"></i></div>
+          <div>
+            <img src="assets/img/img4.jpg" alt="avatar" />
+          </div>
+          <h4>Emeka</h4>
+        </div>
+        <div>
+          <span class="mobile-nav" onclick="openNav()">&#9776;</span>
+        </div>
+      </nav>
+      <!-----------------------------------MAIN NAVBAR ENDS HERE------------------------------------------------------>
+
+      <div class="container">
+        <aside class="sidebar" id="applyLoan">
+          <ul>
+            <li><a href="user-dashboard.html">Dashboard</a></li>
+            <li>
+              <a class="active" href="apply-loan.html">Apply for loan</a>
+            </li>
+            <li><a href="user-profile.html">Profile</a></li>
+            <li><a href="login.html">Logout</a></li>
+          </ul>
+        </aside>
+
+        <section class="content">
+          <div class="new-order">
+            <form action="#">
+              <div class="user-info">
+                <h3>QUICK-CREDIT LOAN APPLICATION</h3>
+                <hr />
+                <label for="name">First Name</label>
+                <input type="text" placeholder="Enter Full Name" />
+                <label for="name">Last Name</label>
+                <input type="text" placeholder="Enter Full Name" />
+
+                <label for="number">Account Number</label>
+                <input type="number" placeholder="Enter Account Number" />
+
+                <label for="user-address">Address</label>
+                <input type="text" placeholder="Enter Address" />
+
+                <label for="amount">Amount</label>
+                <input type="number" placeholder="Enter loan Amount" />
+
+                <label for="description">Description</label>
+                <textarea
+                  placeholder="Brief reason why you need loan....."
+                ></textarea>
+
+                <label for="number">Phone Number</label>
+                <input type="number" placeholder="Phone number" />
+              </div>
+              <button type="submit">Submit</button>
+            </form>
+          </div>
+        </section>
+      </div>
+    </main>
+    <footer class="apply-footer">
+      <p>copyright &copy; 2019 Andela boot-camp project</p>
+    </footer>
+    <script src="assets/js/script.js"></script>
+  </body>
 </html>

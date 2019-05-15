@@ -28,17 +28,15 @@
             <img
               onclick="profile.html"
               id="profile-img"
-              src="assets/img/avatar2.png"
+              src="assets/img/img4.jpg"
               alt=""
             />
           </div>
           <h4>Emeka</h4>
         </div>
         <a class="active" href="user-dashboard.html">Dashboard</a>
-        <a href="index.html">Home</a>
-        <a href="apply-loan.html">Apply for loans</a>
-        <a href="user-dashboard.html">Profile</a>
-        <a href="loan-repayment.html">Transactions</a>
+        <a href="apply-loan.html">Apply for loan</a>
+        <a href="user-profile.html">Profile</a>
         <a href="login.html">Logout</a>
       </div>
       <!-----------------------------------MOBILE NAVBAR ENDS HERE------------------------------------------------------>
@@ -46,18 +44,22 @@
       <!-----------------------------------MAIN NAVBAR STARTS HERE------------------------------------------------------>
       <nav>
         <div class="logo">
-          <h1 class="logo-header"><a href="../index.html">QUICK-CREDIT</a></h1>
+          <h1 class="logo-header">
+            <a href="user-dashboard.html">QUICK-CREDIT</a>
+          </h1>
         </div>
         <div class="search">
-          <input type="text" class="search-input" placeholder="search..." /><i
-            class="fas fa-search"
-          ></i>
+          <input
+            type="text"
+            class="search-input"
+            placeholder="Search Loans..."
+          /><i class="fas fa-search"></i>
         </div>
 
         <div class="nav-profile">
           <div class="icon"><i class="fas fa-envelope email"></i></div>
           <div>
-            <img src="assets/img/avatar2.png" alt="avatar" />
+            <img src="assets/img/img4.jpg" alt="avatar" />
           </div>
           <h4>Emeka</h4>
         </div>
@@ -68,116 +70,152 @@
       <!-----------------------------------MAIN NAVBAR ENDS HERE------------------------------------------------------>
 
       <div class="container">
-        <aside class="sidebar">
+        <aside class="sidebar" id="dashboardSidebar">
           <ul>
             <li><a class="active" href="user-dashboard.html">Dashboard</a></li>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="apply-loan.html">Apply for loans</a></li>
-            <li><a href="user-dashboard.html">Profile</a></li>
-            <li><a href="loan-repayment.html">Transactions</a></li>
+            <!-- <li><a href="index.html">Home</a></li> -->
+            <li><a href="apply-loan.html">Apply for loan</a></li>
+            <li><a href="user-profile.html">Profile</a></li>
+            <!-- <li><a href="loan-repayment.html">Transactions</a></li> -->
             <li><a href="login.html">Logout</a></li>
           </ul>
         </aside>
-        <!-----------------------------------USER DETAIL CONTAINER STARTS HERE----------------------------------------->
-        <div class="account-container">
-          <div class="account-img">
-            <img src="assets/img/img4.jpg" alt="image placeholder" />
-            <h2>Welcome EMEKA</h2>
-          </div>
-          <div class="personal-details">
-            <h2>Personal Details</h2>
-            <div class="account-data">
-              <p>
-                <span class="account-data-type">Name</span>
-                <span class="account-data-value"
-                  >Emeka Ofe <i class="far fa-edit"></i
-                ></span>
-              </p>
-              <p>
-                <span class="account-data-type">Email</span>
-                <span class="account-data-value"
-                  >emekaofe@gmail.com <i class="far fa-edit"></i
-                ></span>
-              </p>
-              <p>
-                <span class="account-data-type">Address</span>
-                <span class="account-data-value"
-                  >10 Adekoya, Surulere, Lagos<i class="far fa-edit"></i
-                ></span>
-              </p>
-              <p>
-                <span class="account-data-type">Phone</span>
-                <span class="account-data-value"
-                  >0813843223<i class="far fa-edit"></i
-                ></span>
-              </p>
-            </div>
-          </div>
+        <div class="loans-container">
+          <h2>LOAN TRANSACTIONS</h2>
+          <div class="user-loans">
+            <table class="transaction-table">
+              <thead>
+                <tr>
+                  <th>Loan ID</th>
+                  <th>Date</th>
+                  <th>Amount</th>
+                  <th>Tenor</th>
+                  <th>Installments</th>
+                  <th>Interest</th>
+                  <th>Status</th>
+                  <th>Repaid</th>
+                  <th>Next Payment</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-th="Loan ID">#22338</td>
+                  <td data-th="Created On">03-01-2019</td>
+                  <td data-th="Loan Amount">₦200000</td>
+                  <td data-th="Tenor">6 months</td>
+                  <td data-th="Monthly Installments">₦26000</td>
+                  <td data-th="Interest">₦6000</td>
+                  <td class="approve" data-th="Status">APPROVED</td>
+                  <td data-th="Repaid">ONGOING</td>
+                  <td data-th="Next Payment">14-6-2019</td>
+                  <td data-th="Action">
+                    <button>
+                      <a href="loan-repayment.html" target="_blank"
+                        >Repayments</a
+                      >
+                    </button>
+                  </td>
+                </tr>
 
-          <!-----------------------------------USER DETAIL CONTAINER ENDS HERE------------------------------------------------------>
-          <div class="loans-container">
-            <h2>LOAN TRANSACTIONS</h2>
-            <div class="user-loans">
-              <table class="transaction-table">
-                <thead>
-                  <tr>
-                    <th>Loan ID</th>
-                    <th>Date</th>
-                    <th>Amount</th>
-                    <th>Tenor</th>
-                    <th>Installments</th>
-                    <th>Interest</th>
-                    <th>Status</th>
-                    <th>Repaid</th>
-                    <th>Next Payment</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td data-th="Loan ID">#22338</td>
-                    <td data-th="Created On">03-01-2019</td>
-                    <td data-th="Loan Amount">₦200000</td>
-                    <td data-th="Tenor">6 months</td>
-                    <td data-th="Monthly Installments">₦26000</td>
-                    <td data-th="Interest">₦6000</td>
-                    <td class="approve" data-th="Status">APPROVED</td>
-                    <td data-th="Repaid">ONGOING</td>
-                    <td data-th="Next Payment">14-6-2019</td>
-                    <td data-th="Action">
-                      <button>
-                        <a href="loan-repayment.html" target="_blank"
-                          >Repayments</a
-                        >
-                      </button>
-                    </td>
-                  </tr>
+                <tr>
+                  <td data-th="Loan ID">#22338</td>
+                  <td data-th="Created On">03-01-2019</td>
+                  <td data-th="Loan Amount">₦200000</td>
+                  <td data-th="Tenor">6 months</td>
+                  <td data-th="Monthly Installments">₦26000</td>
+                  <td data-th="Interest">₦6000</td>
+                  <td class="approve" data-th="Status">APPROVED</td>
+                  <td data-th="Repaid">COMPLETED</td>
+                  <td data-th="Next Payment">NULL</td>
+                  <td data-th="Action">
+                    <button>
+                      <a href="loan-repayment.html" target="_blank"
+                        >Repayments</a
+                      >
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td data-th="Loan ID">#22338</td>
+                  <td data-th="Created On">03-01-2019</td>
+                  <td data-th="Loan Amount">₦200000</td>
+                  <td data-th="Tenor">6 months</td>
+                  <td data-th="Monthly Installments">₦26000</td>
+                  <td data-th="Interest">₦6000</td>
+                  <td class="approve" data-th="Status">APPROVED</td>
+                  <td data-th="Repaid">COMPLETED</td>
+                  <td data-th="Next Payment">NULL</td>
+                  <td data-th="Action">
+                    <button>
+                      <a href="loan-repayment.html" target="_blank"
+                        >Repayments</a
+                      >
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td data-th="Loan ID">#22338</td>
+                  <td data-th="Created On">03-01-2019</td>
+                  <td data-th="Loan Amount">₦200000</td>
+                  <td data-th="Tenor">6 months</td>
+                  <td data-th="Monthly Installments">₦26000</td>
+                  <td data-th="Interest">₦6000</td>
+                  <td class="approve" data-th="Status">APPROVED</td>
+                  <td data-th="Repaid">COMPLETED</td>
+                  <td data-th="Next Payment">NULL</td>
+                  <td data-th="Action">
+                    <button>
+                      <a href="loan-repayment.html" target="_blank"
+                        >Repayments</a
+                      >
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td data-th="Loan ID">#22338</td>
+                  <td data-th="Created On">03-01-2019</td>
+                  <td data-th="Loan Amount">₦200000</td>
+                  <td data-th="Tenor">6 months</td>
+                  <td data-th="Monthly Installments">₦26000</td>
+                  <td data-th="Interest">₦6000</td>
+                  <td class="approve" data-th="Status">APPROVED</td>
+                  <td data-th="Repaid">COMPLETED</td>
+                  <td data-th="Next Payment">NULL</td>
+                  <td data-th="Action">
+                    <button>
+                      <a href="loan-repayment.html" target="_blank"
+                        >Repayments</a
+                      >
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td data-th="Loan ID">#22338</td>
+                  <td data-th="Created On">03-01-2019</td>
+                  <td data-th="Loan Amount">₦200000</td>
+                  <td data-th="Tenor">6 months</td>
+                  <td data-th="Monthly Installments">₦26000</td>
+                  <td data-th="Interest">₦6000</td>
+                  <td class="approve" data-th="Status">APPROVED</td>
+                  <td data-th="Repaid">COMPLETED</td>
+                  <td data-th="Next Payment">NULL</td>
+                  <td data-th="Action">
+                    <button>
+                      <a href="loan-repayment.html" target="_blank"
+                        >Repayments</a
+                      >
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
 
-                  <tr>
-                    <td data-th="Loan ID">#22338</td>
-                    <td data-th="Created On">03-01-2019</td>
-                    <td data-th="Loan Amount">₦200000</td>
-                    <td data-th="Tenor">6 months</td>
-                    <td data-th="Monthly Installments">₦26000</td>
-                    <td data-th="Interest">₦6000</td>
-                    <td class="approve" data-th="Status">APPROVED</td>
-                    <td data-th="Repaid">COMPLETED</td>
-                    <td data-th="Next Payment">NULL</td>
-                    <td data-th="Action">
-                      <button>
-                        <a href="loan-repayment.html" target="_blank"
-                          >Repayments</a
-                        >
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-
-              <div class="pagination">
-                <a href="#"><i class="fas fa-angle-double-right"></i></a>
-                <a href="#"><i class="fas fa-angle-double-left"></i></a>
-              </div>
+            <div class="page">
+              <a href="#">&laquo;</a>
+              <a href="#" class="active">1</a>
+              <a href="#">2</a>
+              <a href="#">&raquo;</a>
             </div>
           </div>
         </div>

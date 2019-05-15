@@ -56,7 +56,7 @@ header {
   padding-bottom: 15px;
   background: #003468;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   color: white;
 }
@@ -67,6 +67,7 @@ header {
   display: flex;
   justify-content: center;
   color: #ffc20e;
+  margin-right: 0;
 }
 
 .logo a {
@@ -103,7 +104,7 @@ header li a:active {
 .desktop-nav {
   display: flex;
   list-style: none;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   width: 70%;
 }
 
@@ -111,6 +112,9 @@ header li a:active {
   text-decoration: none;
   color: #fff;
   outline: none;
+}
+.desktop-nav > li {
+  margin-right: 50px;
 }
 
 /* MOBILE NAVBAR */
@@ -231,7 +235,7 @@ header li a:active {
 
 /* STYLE FOR BOX TWO: HOW IT WORKS */
 .box-two {
-  padding-top: 3%;
+  padding: 0 10% 0 10%;
   margin-top: 10px;
   background: #ffffffb8;
 }
@@ -274,16 +278,17 @@ i.fas.fa-sign-in-alt {
   position: relative;
   width: 120px;
   height: 120px;
-  font-size: 70px;
+  font-size: 35px;
   line-height: 120px;
+  padding-right: 40px;
 }
 i.fas.fa-money-bill-alt::after,
 i.fas.fa-user::after,
 i.fas.fa-sign-in-alt::after {
   position: absolute;
-  width: 100%;
+  width: 80%;
   content: "";
-  height: 100%;
+  height: 80%;
   left: 0;
   top: 0;
   border: 1px solid #dbdbdb;
@@ -319,6 +324,7 @@ i.fas.fa-sign-in-alt:hover::after {
 /* STYLES FOR BOX THREE */
 .box-three {
   background: #ffffffb8;
+  padding: 0 10% 0 10%;
 }
 .box-three hr {
   margin: 0 auto;
@@ -428,10 +434,10 @@ button {
   align-items: center;
 }
 
-.login-form {
+/* .login-form {
   width: 100%;
   height: 60vh;
-}
+} */
 
 .instruction p {
   color: white;
@@ -453,7 +459,7 @@ button {
 }
 
 .tab-content form {
-  padding: 2%;
+  padding: 10%;
   border: 1px solid rgba(0, 0, 0, 0.062);
   box-sizing: border-box;
 }
@@ -475,11 +481,6 @@ input[type="number"] {
   color: #fff;
 }
 
-.tab-content input[type="password"] {
-  border-right: none;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
 .tab-content label[for="firstname"],
 label[for="lastname"],
 label[for="password"],
@@ -522,6 +523,16 @@ button {
 button.btn1 {
   color: #ffc20e;
 }
+.light-weight {
+  color: white;
+  font-size: 16px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-left: 50px;
+}
+.light-weight a {
+  color: #ffc20e;
+  font-size: 16px;
+}
 
 .btn1 a {
   text-decoration: none;
@@ -536,29 +547,6 @@ button.btn1 {
 .login-footer {
   width: 100%;
   flex-shrink: 0;
-}
-
-.secret {
-  display: flex;
-  position: relative;
-}
-.eye-mask {
-  width: 50px;
-  background: rgb(217, 217, 241);
-  margin-top: 37px;
-  height: 40px;
-  /* position: absolute; */
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.eye-pos {
-  position: absolute;
-  margin-top: 3%;
-  margin-left: 3%;
-}
-.pass {
-  flex-grow: 1;
 }
 
 /* MEDIA QUERIES FOR SCREEN OF MAX-WIDTH 768PX */
@@ -745,6 +733,9 @@ button.btn1 {
 
 /* MEDIA QUERIES FOR SCREEN OF MAX-WIDTH 320PX */
 @media (max-width: 320px) {
+  .light-weight {
+    margin-left: 10px;
+  }
   h1.logo {
     font-size: 15px;
     width: 50%;
