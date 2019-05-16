@@ -185,7 +185,7 @@ nav .nav-profile i.fas.fa-envelope {
   padding-top: 18px;
   color: #fff;
   padding-left: 10px;
-  margin-top: 30px;
+  margin-top: 15px;
 }
 
 input.search-input {
@@ -368,14 +368,43 @@ button[disabled] {
   cursor: none;
   width: 80%;
 }
+
+/* PAGINATION */
+.page {
+  /* display: inline-block; */
+  float: right;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.page a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  border: 1px solid #ddd;
+}
+
+.page a.active {
+  background-color: #003468;
+  color: white;
+  border: 1px solid #003468;
+}
+
 #desktop-btn {
   float: right;
-  margin-bottom: 10px;
+  margin-top: 30px;
   padding: 10px;
   border-radius: 5px;
-  background: #003468;
-  color: white;
+  background: #ccc;
+  color: #003468;
   border: none;
+  cursor: pointer;
+}
+#desktop-btn:hover {
+  background: #003468;
+  color: #ccc;
 }
 .approve {
   color: green;
@@ -393,37 +422,6 @@ button[disabled] {
 
 .user-details td a:hover {
   color: #eee764;
-}
-
-/* pagination for user table style*/
-.pagination {
-  width: 95%;
-  box-sizing: border-box;
-}
-
-.pagination a {
-  float: right;
-  margin-top: 10px;
-  text-decoration: none;
-  color: #09574b;
-  transition: background-color 300ms;
-  margin-right: 5px;
-  outline: none;
-  border: 1px solid #09574b;
-  padding-top: 5px;
-  padding-left: 10px;
-  padding-right: 5px;
-  vertical-align: middle;
-  box-sizing: border-box;
-  width: 40px;
-  height: 35px;
-  margin-bottom: 30px;
-  background: white;
-}
-
-.pagination a .fas {
-  border: none;
-  font-size: 20px;
 }
 
 /* CHECKBOX STYLE */
@@ -499,17 +497,29 @@ footer {
   color: white;
 }
 
+/* .admin-container {
+  display: flex;
+  margin-left: 100px;
+  margin-top: 100px;
+  justify-content: space-between;
+} */
+
 .info-box {
   display: flex;
+  /* flex-direction: row; */
   background: #fff;
-  width: 100%;
+  width: 30%;
   border-radius: 2px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   margin-left: 20px;
   box-shadow: 0px 2px 1px 1px #d7ddd2, 0px -4px 1px #d7ddd2;
 }
 .users {
   margin-top: 30px;
+  display: flex;
+  margin-right: 20px;
+  flex-wrap: wrap;
+  width: 100%;
 }
 .info-box-content {
   display: flex;
@@ -766,7 +776,7 @@ a.active {
     color: white;
   }
   footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     width: 100%;
   }
@@ -945,6 +955,20 @@ a.active {
 }
 
 @media (max-width: 375px) {
+  .users {
+    width: 250px;
+    margin-left: 45px;
+  }
+  .info-box-content > .info-box-text {
+    font-size: 12px;
+  }
+  span > i.fas {
+    border-right: 1px solid;
+    width: 150px;
+    padding: 10px;
+    color: #fff;
+    background: blue;
+  }
   .icon::before {
     right: 21%;
     top: 5%;
@@ -1054,6 +1078,11 @@ a.active {
 }
 
 @media (min-width: 1024px) {
+  footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+  }
   .mobile-profile {
     display: none;
   }
