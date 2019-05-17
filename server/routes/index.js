@@ -25,7 +25,7 @@ const {
 const {
  signupValidator, loginValidation, verifyUserValidation, resetPasswordValidation 
 } = validateUser;
-const { loanApplyValidator, queryValidation, adminDecisionValidation } = LoanValidations;
+const { loanApplyValidator, queryValidation, adminDecisionValidation, getSpecificLoanValidator } = LoanValidations;
 const { verifyUser, verifyAdmin } = Authorization;
 const { repaymentRecord, getRepaymentRecord } = RepaymentController;
 const { repaymentRecordValidator, repaymentHistoryValidator } = repaymentValidations;
@@ -52,7 +52,7 @@ router.post('/api/v1/loans', verifyUser, loanApplyValidator, loanApply);
 router.get('/api/v1/loans', queryValidation, verifyAdmin, getLoans);
 
 // Router to get single loan application
-router.get('/api/v1/loans/:id', verifyAdmin, getOneLoan);
+router.get('/api/v1/loans/:id', getSpecificLoanValidator, verifyAdmin, getOneLoan);
 
 // Router to post repayment record
 router.post('/api/v1/loans/:id/repayment', verifyAdmin, repaymentRecordValidator, repaymentRecord);

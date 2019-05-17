@@ -63,6 +63,22 @@ class LoanValidations {
     return next();
   }
 
+  static getSpecificLoanValidator(req, res, next) {
+    req.checkParams('id')
+      .notEmpty()
+      .withMessage('Loan not Found!')
+      .isInt()
+      .withMessage('Loan not Found!');
+    const errors = req.validationErrors();
+    if (errors) {
+      return res.status(400).json({
+        status: 400,
+        error: errors[0].msg,
+      });
+    }
+    return next();
+  }
+
   static queryValidation(req, res, next) {
     req.checkQuery('status')
       .optional()
@@ -83,7 +99,7 @@ class LoanValidations {
         error: errors[0].msg,
       });
     }
-    next();
+    return next();
   }
 
   static adminDecisionValidation(req, res, next) {

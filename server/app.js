@@ -16,6 +16,12 @@ app.use((req, res) => res.status(404).send({
   error: 'Oops! Endpoint not found, Please Check that you are entering the right thing!',
 }));
 
+app.use((err, req, res, next) => {
+  res.status(500).send({
+    error: 'Invalid Request! Please Check that you are entering the right thing!',
+  });
+});
+
 const port = process.env.PORT || 8080;
 
 app.listen(port, () => {

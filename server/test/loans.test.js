@@ -509,7 +509,7 @@ describe('Tests for Loan Endpoint', () => {
         });
     });
     it('Should throw error if an unregistered user tries to apply for loan more than once', (done) => {
-      const token = `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjo2LCJlbWFpbCI6ImVtZWthb2ZlMjRAZ21haWwuY29tIiwic3RhdHVzIjoidW52ZXJpZmllZCIsImlzQWRtaW4iOmZhbHNlfSwiaWF0IjoxNTU3MzgyNTA1LCJleHAiOjE1NTk0NTYxMDV9.UeJFjDGHngk7FkGglXqIlEF_JZmZ8SwW-_tbJB0HIJs`;
+      const token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7ImlkIjo2LCJlbWFpbCI6ImVtZWthb2ZlMjRAZ21haWwuY29tIiwic3RhdHVzIjoidW52ZXJpZmllZCIsImlzQWRtaW4iOmZhbHNlfSwiaWF0IjoxNTU3MzgyNTA1LCJleHAiOjE1NTk0NTYxMDV9.UeJFjDGHngk7FkGglXqIlEF_JZmZ8SwW-_tbJB0HIJs';
       const applyLoan = {
         firstName: 'Emeka',
         lastName: 'Ofe',
@@ -678,6 +678,30 @@ describe('Tests for Loan Endpoint', () => {
               res.body.error.should.be.eql('No Loan with that id exist on database');
               done();
 
+            });
+        });
+    });
+    it('Should throw an error if loan id is invalid', (done) => {
+      const login = {
+        email: 'admin@quick-credit.com',
+        password: 'maths102',
+      };
+      chai
+        .request(app)
+        .post(loginUrl)
+        .send(login)
+        .end((loginErr, loginRes) => {
+          const token = `Bearer ${loginRes.body.data.token}`;
+          chai
+            .request(app)
+            .get(`${url}/s`)
+            .set('authorization', token)
+            .end((err, res) => {
+              res.should.have.status(400);
+              res.body.should.be.a('object');
+              res.body.should.have.property('error');
+              res.body.error.should.be.eql('Loan not Found!');
+              done();
             });
         });
     });
