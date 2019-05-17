@@ -25,9 +25,8 @@ class repaymentValidations {
 
     req
       .checkParams('id')
-      .isNumeric()
+      .isInt()
       .withMessage('Invalid type of id Entered!');
-
     const errors = req.validationErrors();
     if (errors) {
       return res.status(400).json({
@@ -48,7 +47,7 @@ class repaymentValidations {
   static repaymentHistoryValidator(req, res, next) {
     req
       .checkParams('id')
-      .isNumeric()
+      .isInt()
       .withMessage('Invalid type of id Entered!');
     const errors = req.validationErrors();
     if (errors) {
