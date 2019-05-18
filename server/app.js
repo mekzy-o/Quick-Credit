@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import express from 'express';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
@@ -8,11 +9,15 @@ const app = express();
 app.use(morgan('tiny'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(router);
+
+
+
+app.get('/', (req, res) => res.status(301).redirect('/api'));
+
+app.use('/api', router);
 
 // Throw error when user enters wrong Endpoints
-app.use((req, res) => res.status(404).send({
-  status: res.statusCode,
+app.use('*', (req, res) => res.status(404).send({
   error: 'Oops! Endpoint not found, Please Check that you are entering the right thing!',
 }));
 

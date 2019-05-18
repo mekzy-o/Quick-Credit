@@ -11,7 +11,8 @@
     "nyc": "nyc --reporter=lcov npm run test && nyc report --reporter=text-lcov | coveralls",
     "coverage": "nyc npm test",
     "heroku-postbuild": "npm run build",
-    "test": "nyc --reporter=text mocha --recursive --timeout 10000 -c ./server/test/  --require @babel/register --exit"
+    "test": "npm run migrate && nyc --reporter=text mocha --timeout 10000 -c ./server/test/**.test.js  --require @babel/register --exit",
+    "migrate": "babel-node ./server/models/migration"
   },
   "repository": {
     "type": "git",
