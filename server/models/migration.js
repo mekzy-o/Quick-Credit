@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import Authenticator from '../auth/authentication';
 import db from './db';
 
