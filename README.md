@@ -4,10 +4,10 @@ Quick Credit is an online lending platform that provides short term soft loans t
 
 [![npm version](https://badge.fury.io/js/express.svg)](https://badge.fury.io/js/express)
 [![Code style: airbnb](https://img.shields.io/badge/code%20style-airbnb-blue.svg?style=flat-square)](https://github.com/airbnb/javascript)
-[![Build Status](https://travis-ci.com/mekzy-o/Quick-Credit.svg?branch=develop)](https://travis-ci.com/mekzy-o/Quick-Credit)
-[![Coverage Status](https://coveralls.io/repos/github/mekzy-o/Quick-Credit/badge.svg?branch=develop)](https://coveralls.io/github/mekzy-o/Quick-Credit?branch=develop)
+<!-- [![Build Status](https://travis-ci.com/mekzy-o/Quick-Credit.svg?branch=develop)](https://travis-ci.com/mekzy-o/Quick-Credit)
+[![Coverage Status](https://coveralls.io/repos/github/mekzy-o/Quick-Credit/badge.svg?branch=develop)](https://coveralls.io/github/mekzy-o/Quick-Credit?branch=develop) -->
 [![Maintainability](https://api.codeclimate.com/v1/badges/d998719ca8d68e4afaee/maintainability)](https://codeclimate.com/github/mekzy-o/Quick-Credit/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/d998719ca8d68e4afaee/test_coverage)](https://codeclimate.com/github/mekzy-o/Quick-Credit/test_coverage)
+<!-- [![Test Coverage](https://api.codeclimate.com/v1/badges/d998719ca8d68e4afaee/test_coverage)](https://codeclimate.com/github/mekzy-o/Quick-Credit/test_coverage) -->
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
 ## Table of Contents
