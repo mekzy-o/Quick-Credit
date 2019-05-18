@@ -1,4 +1,4 @@
-import Authenticator from './authentication';
+import Authenticator from '../auth/authentication';
 import db from './db';
 
 const queryTable = async () => {
