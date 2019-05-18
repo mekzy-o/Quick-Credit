@@ -9,7 +9,7 @@ const { adminVerifyUser, adminGetUser } = UserController;
 const { verifyUserValidation } = validateUser;
 const { verifyAdmin } = Authorization;
 
-userRoutes.patch('/:email/verify', verifyAdmin, adminVerifyUser);
-userRoutes.get('/:email/', verifyAdmin, verifyUserValidation, adminGetUser);
+userRoutes.patch('/:email/verify', verifyAdmin, verifyUserValidation, adminVerifyUser);
+userRoutes.get('/:email/', verifyAdmin, adminGetUser);
 
 export default userRoutes;
