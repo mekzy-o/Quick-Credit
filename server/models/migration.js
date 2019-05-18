@@ -1,4 +1,4 @@
-import bcryptjs from 'bcryptjs';
+import Authenticator from '../auth/authentication';
 import db from './db';
 
 const queryTable = async () => {
@@ -32,7 +32,7 @@ const queryTable = async () => {
             interest NUMERIC NOT NULL);`);
 
 
-    const values = ['admin', 'admin', 'admin@quick-credit.com', bcryptjs.hashSync('admin', 10), '75 Bode-Thomas, Surulere, Lagos', 'verified', 'true'];
+    const values = ['admin', 'admin', 'admin@quick-credit.com', Authenticator.hashPassword('admin'), '75 Bode-Thomas, Surulere, Lagos', 'verified', 'true'];
     const admin = await db.query('INSERT into users(firstName, lastName, email, password, address, status, isAdmin) VALUES($1,$2,$3,$4,$5,$6,$7)', values);
 
     console.log(dropUserTable, dropLoanTable, userTable, loanTable, admin);
