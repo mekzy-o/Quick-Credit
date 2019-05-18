@@ -11,9 +11,10 @@
     "nyc": "nyc --reporter=lcov npm run test && nyc report --reporter=text-lcov | coveralls",
     "coverage": "nyc npm test",
     "heroku-postbuild": "npm run build",
-    "test": "npm run migrate && nyc --reporter=text mocha --timeout 10000 -c ./server/test/**.test.js  --require @babel/register --exit",
+    "test": "set NODE_ENV=test && npm run migrate && npm run seedTable && nyc --reporter=text mocha --timeout 10000 -c ./server/test/**.test.js  --require @babel/register --exit",
     "migrate": "babel-node ./server/models/migration",
-    "heroku-migrate": "babel-node ./server/models/migration"
+    "heroku-migrate": "node ./server/models/migration",
+    "seedTable": "babel-node ./server/models/seed"
   },
   "repository": {
     "type": "git",
@@ -56,6 +57,7 @@
     "@babel/preset-env": "^7.4.2",
     "@babel/register": "^7.4.0",
     "coveralls": "^3.0.3",
+    "cross-env": "^5.2.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
