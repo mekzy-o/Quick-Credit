@@ -23,7 +23,8 @@ class validateUser {
       .isLength({ min: 3, max: 15 })
       .withMessage('First name should be between 3 to 15 characters')
       .isAlpha()
-      .withMessage('First name should only contain alphabets');
+      .withMessage('First name should only contain alphabets')
+      .customSanitizer(firstName => firstName.toLowerCase());
 
     req
       .checkBody('lastName')
@@ -33,7 +34,8 @@ class validateUser {
       .isLength({ min: 3, max: 15 })
       .withMessage('Last name should be between 3 to 15 characters')
       .isAlpha()
-      .withMessage('Last name should only contain alphabets');
+      .withMessage('Last name should only contain alphabets')
+      .customSanitizer(lastName => lastName.toLowerCase());
 
     req
       .checkBody('password')

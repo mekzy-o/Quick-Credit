@@ -52,4 +52,17 @@ describe('Tests for When Endpoint does not exist', () => {
         done();
       });
   });
+  it('Should throw error if special character is entered in the url', (done) => {
+    chai
+      .request(app)
+      .get('/api/v1/loans/%')
+      .end((err, res) => {
+        res.should.have.status(500);
+        res.body.should.be.a('object');
+        res.body.should.have.property('error');
+        res.body.error.should.be.eql('Invalid Request! Please Check that you are entering the right thing!');
+        done();
+      });
+  });
+  
 });

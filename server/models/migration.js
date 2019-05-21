@@ -8,6 +8,7 @@ const queryTable = async () => {
     // Queries to drop Tables
     const dropUserTable = await db.query('DROP TABLE IF EXISTS users CASCADE;');
     const dropLoanTable = await db.query('DROP TABLE IF EXISTS loans CASCADE;');
+    const dropRepaymentTable = await db.query('DROP TABLE IF EXISTS loans CASCADE;');
 
     // Queries to Create Tables
     const userTable = await db.query(`CREATE TABLE IF NOT EXISTS users(
@@ -32,11 +33,21 @@ const queryTable = async () => {
             balance NUMERIC NOT NULL,
             interest NUMERIC NOT NULL);`);
 
+    const repaymentTable = await db.query(`CREATE TABLE IF NOT EXISTS repayments(
+          id SERIAL UNIQUE PRIMARY KEY,
+          loanId INT NOT NULL REFERENCES loans(id) ON DELETE CASCADE ON UPDATE CASCADE,
+          createdOn DATE DEFAULT CURRENT_TIMESTAMP,
+          amount NUMERIC NOT NULL,
+          monthlyInstallment NUMERIC NOT NULL,
+          paidAmount NUMERIC NOT NULL,
+          balance NUMERIC NOT NULL 
+          );`);
+
 
     const values = ['admin', 'admin', 'admin@quick-credit.com', Authenticator.hashPassword('admin'), '75 Bode-Thomas, Surulere, Lagos', 'verified', 'true'];
     const admin = await db.query('INSERT into users(firstName, lastName, email, password, address, status, isAdmin) VALUES($1,$2,$3,$4,$5,$6,$7)', values);
 
-    console.log(dropUserTable, dropLoanTable, userTable, loanTable, admin);
+    console.log(dropUserTable, dropLoanTable, dropRepaymentTable, userTable, loanTable, repaymentTable, admin);
   } catch (err) {
     // eslint-disable-next-line no-console
     console.log(err.stack);

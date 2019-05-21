@@ -12,6 +12,7 @@ if (process.env.NODE_ENV === 'test') {
   });
 }
 
+/* Query method for parameterized queries - Retrieved from nodejs-postgresql documention(https://node-postgres.com) */
 const db = {
   query: (text, params) => pool.query(text, params),
 };

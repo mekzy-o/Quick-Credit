@@ -111,7 +111,7 @@ class LoanController {
   }
 
   /**
-   * @method getLoans
+   * @method getOneLoan
    * @description gets all loan applications
    * @param {object} req - The Request Object
    * @param {object} res - The Response Object
