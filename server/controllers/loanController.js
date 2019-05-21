@@ -7,8 +7,8 @@ import {
   queryAllLoans, getALoan, changeLoanStatus,
 } from '../models/queries/loanQueries';
 import { userDetails } from '../models/queries/userQueries';
-// import MessageController from '../helpers/messageHandler';
-// import EmailController from '../helpers/emailHandler';
+import MessageController from '../helpers/messageHandler';
+import EmailController from '../helpers/emailHandler';
 /**
  * @class UserController
  * @description Contains methods for users to apply for loan
@@ -122,7 +122,8 @@ class LoanController {
     const result = await db.query(getALoan, [id]);
     if (result.rowCount > 0) {
       return res.status(200).send({
-        status: 200,
+        message: 'Loan retrieved successfully',
+        success: true,
         data: [result.rows[0]],
       });
     }
@@ -158,10 +159,15 @@ class LoanController {
     }
     const updateLoanStatus = await db.query(changeLoanStatus, values);
     const returnData = await db.query(getALoan, [id]);
+
+    // Send User Email on approval or rejection
+    const details = MessageController.loanApprovalMessage(returnData.rows[0], returnData.rows[0].email);
+    EmailController.sendMailMethod(details);
+    
     return res.status(200).send({
       message: 'Loan Updated Successfully',
       success: true,
-      data: returnData.rows[0],
+      data: returnData.rows[0][0],
     });
   }
 }
