@@ -23,7 +23,8 @@ class LoanValidations {
       .isLength({ min: 3, max: 15 })
       .withMessage('First name should be between 3 to 15 characters')
       .isAlpha()
-      .withMessage('First name should only contain alphabets');
+      .withMessage('First name should only contain alphabets')
+      .customSanitizer(firstName => firstName.toLowerCase());
 
     req
       .checkBody('lastName')
@@ -33,7 +34,8 @@ class LoanValidations {
       .isLength({ min: 3, max: 15 })
       .withMessage('Last name should be between 3 to 15 characters')
       .isAlpha()
-      .withMessage('Last name should only contain alphabets');
+      .withMessage('Last name should only contain alphabets')
+      .customSanitizer(lastName => lastName.toLowerCase());
 
     req
       .checkBody('amount')
@@ -56,7 +58,6 @@ class LoanValidations {
     const errors = req.validationErrors();
     if (errors) {
       return res.status(400).json({
-        status: 400,
         error: errors[0].msg,
       });
     }
@@ -79,7 +80,21 @@ class LoanValidations {
     const errors = req.validationErrors();
     if (errors) {
       return res.status(400).json({
-        status: 400,
+        error: errors[0].msg,
+      });
+    }
+    return next();
+  }
+
+  static getSpecificLoanValidator(req, res, next) {
+    req.checkParams('id')
+      .notEmpty()
+      .withMessage('Loan not Found, Please Check you are entering the right id!')
+      .isInt()
+      .withMessage('Loan not Found, Please Check you are entering the right id!');
+    const errors = req.validationErrors();
+    if (errors) {
+      return res.status(400).json({
         error: errors[0].msg,
       });
     }

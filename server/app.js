@@ -23,7 +23,7 @@ app.get('/api/v1', (req, res) =>
 );
 
 // Throw error when user enters wrong Endpoints
-app.use('*', (req, res) => res.status(404).send({
+app.use((req, res) => res.status(404).send({
   error: 'Oops! Endpoint not found, Please Check that you are entering the right thing!',
 }));
 
