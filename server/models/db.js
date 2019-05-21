@@ -1,4 +1,4 @@
-import { Pool } from 'pg';
+import { Pool, types } from 'pg';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -11,6 +11,9 @@ if (process.env.NODE_ENV === 'test') {
     connectionString: process.env.DATABASE_URL,
   });
 }
+
+// Converting numeric string to numbers
+types.setTypeParser(1700, val => parseFloat(val));
 
 /* Query method for parameterized queries - Retrieved from nodejs-postgresql documention(https://node-postgres.com) */
 const db = {
