@@ -481,7 +481,7 @@ describe(`PATCH ${verifyUrl}`, () => {
             res.should.have.status(404);
             res.body.should.be.a('object');
             res.body.should.have.property('message');
-            res.body.message.should.be.eql('Email does not exist!');
+            res.body.message.should.be.eql('User does not exist!');
             done();
           });
       });

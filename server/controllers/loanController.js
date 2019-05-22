@@ -25,9 +25,7 @@ class LoanController {
    */
 
   static async loanApply(req, res) {
-    const {
-      firstName, lastName, email, amount, tenor,
-    } = req.body;
+    const { amount, tenor } = req.body;
 
     const loanData = {
       interest: 0.05 * parseInt(amount, 10).toFixed(3),
@@ -41,7 +39,7 @@ class LoanController {
       createdOn: moment().format('LLL'),
       repaid: false,
     };
-    const findUser = await db.query(userDetails, [req.body.email]);
+    const findUser = await db.query(userDetails, [req.user.email]);
     if (findUser.rows.length < 1) {
       return res.status(404).send({
         message: 'User does not exist!',
@@ -52,9 +50,9 @@ class LoanController {
     if (!findLoan.rows.length || findLoan.rows[findLoan.rows.length - 1].repaid === true) {
 
       const data = {
-        firstName,
-        lastName,
-        email,
+        firstName: req.user.firstname,
+        lastName: req.user.lastname,
+        email: req.user.email,
         tenor,
         amount,
         paymentInstallment: loanData.paymentInstallment,
@@ -96,17 +94,29 @@ class LoanController {
       repaid = JSON.parse(repaid);
       const values = [status, repaid];
       const result = await db.query(queryAllLoans, values);
+      if (result.rows.length < 1) {
+        return res.status(200).send({
+          message: 'No data matched your request at the moment, check back later!',
+          success: true,
+        });
+      }
       return res.status(200).send({
         message: 'Loan Retrieved successfully!',
         success: true,
-        data: result.rows[0],
+        data: result.rows,
       });
     }
     const retrieveLoan = await db.query(getAllLoans);
+    if (retrieveLoan.rows.length < 1) {
+      return res.status(200).send({
+        message: 'No Loan available at the moment',
+        success: true,
+      });
+    }
     return res.status(200).send({
       message: 'Loan retrieved successfully',
       success: true,
-      data: [retrieveLoan.rows[0]],
+      data: retrieveLoan.rows,
     });
   }
 
@@ -120,7 +130,14 @@ class LoanController {
   static async getOneLoan(req, res) {
     const { id } = req.params;
     const result = await db.query(getALoan, [id]);
-    if (result.rowCount > 0) {
+    if (result.rows.length) {
+      console.log(req.user.email);
+      if (req.user.email !== result.rows[0].useremail && req.user.isAdmin !== true) {
+        return res.status(401).send({
+          message: 'Unauthorized Acess, Please check that you are entering the right thing!',
+          success: false,
+        });
+      }
       return res.status(200).send({
         message: 'Loan retrieved successfully',
         success: true,
@@ -145,29 +162,39 @@ class LoanController {
     const { id } = req.params;
     const values = [status, id];
     const getLoan = await db.query(getALoan, [id]);
+
     if (!getLoan.rows.length) {
       return res.status(404).send({
         message: 'No Loan with that id exist on database',
         success: false,
       });
     }
-    if (getLoan.rows[0].status === 'approved') {
+    if (getLoan.rows[0].status === 'approved' || getLoan.rows[0].status === 'rejected') {
       return res.status(409).send({
-        message: 'This loan has already been approved',
+        message: `This loan has already been ${getLoan.rows[0].status}`,
         success: false,
       });
+    }
+    if (getLoan.rows.length && status !== 'rejected') {
+      const getUser = await db.query(userDetails, [getLoan.rows[0].useremail]);
+      if (getUser.rows[0].status === 'unverified') {
+        return res.status(400).send({
+          message: 'This user has not been verified!',
+          success: false,
+        });
+      }
     }
     const updateLoanStatus = await db.query(changeLoanStatus, values);
     const returnData = await db.query(getALoan, [id]);
 
     // Send User Email on approval or rejection
-    const details = MessageController.loanApprovalMessage(returnData.rows[0], returnData.rows[0].email);
+    const details = MessageController.loanApprovalMessage(returnData.rows[0], returnData.rows[0].useremail);
     EmailController.sendMailMethod(details);
-    
+
     return res.status(200).send({
       message: 'Loan Updated Successfully',
       success: true,
-      data: returnData.rows[0][0],
+      data: returnData.rows[0],
     });
   }
 }

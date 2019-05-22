@@ -42,6 +42,7 @@ class UserController {
 
     const result = await db.query(createUser, values);
     const user = result.rows[0];
+    console.log(user);
 
     const token = Authenticator.createToken({
       id: user.id,
@@ -152,7 +153,7 @@ class UserController {
     const emailQuery = await db.query(userDetails, [email]);
     if (!emailQuery.rows.length) {
       return res.status(404).json({
-        message: 'Email does not exist!',
+        message: 'User does not exist!',
         success: false,
       });
     }

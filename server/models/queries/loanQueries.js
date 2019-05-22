@@ -15,8 +15,6 @@ const updateBalance = 'UPDATE loans SET balance = $1 WHERE id=$2';
 
 const updateRepaid = 'UPDATE loans SET repaid=true WHERE id=$1';
 
-// const getUserEmail = 'SELECT * FROM users WHERE email=$1';
-
 
 export {
   getUserEmail,

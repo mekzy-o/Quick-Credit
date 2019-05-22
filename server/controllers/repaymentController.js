@@ -123,8 +123,8 @@ class RepaymentController {
       });
     }
     const getLoan = await db.query(getALoan, [id]);
-    if (getLoan.rows[0].useremail !== req.user.email) {
-      return res.status(400).send({
+    if (getLoan.rows[0].useremail !== req.user.email && req.user.isAdmin !== true) {
+      return res.status(401).send({
         message:
           'Unauthorized access, please check you are entering correct loan Id!',
         success: false,
