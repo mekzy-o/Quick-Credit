@@ -19,8 +19,8 @@ class repaymentValidations {
       .withMessage('Amount Paid is required!')
       .isNumeric()
       .withMessage('Invalid type of Amount Entered!')
-      .isFloat({ gt: 10 })
-      .withMessage('Amount Paid must be greater than or equal to N5000');
+      .isFloat({ gt: 999 })
+      .withMessage('Amount Paid must be greater than or equal to N1000');
 
     req
       .checkParams('id')

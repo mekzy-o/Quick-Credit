@@ -8,7 +8,7 @@ const queryTable = async () => {
     // Queries to drop Tables
     const dropUserTable = await db.query('DROP TABLE IF EXISTS users CASCADE;');
     const dropLoanTable = await db.query('DROP TABLE IF EXISTS loans CASCADE;');
-    const dropRepaymentTable = await db.query('DROP TABLE IF EXISTS loans CASCADE;');
+    const dropRepaymentTable = await db.query('DROP TABLE IF EXISTS repayments CASCADE;');
 
     // Queries to Create Tables
     const userTable = await db.query(`CREATE TABLE IF NOT EXISTS users(

@@ -22,7 +22,7 @@ loanRoutes.post('/', verifyUser, loanApplyValidator, loanApply);
 loanRoutes.get('/', queryValidation, verifyAdmin, getLoans);
 
 // Router to get single loan application
-loanRoutes.get('/:id', verifyAdmin, getSpecificLoanValidator, getOneLoan);
+loanRoutes.get('/:id', verifyUser, getSpecificLoanValidator, getOneLoan);
 
 // Router to approve or reject loan
 loanRoutes.patch('/:id', verifyAdmin, adminDecisionValidation, adminLoanDecision);

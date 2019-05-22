@@ -2,9 +2,7 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import app from '../app';
 import {
-  ommittedFirstName, ommittedEmail, ommittedLastName, ommittedTenor, invalidFirstNameLength,
-  invalidLastNameLength, invalidFirstNameCharacter, insufficientAmount,
-  invalidLastNameCharacter, correctUser, invalidAmount, insufficientTenor, exceedTenor,
+  ommittedTenor, insufficientAmount, correctUser, invalidAmount, insufficientTenor, exceedTenor,
   invalidTenor, myAdmin, correctLoan, ommittedAmount,
 } from './mockData/mockLoan';
 
@@ -58,7 +56,6 @@ describe('Tests for Loan Endpoint', () => {
             .set('authorization', token)
             .send(correctLoan)
             .end((err, res) => {
-              console.log(res.body.error);
               res.body.should.be.a('object');
               res.should.have.status(201);
               res.body.should.have.property('data');
@@ -68,134 +65,8 @@ describe('Tests for Loan Endpoint', () => {
     });
   });
 
-  it('Should throw error if email is omitted', (done) => {
-    chai
-      .request(app)
-      .post(loginUrl)
-      .send(correctUser)
-      .end((loginErr, loginRes) => {
-        const token = `Bearer ${loginRes.body.data.token}`;
-        chai
-          .request(app)
-          .post(url)
-          .set('authorization', token)
-          .send(ommittedEmail)
-          .end((err, res) => {
-            res.body.should.be.a('object');
-            res.should.have.status(400);
-            res.body.should.have.property('error');
-            res.body.error.should.eql('Email field is required');
-            done();
-          });
-      });
-  });
-  it('Should throw error if First name Omitted', (done) => {
-    chai
-      .request(app)
-      .post(loginUrl)
-      .send(correctUser)
-      .end((loginErr, loginRes) => {
-        const token = `Bearer ${loginRes.body.data.token}`;
-        chai
-          .request(app)
-          .post(url)
-          .set('authorization', token)
-          .send(ommittedFirstName)
-          .end((err, res) => {
-            console.log(err);
-            res.body.should.be.a('object');
-            res.should.have.status(400);
-            res.body.should.have.property('error');
-            res.body.error.should.eql('First name field is required');
-            done();
-          });
-      });
-  });
-  it('Should throw error if First name is less than 3 characters', (done) => {
-    chai
-      .request(app)
-      .post(loginUrl)
-      .send(correctUser)
-      .end((loginErr, loginRes) => {
-        const token = `Bearer ${loginRes.body.data.token}`;
-        chai
-          .request(app)
-          .post(url)
-          .set('authorization', token)
-          .send(invalidFirstNameLength)
-          .end((err, res) => {
-            res.body.should.be.a('object');
-            res.should.have.status(400);
-            res.body.should.have.property('error');
-            res.body.error.should.eql('First name should be between 3 to 15 characters');
-            done();
-          });
-      });
-  });
-  it('Should throw error if invalid First name is entered', (done) => {
-    chai
-      .request(app)
-      .post(loginUrl)
-      .send(correctUser)
-      .end((loginErr, loginRes) => {
-        const token = `Bearer ${loginRes.body.data.token}`;
-        chai
-          .request(app)
-          .post(url)
-          .set('authorization', token)
-          .send(invalidFirstNameCharacter)
-          .end((err, res) => {
-            res.body.should.be.a('object');
-            res.should.have.status(400);
-            res.body.should.have.property('error');
-            res.body.error.should.eql('First name should only contain alphabets');
-            done();
-          });
-      });
-  });
-  it('Should throw error if invalid Last name is entered', (done) => {
-    chai
-      .request(app)
-      .post(loginUrl)
-      .send(correctUser)
-      .end((loginErr, loginRes) => {
-        const token = `Bearer ${loginRes.body.data.token}`;
-        chai
-          .request(app)
-          .post(url)
-          .set('authorization', token)
-          .send(invalidLastNameCharacter)
-          .end((err, res) => {
-            res.body.should.be.a('object');
-            res.should.have.status(400);
-            res.body.should.have.property('error');
-            res.body.error.should.eql('Last name should only contain alphabets');
-            done();
-          });
-      });
-  });
-  it('Should throw error if Last name is less than 3 characters', (done) => {
-    chai
-      .request(app)
-      .post(loginUrl)
-      .send(correctUser)
-      .end((loginErr, loginRes) => {
-        const token = `Bearer ${loginRes.body.data.token}`;
-        chai
-          .request(app)
-          .post(url)
-          .set('authorization', token)
-          .send(invalidLastNameLength)
-          .end((err, res) => {
-            res.body.should.be.a('object');
-            res.should.have.status(400);
-            res.body.should.have.property('error');
-            res.body.error.should.eql('Last name should be between 3 to 15 characters');
-            done();
-          });
-      });
-  });
-  it('Should throw error if Amount name is omitted', (done) => {
+ 
+  it('Should throw error if Amount is omitted', (done) => {
     chai
       .request(app)
       .post(loginUrl)
@@ -233,28 +104,6 @@ describe('Tests for Loan Endpoint', () => {
             res.should.have.status(400);
             res.body.should.have.property('error');
             res.body.error.should.eql('tenor is required');
-            done();
-          });
-      });
-  });
-  it('Should throw error if Last name is omitted', (done) => {
-    chai
-      .request(app)
-      .post(loginUrl)
-      .send(correctUser)
-      .end((loginErr, loginRes) => {
-        const token = `Bearer ${loginRes.body.data.token}`;
-        chai
-          .request(app)
-          .post(url)
-          .set('authorization', token)
-          .send(ommittedLastName)
-          .end((err, res) => {
-            console.log(res.body.error);
-            res.body.should.be.a('object');
-            res.should.have.status(400);
-            res.body.should.have.property('error');
-            res.body.error.should.eql('Last name field is required');
             done();
           });
       });
@@ -369,6 +218,7 @@ describe(`GET ${url}`, () => {
           .get(url)
           .set('authorization', token)
           .end((err, res) => {
+            console.log(res.body.data[0]);
             res.should.have.status(200);
             res.body.should.be.a('object');
             res.body.should.have.property('data');
