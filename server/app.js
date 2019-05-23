@@ -5,16 +5,18 @@ import router from './routes';
 
 const app = express();
 
+
 app.use(morgan('tiny'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(router);
 
 // Wrong Endpoints
-app.all('*', (req, res) => res.status(404).send({
-  status: res.statusCode,
-  error: 'Oops! Endpoint not found.',
-}));
+app.all('/*', (req, res, next) => {
+  res.header('Access-Control-Allow_Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-Width');
+  next();
+});
 
 const port = process.env.PORT || 8080;
 
