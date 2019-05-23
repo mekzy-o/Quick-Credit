@@ -74,7 +74,7 @@ class LoanValidations {
   static adminDecisionValidation(req, res, next) {
     req
       .checkParams('id')
-      .isNumeric()
+      .isInt()
       .withMessage('Invalid type of id Entered!');
     req
       .checkBody('status')
