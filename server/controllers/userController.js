@@ -42,8 +42,7 @@ class UserController {
 
     const result = await db.query(createUser, values);
     const user = result.rows[0];
-    console.log(user);
-
+    
     const token = Authenticator.createToken({
       id: user.id,
       isAdmin: user.isadmin,
