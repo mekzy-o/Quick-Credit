@@ -1,17 +1,31 @@
+/**
+ * @module app
+ * @desc Manages the express configuration settings for the application.
+ * @requires express
+ * @requires express-validator
+ * @requires swagger-ui-express
+ * @requires cors
+ * @requires /routes
+ */
+
 import '@babel/polyfill';
 import express from 'express';
 import expressValidator from 'express-validator';
+import swaggerUi from 'swagger-ui-express';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
+import swaggerDoc from '../swagger.json';
 import routes from './routes';
 
 const app = express();
 
+app.use('/api/v1/docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc));
 app.use(morgan('tiny'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
-
+app.use(cors());
 app.use('/api/v1', routes);
 
 app.get('/', (req, res) => res.status(301).redirect('/api/v1'));
