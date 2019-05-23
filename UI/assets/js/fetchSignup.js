@@ -64,8 +64,7 @@ if (signupForm) {
           }, 8000);
         } else {
           // console.log("can't go");
-          let output = '<h3>Error<h3/>';
-          Object.keys(data).forEach((key) => {
+          let output = Object.keys(data).forEach((key) => {
             output += `<p>${data[key]}<p/>`;
           });
           document.querySelector('.error').innerHTML = output;
@@ -113,14 +112,13 @@ if (loginForm) {
           window.localStorage.token = data.data.token;
           window.localStorage.admin = data.data.isAdmin;
           window.localStorage.user = data.data.id;
-          document.querySelector('.loginMessage').innerHTML =            'Login was successful!';
+          document.querySelector('.loginMessage').innerHTML = 'Login was successful!';
           document.querySelector('.loginMessage').style.display = 'block';
           setTimeout(() => {
             authLogin();
           }, 5000);
         } else {
-          document.querySelector('.error').innerHTML = `<h2>Error</h2>
-                <h3>Please check your login details!</h3>`;
+          document.querySelector('.error').innerHTML = `<h3>Please check your login details!</h3>`;
           document.querySelector('.error').style.display = 'block';
           setTimeout(() => {
             window.location.replace('login.html');

@@ -459,7 +459,7 @@ button {
   color: white;
   position: absolute;
   top: 150px;
-  right: 400px;
+  right: 42%;
   transition-property: background;
   transition-duration: 200ms;
   transition-timing-function: ease-in;
