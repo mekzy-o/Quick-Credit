@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sign Up | SendIT </title>
+    <title>Sign Up | Quick-Credit </title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
         integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -32,34 +32,33 @@
             <a href="signup.html">Sign Up</a>
             <a href="login.html">Login</a>
         </div>
+        
         <div class="form-box">
+            <div class='message'>You Signed Up Successfully!</div>
+            <div class='error'></div>
             <div class="form">
-
                 <div class="tab-content">
                     <div class='tab-data' id="signup">
                         <h1>Create An Account</h1>
-                        <form action="/" method="post">
+                        <form id='signup-form'>
 
                             <label for="firstname"></i>First Name</label>
-                            <input type="text" required autocomplete="off"/>
+                            <input type="text" id='first-name' required autocomplete="off"/>
 
                             <label for="lastname">Last Name</label>
-                            <input type="text" required autocomplete="off"/>
+                            <input type="text" id='last-name' required autocomplete="off"/>
 
                             <label for="address">Address</label>
-                            <input type="text" required autocomplete="off"/>
-
-                            <label for="phonenumber">Phone Number</label>
-                            <input type="number" required autocomplete="off"/>
+                            <input type="text" id='address' required autocomplete="off"/>
 
                             <label for="email"></i> Email</label>
-                            <input type="email" required autocomplete="off" />
+                            <input type="email" id='signup-email' required autocomplete="off" />
 
                             <label for="password">Password</label>
-                            <input type="password" required autocomplete="off"/>
+                            <input type="password" id='signup-password' required autocomplete="off"/>
 
                             <label for="password">Confirm Password</label>
-                            <input type="password" required autocomplete="off"/>
+                            <input type="password" id='confirm-password' required autocomplete="off"/>
     
                             <button class='btn1' type="submit">
                                 <a>Signup</a>
@@ -75,6 +74,7 @@
             <p>copyright &copy; 2019 Andela boot-camp project</p>
         </footer>
     </div>
+    <script src="assets/js/fetchSignup.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
 

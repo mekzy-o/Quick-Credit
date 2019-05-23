@@ -106,17 +106,6 @@ function adminAction() {
   });
 }
 
-const submitBtn = document.getElementById("login-btn");
-console.log(submitBtn);
-submitBtn.addEventListener("click", function(e) {
-  e.preventDefault();
-  if (document.getElementById("email").value === "admin@admin.com") {
-    window.location.href = "admin-dashboard.html";
-  } else if (document.getElementById("email").value === "user@user.com") {
-    window.location.href = "user-dashboard.html";
-  }
-});
-
 //Function to search for users in user-verification table
 function myFunction() {
   // Declare variables
