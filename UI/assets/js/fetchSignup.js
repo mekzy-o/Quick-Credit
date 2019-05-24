@@ -75,8 +75,8 @@ if (signupForm) {
       })
       .catch((error) => {
         // console.log(error);
-        document.querySelector('.error').innerHTML = '<h2>server error</h2>';
-        document.querySelector('.error').innerHTML = `<h3>${error}</h3>`;
+        document.querySelector('.error').innerHTML = `<h2>${error}</h2>`;
+        document.querySelector('.error').style.display = 'block';
         setTimeout(() => {
           window.location.replace('signup.html');
         }, 5000);
