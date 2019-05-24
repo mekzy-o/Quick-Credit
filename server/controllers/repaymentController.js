@@ -1,7 +1,5 @@
 /* eslint-disable no-unused-vars */
 import moment from 'moment';
-import EmailController from '../helpers/emailHandler';
-import MessageController from '../helpers/messageHandler';
 import db from '../models/db';
 import {
   getALoan,
