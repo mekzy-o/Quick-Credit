@@ -1,5 +1,3 @@
-const baseUrl = 'http://localhost:3000/';
-
 const loginForm = document.querySelector('#login-form');
 const signupForm = document.querySelector('#signup-form');
 
@@ -34,7 +32,7 @@ if (signupForm) {
     const password = document.querySelector('#signup-password').value;
     const confirmPassword = document.querySelector('#confirm-password').value;
 
-    fetch('https://quick-credit-loan.herokuapp.com/api/v1/auth/signup%', {
+    fetch('https://quick-credit-loan.herokuapp.com/api/v1/auth/signup', {
       method: 'POST',
       mode: 'cors',
       body: JSON.stringify({
